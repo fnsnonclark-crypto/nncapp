@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>근태관리 시스템 - 마이페이지</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <a href="main.html" class="logo"><i class="fa-solid fa-clock"></i> Finenuts 출퇴근 관리</a>
+        <nav>
+            <ul>
+                <li><a href="main.html">메인</a></li>
+                <li><a href="mypage.html" class="active">마이페이지</a></li>
+                <li id="adminLink" style="display: none;"><a href="admin.html">관리자 페이지</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            <span id="userName" style="font-weight: 500;">사용자님</span>
+            <button onclick="logout()" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> 로그아웃</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="page-header fade-in">
+            <div>
+                <h2>나의 출퇴근 기록</h2>
+                <p>이번 달 출퇴근 기록을 확인할 수 있습니다.</p>
+            </div>
+        </div>
+
+        <div class="glass-panel table-container fade-in delay-1">
+            <table>
+                <thead>
+                    <tr>
+                        <th>날짜</th>
+                        <th>출근 시간</th>
+                        <th>퇴근 시간</th>
+                        <th>상태</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <!-- Data will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

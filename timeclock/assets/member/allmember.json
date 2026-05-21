@@ -1,0 +1,34 @@
+[
+  {
+    "userId": "kim001@finenuts.co.kr",
+    "name": "김성해",
+    "date": "2026-05-20",
+    "clockIn": "16:19",
+    "clockOut": "18:00",
+    "status": "정상"
+  },
+  {
+    "userId": "heo@finenuts.co.kr",
+    "name": "허영걸",
+    "date": "2026-05-20",
+    "clockIn": "16:35",
+    "clockOut": "18:00",
+    "status": "정상"
+  },
+  {
+    "userId": "admin@test.com",
+    "name": "이관리",
+    "date": "2026-05-21",
+    "clockIn": "16:09",
+    "clockOut": "-",
+    "status": "지각"
+  },
+  {
+    "userId": "testuser@finenuts.co.kr",
+    "name": "테스트유저01",
+    "date": "2026-05-21",
+    "clockIn": "17:11",
+    "clockOut": "17:11",
+    "status": "퇴근완료"
+  }
+]

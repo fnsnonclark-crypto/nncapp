@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>근태관리 시스템 - 메인</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="fade-in">
+        <a href="main.html" class="logo"><i class="fa-solid fa-clock"></i> Finenuts 출퇴근 관리</a>
+        <nav>
+            <ul>
+                <li><a href="main.html" class="active">메인</a></li>
+                <li><a href="mypage.html">마이페이지</a></li>
+                <li id="adminLink" style="display: none;"><a href="admin.html">관리자 페이지</a></li>
+            </ul>
+        </nav>
+        <div class="user-info">
+            <div style="display: flex; gap: 4px; margin-right: 15px;">
+                <button id="btnClockIn" class="btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;"><i class="fa-solid fa-play"></i> 출근하기</button>
+                <button id="btnClockOut" class="btn-logout" style="padding: 0.5rem 1rem; font-size: 0.9rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-main);" disabled><i class="fa-solid fa-stop"></i> 퇴근하기</button>
+            </div>
+            <span id="userName" style="font-weight: 500;">사용자님</span>
+            <button onclick="logout()" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> 로그아웃</button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard-grid">
+            <div class="glass-panel clock-widget fade-in delay-1">
+                <div class="date-display" id="currentDate">로딩중...</div>
+                <div class="time-display" id="currentTime" style="margin-bottom: 0;">00:00:00</div>
+            </div>
+
+            <div class="glass-panel fade-in delay-2" style="padding: 2rem;">
+                <h3 style="margin-bottom: 1.5rem; font-size: 1.2rem;"><i class="fa-solid fa-clipboard-user"></i> 당일 출퇴근 현황</h3>
+                
+                <div class="status-card" style="background: rgba(30, 30, 38, 0.6); border-radius: 0; margin-bottom: 1rem;">
+                    <div>
+                        <div class="status-label">현재 상태</div>
+                        <div class="status-value" id="statusText">로딩중...</div>
+                    </div>
+                    <div>
+                        <span id="statusBadge" class="status-badge not-started">로딩중</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <div style="flex: 1; background: rgba(30, 30, 38, 0.6); padding: 1.5rem; border-radius: 0; text-align: center;">
+                        <div class="status-label">출근 시간</div>
+                        <div class="status-value" id="inTime" style="font-size: 1.5rem; color: var(--primary);">--:--</div>
+                    </div>
+                    <div style="flex: 1; background: rgba(30, 30, 38, 0.6); padding: 1.5rem; border-radius: 0; text-align: center;">
+                        <div class="status-label">퇴근 시간</div>
+                        <div class="status-value" id="outTime" style="font-size: 1.5rem; color: var(--secondary);">--:--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
