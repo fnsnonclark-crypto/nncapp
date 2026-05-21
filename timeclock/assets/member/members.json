@@ -1,0 +1,46 @@
+[
+  {
+    "id": 2,
+    "email": "admin@test.com",
+    "password": "password",
+    "name": "이관리",
+    "dept": "경영지원팀",
+    "role": "admin",
+    "clockIn": "16:09",
+    "clockOut": "18:04",
+    "status": "지각"
+  },
+  {
+    "id": 1779260712813,
+    "email": "joon@finenuts.co.kr",
+    "password": "password",
+    "name": "이준해",
+    "dept": "디자인팀",
+    "role": "user",
+    "clockIn": "-",
+    "clockOut": "-",
+    "status": "미출근"
+  },
+  {
+    "id": 1779264560819,
+    "email": "lee@finenuts.co.kr",
+    "password": "0000",
+    "name": "이희원",
+    "dept": "대표",
+    "role": "user",
+    "clockIn": "-",
+    "clockOut": "-",
+    "status": "미출근"
+  },
+  {
+    "id": 1779351046376,
+    "email": "testuser@finenuts.co.kr",
+    "password": "0000",
+    "name": "테스트유저01",
+    "dept": "기획팀",
+    "role": "user",
+    "clockIn": "17:11",
+    "clockOut": "17:11",
+    "status": "퇴근완료"
+  }
+]
