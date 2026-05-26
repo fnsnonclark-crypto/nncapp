@@ -1,0 +1,562 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* =========================================================
+   1. 폰트 및 공통 변수 설정 (Variables & Fonts)
+   - 프로젝트 전체에서 사용될 폰트, 주요 컬러(Primary, bg 등), 투명한 효과(Glassmorphism) 설정
+========================================================= */
+:root {
+    --primary: #8b9bb4;
+    --primary-hover: #73849e;
+    --secondary: #9ca3af;
+    --bg-color: #1e1e24;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(43, 43, 54, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-shadow: 0 10px 30px -10px rgba(0,0,0,0.4);
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --font-family: 'Pretendard', 'Inter', sans-serif;
+}
+
+/* =========================================================
+   2. 전역 리셋 (Global Reset)
+   - 모든 요소의 여백(margin/padding)을 제거하고 크기 기준을 일치시킴
+========================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   3. 기본 뼈대 설정 (Body Styles)
+   - 웹페이지 전체의 기본 배경, 그라데이션, 텍스트 색상 및 폰트 지정
+========================================================= */
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(139, 155, 180, 0.1) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(156, 163, 175, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================================
+   4. 글래스모피즘(유리 질감) 유틸리티 (Glassmorphism)
+   - 배경을 투명하게 만들고 블러(blur) 효과를 주어 세련된 카드/패널 느낌 제공
+========================================================= */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 0;
+    box-shadow: var(--glass-shadow);
+}
+
+/* =========================================================
+   5. 상단 헤더 및 네비게이션바 (Header & Nav)
+   - 페이지 상단 고정, 로고, 메뉴 항목, 로그아웃 버튼의 스타일
+========================================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    color: var(--text-main);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-logout {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+}
+
+/* =========================================================
+   6. 공통 버튼 디자인 (Buttons)
+   - 그라데이션 배경, 마우스 호버 시 떠오르는 효과 및 그림자 설정
+========================================================= */
+.btn-primary {
+    background: var(--primary);
+    color: #111;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+   7. 메인 컨테이너 (Main Container)
+   - 본문 영역의 최대 너비를 제한하고 가운데 정렬 유지
+========================================================= */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    width: 100%;
+    flex: 1;
+}
+
+/* =========================================================
+   8. 로그인 페이지 전용 스타일 (Login Page)
+   - 로그인 카드 배치, 폼 컨트롤(인풋박스) 디자인
+========================================================= */
+.login-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.login-card h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.login-card p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(30, 30, 38, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 0;
+    color: var(--text-main);
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(139, 155, 180, 0.2);
+}
+
+.btn-login {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* =========================================================
+   9. 메인 대시보드 화면 (Main Dashboard)
+   - 커다란 출퇴근용 원형 버튼, 현재 시각 표시, 출퇴근 정보 상태 카드
+========================================================= */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.clock-widget {
+    padding: 3rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.time-display {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-variant-numeric: tabular-nums;
+}
+
+.date-display {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-clock {
+    width: 160px;
+    height: 160px;
+    border-radius: 0;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-clock i {
+    font-size: 2rem;
+}
+
+.btn-clock-in {
+    background: var(--primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-clock-in:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.btn-clock-out {
+    background: linear-gradient(135deg, #334155, #1e293b);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.btn-clock-out:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #475569, #334155);
+}
+
+.btn-clock:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: scale(1) !important;
+}
+
+.status-card {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.status-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.on-time { background: rgba(16, 185, 129, 0.1); color: var(--success); border: 1px solid rgba(16, 185, 129, 0.2); }
+.status-badge.late { background: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.2); }
+.status-badge.absent { background: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2); }
+.status-badge.not-started { background: rgba(148, 163, 184, 0.1); color: var(--text-muted); border: 1px solid rgba(148, 163, 184, 0.2); }
+
+/* =========================================================
+   10. 테이블 영역 (Tables)
+   - 관리자 페이지나 마이페이지의 리스트(표) 디자인, 하단 테두리선, 줄무늬 효과
+========================================================= */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 1.5rem;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.page-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    color: var(--text-muted);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+th {
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+}
+
+tbody tr {
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* =========================================================
+   11. 애니메이션 효과 (Animations)
+   - 아래에서 위로 스르륵 나타나는 페이드인 효과 (delay로 순차적 등장 제어)
+========================================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+
+
+/* =========================================================
+   12. 인덱스 전용 및 모달 스타일 (Index & Modal)
+========================================================= */
+.page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+.page-title {
+    color: var(--text-main);
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin: 0;
+}
+.legend-btn-container {
+    position: absolute;
+    right: 2rem;
+}
+.btn-legend {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    padding: 0.6rem 1.2rem;
+    border-radius: 0;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+.btn-legend:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+.modal-content {
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    padding: 2.5rem;
+    width: 380px;
+    color: var(--text-main);
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    border-radius: 0 !important;
+}
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+.modal-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s;
+}
+.modal-close:hover {
+    color: var(--text-main);
+}
+.login-card {
+    border-radius: 0 !important;
+}
+.form-control {
+    border-radius: 0 !important;
+}
+.btn-login {
+    border-radius: 0 !important;
+}
+
+/* =========================================================
+   13. 인라인 스타일 대체 클래스 (Inline Replacements)
+========================================================= */
+.btn-login-margin { margin-bottom: 1rem; }
+.text-center { text-align: center; }
+.btn-register-link { border: none; background: none; color: var(--text-muted); cursor: pointer; font-size: 0.95rem; text-decoration: underline; padding: 0.5rem; }
+.modal-header-title { margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; font-size: 1.2rem; }
+.modal-body-text { font-size: 1rem; line-height: 1.8; color: var(--text-main); }
+.legend-box { background: rgba(0,0,0,0.2); padding: 1rem; }
+.legend-box.mb { margin-bottom: 1.2rem; }
+.modal-register { width: 420px; max-height: 90vh; overflow-y: auto; }
+.form-register { display: flex; flex-direction: column; gap: 1.2rem; }
+.form-group-sm { margin-bottom: 0; }
+.btn-register-submit { margin-top: 0.5rem; padding: 1rem; font-size: 1.1rem; }
+
+.hidden { display: none !important; }
+.btn-clock-action { padding: 0.5rem 1rem; font-size: 0.9rem; }
+.btn-clock-out { background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: var(--text-main); }
+.fw-500 { font-weight: 500; }
+.mb-0 { margin-bottom: 0 !important; }
+.mb-1_5 { margin-bottom: 1.5rem; }
+.fs-1_2 { font-size: 1.2rem; }
+.status-card-custom { background: rgba(30, 30, 38, 0.6); border-radius: 0; margin-bottom: 1rem; }
+.time-box-container { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.time-box { flex: 1; background: rgba(30, 30, 38, 0.6); padding: 1.5rem; border-radius: 0; text-align: center; }
+.time-value { font-size: 1.5rem; color: var(--primary); }
+.time-value.out { color: var(--secondary); }
+
+.admin-monitor-badge { background: rgba(16, 185, 129, 0.1); padding: 0.5rem 1rem; border-radius: 0; border: 1px solid rgba(16, 185, 129, 0.2); }
+.admin-panel { padding: 2rem; margin-bottom: 2rem; }
+.admin-reg-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+.flex-end-gap { display: flex; align-items: flex-end; gap: 0.5rem; }
+.flex-1 { flex: 1; }
+.admin-action-btns { text-align: center; margin-top: 1.5rem; display: flex; justify-content: center; gap: 1rem; }
+.btn-warning-action { background-color: var(--warning); border: none; padding: 0.75rem 1.5rem; }
+.btn-danger-outline { border-color: var(--danger); color: var(--danger); padding: 0.75rem 1.5rem; }
+.btn-danger-light { background: rgba(239, 68, 68, 0.1); border-color: var(--danger); color: var(--danger); padding: 0.75rem 1.5rem; }
+
+.header-actions { display: flex; gap: 4px; margin-right: 15px; }
+.w-50 { width: 50px; }
