@@ -237,19 +237,18 @@ function startAdminAutoClockOut() {
 }
 
 // 돔 로드 시 관리자 백그라운드 스크립트 실행 (로그인 페이지 제외)
-if (!window.location.pathname.endsWith('index.html') && window.location.pathname !== '/' && !window.location.pathname.endsWith('test_web/')) {
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
+    if (!document.getElementById('loginForm')) {
         startAdminAutoClockOut();
-    });
-}
+    }
+});
 
 // ==========================================
 // 페이지별 개별 로직
 // ==========================================
 
 // 1. 로그인 페이지 로직
-if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('test_web/')) {
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', async (e) => {
@@ -328,11 +327,11 @@ if (window.location.pathname.endsWith('index.html') || window.location.pathname 
                 }
             });
         }
+        }
     });
-}
 
 // 2. 메인 페이지 로직 (출퇴근 버튼 및 시계)
-if (window.location.pathname.endsWith('main.html')) {
+if (document.getElementById('currentDate')) {
     const user = checkAuth();
     
     document.addEventListener('DOMContentLoaded', () => {
@@ -605,8 +604,8 @@ if (window.location.pathname.endsWith('main.html')) {
     });
 }
 
-// 3. 마이페이지 로직 (개인 출퇴근 기록)
-if (window.location.pathname.endsWith('mypage.html')) {
+// 3. 마이페이지 로직
+if (document.getElementById('historyTableBody')) {
     const user = checkAuth();
     
     document.addEventListener('DOMContentLoaded', async () => {
@@ -651,8 +650,8 @@ if (window.location.pathname.endsWith('mypage.html')) {
     });
 }
 
-// 4. 관리자 페이지 로직 (전체 직원 모니터링 및 JSON을 이용한 신규 등록/수정)
-if (window.location.pathname.endsWith('admin.html')) {
+// 4. 관리자 페이지 로직
+if (document.getElementById('adminTableBody')) {
     const user = checkAuth(true); // requireAdmin = true
     
     document.addEventListener('DOMContentLoaded', async () => {
