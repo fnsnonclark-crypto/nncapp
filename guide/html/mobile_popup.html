@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모바일 프리미엄 팝업 데모</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Common & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/mo_popup.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard Header -->
+        <header class="app-header">
+            <h1 class="app-title">Premium Popups</h1>
+            <p class="app-subtitle">Mobile Popup UX Suite</p>
+        </header>
+
+        <!-- Main Trigger Controls -->
+        <main class="app-content">
+            <section class="trigger-section">
+                <h3 class="section-title">모바일 표준 4대 팝업 유형</h3>
+                
+                <!-- 1. Full-Screen Trigger -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card" id="trigger-full">
+                        <div class="card-info">
+                            <span class="card-label">Type 01</span>
+                            <h4 class="card-title">전체 화면 팝업</h4>
+                            <p class="card-desc">상세 정보, 약관 및 긴 콘텐츠 제공용 풀 스크린</p>
+                        </div>
+                        <div class="card-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-1" data-source="../assets/code/popup1.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-1">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Bottom Sheet Trigger -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card" id="trigger-sheet">
+                        <div class="card-info">
+                            <span class="card-label">Type 02</span>
+                            <h4 class="card-title">바텀 시트 팝업</h4>
+                            <p class="card-desc">옵션 선택 및 설정 변경을 돕는 하단 드로어</p>
+                        </div>
+                        <div class="card-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-2" data-source="../assets/code/popup2.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-2">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Alert/Confirm Dialog Trigger -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card" id="trigger-dialog">
+                        <div class="card-info">
+                            <span class="card-label">Type 03</span>
+                            <h4 class="card-title">얼럿 컨펌 다이얼로그</h4>
+                            <p class="card-desc">삭제, 중요한 의사결정 시 사용되는 중앙 대화창</p>
+                        </div>
+                        <div class="card-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-3" data-source="../assets/code/popup3.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-3">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Toast Notification Trigger -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card" id="trigger-toast">
+                        <div class="card-info">
+                            <span class="card-label">Type 04</span>
+                            <h4 class="card-title">토스트 알림 팝업</h4>
+                            <p class="card-desc">조작 성공 피드백용 일정 시간 후 자동 정지 알림</p>
+                        </div>
+                        <div class="card-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-4" data-source="../assets/code/popup4.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-4">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-4">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Premium Popup UI Lab. Designed beautifully.</p>
+        </footer>
+    </div>
+
+    <!-- ==========================================================================
+       POPUP CONTENT LAYERS (공통 오버레이 딤드 배경 영역)
+       ========================================================================== -->
+    <div class="popup-backdrop">
+        <!-- 3. Alert/Confirm Dialog Popup (중앙 정렬 다이얼로그) -->
+        <div class="popup-dialog">
+            <div class="dialog-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+            </div>
+            <h3 class="popup-dialog-title">데이터 영구 삭제</h3>
+            <p class="popup-dialog-content">해당 정보가 서버 데이터베이스에서 즉시 삭제되며, 한 번 처리된 정보는 다시 복구할 수 없습니다. 정말로 삭제하시겠습니까?</p>
+            <div class="dialog-buttons">
+                <button class="btn-dialog btn-dialog-cancel" id="dialog-cancel">취소</button>
+                <button class="btn-dialog btn-dialog-danger" id="dialog-confirm">삭제</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. Full-Screen Popup Layer (전체 화면 슬라이드 오버레이) -->
+    <div class="popup-full">
+        <header class="popup-full-header">
+            <h3 class="popup-full-title">이용 약관 동의</h3>
+            <button class="btn-close-full" id="close-full" aria-label="Close Popup">
+                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+            </button>
+        </header>
+        <div class="popup-full-content">
+            <h4>제 1 조 (목적)</h4>
+            <p>본 약관은 Premium Popup UI Lab(이하 "회사")이 제공하는 모든 모바일 서비스의 이용 조건 및 절차, 이용자와 회사의 권리, 의무, 책임 사항 등을 규정함을 목적으로 합니다.</p>
+            
+            <h4>제 2 조 (서비스의 범위)</h4>
+            <p>회사가 제공하는 서비스는 모바일 팝업 컴포넌트 라이브러리, 레이아웃 빌더, 최적화 스크립트 등이며, 추가 세부 기능은 모바일 기기별 하드웨어 규격에 따라 유연하게 변경 제공될 수 있습니다.</p>
+            
+            <h4>제 3 조 (이용자의 책임)</h4>
+            <p>이용자는 본 서비스를 불법적인 목적으로 이용할 수 없으며, 타인의 명의를 도용하거나 스크래핑을 통한 시스템 과부하를 초래하는 행위는 제한됩니다. 이를 준수하지 않을 경우 민형사상 법적 책임이 발생할 수 있습니다.</p>
+
+            <h4>제 4 조 (지식재산권의 귀속)</h4>
+            <p>회사가 직접 자체 개발하여 렌더링한 모든 컴포넌트, 코드 구조물, 그래픽 디자인 에셋에 대한 지식재산권 및 소유권은 온전히 회사에게 귀속되며, 이용자는 이에 대해 상업적 배포 목적의 복제나 유포를 할 수 없습니다.</p>
+        </div>
+        <footer class="popup-full-footer">
+            <button class="btn-primary-block" id="action-full">약관 읽고 확인하기</button>
+        </footer>
+    </div>
+
+    <!-- 2. Bottom Sheet Popup Layer (바텀 시트 하단 드로어) -->
+    <div class="popup-sheet">
+        <div class="sheet-handle-bar"></div>
+        <header class="popup-sheet-header">
+            <h3 class="popup-sheet-title">정렬 옵션 선택</h3>
+            <p class="popup-sheet-desc">원하는 정렬 정렬 필터를 터치해 주세요.</p>
+        </header>
+        <div class="popup-sheet-content">
+            <div class="option-list">
+                <!-- Option 1 -->
+                <div class="option-item selected">
+                    <svg class="option-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span class="option-name">추천순 정렬</span>
+                </div>
+                <!-- Option 2 -->
+                <div class="option-item">
+                    <svg class="option-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span class="option-name">최신순 정렬</span>
+                </div>
+                <!-- Option 3 -->
+                <div class="option-item">
+                    <svg class="option-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span class="option-name">낮은 가격순</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Toast Notification Popup Layer (하단 일시 알림 팝업) -->
+    <div class="toast-container" id="toast-popup">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <span class="toast-text">새로운 실시간 알림이 도착했습니다.</span>
+    </div>
+
+    <!-- Dynamic JavaScript Logic -->
+    <script src="../assets/js/mo_popup.js"></script>
+</body>
+</html>

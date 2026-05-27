@@ -1,0 +1,4 @@
+{
+  "html": "<div class=\"swiper swiper-type-2\">\n  <div class=\"swiper-wrapper\">\n    <div class=\"swiper-slide card-slide gradient-4\">...</div>\n  </div>\n  <div class=\"swiper-controls\">\n    <div class=\"swiper-button-prev btn-prev-2\"></div>\n    <div class=\"control-center\">\n      <div class=\"swiper-pagination pagination-2\"></div>\n      <button class=\"autoplay-toggle-btn btn-toggle-2\">\n        <!-- SVG Play/Pause Icons -->\n      </button>\n    </div>\n    <div class=\"swiper-button-next btn-next-2\"></div>\n  </div>\n</div>",
+  "js": "const swiper2 = new Swiper('.swiper-type-2', {\n  direction: 'horizontal',\n  loop: false,\n  autoplay: {\n    delay: 3000,\n    disableOnInteraction: true,\n  },\n  pagination: {\n    el: '.pagination-2',\n    clickable: true,\n  },\n  navigation: {\n    nextEl: '.btn-next-2',\n    prevEl: '.btn-prev-2',\n  },\n});"
+}

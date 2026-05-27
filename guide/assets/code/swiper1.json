@@ -1,0 +1,4 @@
+{
+  "html": "<div class=\"swiper swiper-type-1\">\n  <div class=\"swiper-wrapper\">\n    <div class=\"swiper-slide card-slide gradient-1\">Slide 1</div>\n    <div class=\"swiper-slide card-slide gradient-2\">Slide 2</div>\n    <div class=\"swiper-slide card-slide gradient-3\">Slide 3</div>\n  </div>\n  <div class=\"swiper-controls\">\n    <div class=\"swiper-button-prev btn-prev-1\"></div>\n    <div class=\"swiper-pagination pagination-1\"></div>\n    <div class=\"swiper-button-next btn-next-1\"></div>\n  </div>\n</div>",
+  "js": "const swiper1 = new Swiper('.swiper-type-1', {\n  direction: 'horizontal',\n  loop: false,\n  pagination: {\n    el: '.pagination-1',\n    clickable: true,\n  },\n  navigation: {\n    nextEl: '.btn-next-1',\n    prevEl: '.btn-prev-1',\n  },\n});"
+}

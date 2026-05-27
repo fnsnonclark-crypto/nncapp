@@ -1,0 +1,56 @@
+/* Mobile Common CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%; /* Prevent font size adjustment after orientation changes in iOS */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Typography reset */
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img, video, canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Input, button reset */
+input, button, textarea, select {
+    font: inherit;
+    border: none;
+    background: transparent;
+    outline: none;
+    -webkit-appearance: none; /* Reset native styles on iOS */
+    appearance: none;
+}
+
+button {
+    cursor: pointer;
+}
