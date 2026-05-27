@@ -253,7 +253,7 @@ body {
 }
 
 .swiper-pagination-bullet-active {
-    width: 18px !important; /* Premium elongated active bullet */
+    width: 18px !important; /* 기본 elongated active bullet */
     background-color: var(--primary-color) !important;
 }
 
