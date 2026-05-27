@@ -4,9 +4,28 @@
 
 const supabaseUrl = 'https://yvsyfisstgjofhgvxccl.supabase.co';
 const supabaseKey = 'sb_publishable_MQ5MVCQIdNnYJ69_5wnCRA_7mvLd3RB';
-const supabase = window.supabase.createClient(supabaseUrl, supabaseKey, {
-    auth: { persistSession: false }
-});
+let supabaseClient = null;
+
+try {
+    if (window.supabase) {
+        supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, {
+            auth: { persistSession: false }
+        });
+    } else {
+        console.warn('Supabase SDK가 정의되지 않았습니다. CDN 연결 상태를 확인하세요. (로컬 UI 동작은 유지됩니다)');
+    }
+} catch (e) {
+    console.error('Supabase Client 초기화 실패:', e);
+}
+
+// DOM 완료 확인 헬퍼 함수 (이미 로딩 완료 시 즉시 실행)
+function onDOMReady(fn) {
+    if (document.readyState !== 'loading') {
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
 
 /**
  * Supabase에서 전체 사용자(직원) 목록을 가져옵니다.
@@ -14,7 +33,8 @@ const supabase = window.supabase.createClient(supabaseUrl, supabaseKey, {
  */
 async function fetchMembers() {
     try {
-        const { data, error } = await supabase.from('member').select('*');
+        if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+        const { data, error } = await supabaseClient.from('member').select('*');
         if (error) throw error;
         return data || [];
     } catch (err) {
@@ -30,7 +50,8 @@ async function fetchMembers() {
  */
 async function saveMembers(members) {
     try {
-        const { error } = await supabase.from('member').upsert(members);
+        if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+        const { error } = await supabaseClient.from('member').upsert(members);
         if (error) throw error;
         return true;
     } catch (err) {
@@ -45,7 +66,8 @@ async function saveMembers(members) {
  */
 async function deleteMembers(emails) {
     try {
-        const { error } = await supabase.from('member').delete().in('email', emails);
+        if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+        const { error } = await supabaseClient.from('member').delete().in('email', emails);
         if (error) throw error;
         return true;
     } catch (err) {
@@ -60,7 +82,8 @@ async function deleteMembers(emails) {
  */
 async function fetchHistory() {
     try {
-        const { data, error } = await supabase.from('attendance').select('*');
+        if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+        const { data, error } = await supabaseClient.from('attendance').select('*');
         if (error) throw error;
         return data || [];
     } catch (err) {
@@ -76,7 +99,8 @@ async function fetchHistory() {
  */
 async function saveHistory(historyData) {
     try {
-        const { error } = await supabase.from('attendance').upsert(historyData);
+        if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+        const { error } = await supabaseClient.from('attendance').upsert(historyData);
         if (error) throw error;
         return true;
     } catch (err) {
@@ -237,7 +261,7 @@ function startAdminAutoClockOut() {
 }
 
 // 돔 로드 시 관리자 백그라운드 스크립트 실행 (로그인 페이지 제외)
-document.addEventListener('DOMContentLoaded', () => {
+onDOMReady(() => {
     if (!document.getElementById('loginForm')) {
         startAdminAutoClockOut();
     }
@@ -248,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==========================================
 
 // 1. 로그인 페이지 로직
-document.addEventListener('DOMContentLoaded', () => {
+onDOMReady(() => {
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', async (e) => {
@@ -304,7 +328,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 const newUser = {
-                    id: Date.now(),
                     email: email,
                     password: pwd,
                     name: name,
@@ -327,14 +350,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
-        }
     });
 
 // 2. 메인 페이지 로직 (출퇴근 버튼 및 시계)
 if (document.getElementById('currentDate')) {
     const user = checkAuth();
     
-    document.addEventListener('DOMContentLoaded', () => {
+    onDOMReady(() => {
         if (!user) return;
         
         document.getElementById('userName').textContent = `${user.name}님`;
@@ -408,7 +430,7 @@ if (document.getElementById('currentDate')) {
                 
                 // 상태를 야근으로 로컬스토리지 및 서버 업데이트
                 attendanceState.status = '야근';
-                localStorage.setItem(`attendance_${user.id}_${today}`, JSON.stringify(attendanceState));
+                localStorage.setItem(`attendance_${user.email}_${today}`, JSON.stringify(attendanceState));
                 
                 const users = await fetchMembers();
                 const me = users.find(u => u.email === user.email);
@@ -463,7 +485,7 @@ if (document.getElementById('currentDate')) {
         const outTimeDisplay = document.getElementById('outTime');
         
         const today = new Date().toLocaleDateString('ko-KR');
-        const attendanceState = JSON.parse(localStorage.getItem(`attendance_${user.id}_${today}`)) || { clockIn: null, clockOut: null, status: null };
+        const attendanceState = JSON.parse(localStorage.getItem(`attendance_${user.email}_${today}`)) || { clockIn: null, clockOut: null, status: null };
         
         /**
          * 화면의 출퇴근 버튼 및 상태 텍스트를 업데이트하는 함수
@@ -527,7 +549,7 @@ if (document.getElementById('currentDate')) {
             
             attendanceState.clockIn = timeStr;
             attendanceState.status = currentStatus;
-            localStorage.setItem(`attendance_${user.id}_${today}`, JSON.stringify(attendanceState));
+            localStorage.setItem(`attendance_${user.email}_${today}`, JSON.stringify(attendanceState));
             
             // 1. members.json 업데이트
             const users = await fetchMembers();
@@ -558,7 +580,7 @@ if (document.getElementById('currentDate')) {
         async function performClockOut(timeStr) {
             attendanceState.clockOut = timeStr;
             attendanceState.status = '퇴근완료';
-            localStorage.setItem(`attendance_${user.id}_${today}`, JSON.stringify(attendanceState));
+            localStorage.setItem(`attendance_${user.email}_${today}`, JSON.stringify(attendanceState));
             
             // 1. members.json 업데이트
             const users = await fetchMembers();
@@ -608,7 +630,7 @@ if (document.getElementById('currentDate')) {
 if (document.getElementById('historyTableBody')) {
     const user = checkAuth();
     
-    document.addEventListener('DOMContentLoaded', async () => {
+    onDOMReady(async () => {
         if (!user) return;
         
         document.getElementById('userName').textContent = `${user.name}님`;
@@ -654,7 +676,7 @@ if (document.getElementById('historyTableBody')) {
 if (document.getElementById('adminTableBody')) {
     const user = checkAuth(true); // requireAdmin = true
     
-    document.addEventListener('DOMContentLoaded', async () => {
+    onDOMReady(async () => {
         if (!user) return;
         
         document.getElementById('userName').textContent = `${user.name}님`;
@@ -739,7 +761,6 @@ if (document.getElementById('adminTableBody')) {
                 
                 // 새 직원 객체 생성
                 const newUser = { 
-                    id: Date.now(), 
                     email: email, 
                     password: password, // 입력받은 비밀번호 적용
                     name: name, 
