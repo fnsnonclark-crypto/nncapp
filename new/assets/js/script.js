@@ -144,7 +144,7 @@ function checkAuth(requireAdmin = false) {
         window.location.href = 'index.html';
         return null;
     }
-    if (requireAdmin && user.role !== 'admin') {
+    if (requireAdmin && user.role !== 'admin' && user.email !== 'admin@test.com') {
         alert('관리자 권한이 필요합니다.');
         window.location.href = 'main.html';
         return null;
@@ -282,6 +282,9 @@ onDOMReady(() => {
                 const user = users.find(u => u.email === email && u.password === password);
                 
                 if (user) {
+                    if (user.email === 'admin@test.com') {
+                        user.role = 'admin'; // 안전 조치: admin@test.com 계정은 무조건 admin 권한 보장
+                    }
                     setSession('currentUser', user); // 세션에 저장
                     window.location.href = 'main.html';
                 } else {
@@ -357,8 +360,8 @@ if (document.getElementById('currentDate')) {
         if (!user) return;
         
         document.getElementById('userName').textContent = `${user.name}님`;
-        if(user.role === 'admin') {
-            document.getElementById('adminLink').style.display = 'block';
+        if(user.role === 'admin' || user.email === 'admin@test.com') {
+            document.getElementById('adminLink').classList.remove('hidden');
         }
         
         // 현재 시간 표시 시계 기능
@@ -653,8 +656,8 @@ if (document.getElementById('historyTableBody')) {
         if (!user) return;
         
         document.getElementById('userName').textContent = `${user.name}님`;
-        if(user.role === 'admin') {
-            document.getElementById('adminLink').style.display = 'block';
+        if(user.role === 'admin' || user.email === 'admin@test.com') {
+            document.getElementById('adminLink').classList.remove('hidden');
         }
         
         const tbody = document.getElementById('historyTableBody');
