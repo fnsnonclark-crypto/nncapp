@@ -328,7 +328,6 @@ onDOMReady(() => {
                 }
 
                 const newUser = {
-                    id: Date.now(),
                     email: email,
                     password: pwd,
                     name: name,
@@ -431,7 +430,7 @@ if (document.getElementById('currentDate')) {
                 
                 // 상태를 야근으로 로컬스토리지 및 서버 업데이트
                 attendanceState.status = '야근';
-                localStorage.setItem(`attendance_${user.id}_${today}`, JSON.stringify(attendanceState));
+                localStorage.setItem(`attendance_${user.email}_${today}`, JSON.stringify(attendanceState));
                 
                 const users = await fetchMembers();
                 const me = users.find(u => u.email === user.email);
@@ -486,7 +485,7 @@ if (document.getElementById('currentDate')) {
         const outTimeDisplay = document.getElementById('outTime');
         
         const today = new Date().toLocaleDateString('ko-KR');
-        const attendanceState = JSON.parse(localStorage.getItem(`attendance_${user.id}_${today}`)) || { clockIn: null, clockOut: null, status: null };
+        const attendanceState = JSON.parse(localStorage.getItem(`attendance_${user.email}_${today}`)) || { clockIn: null, clockOut: null, status: null };
         
         /**
          * 화면의 출퇴근 버튼 및 상태 텍스트를 업데이트하는 함수
@@ -550,7 +549,7 @@ if (document.getElementById('currentDate')) {
             
             attendanceState.clockIn = timeStr;
             attendanceState.status = currentStatus;
-            localStorage.setItem(`attendance_${user.id}_${today}`, JSON.stringify(attendanceState));
+            localStorage.setItem(`attendance_${user.email}_${today}`, JSON.stringify(attendanceState));
             
             // 1. members.json 업데이트
             const users = await fetchMembers();
@@ -581,7 +580,7 @@ if (document.getElementById('currentDate')) {
         async function performClockOut(timeStr) {
             attendanceState.clockOut = timeStr;
             attendanceState.status = '퇴근완료';
-            localStorage.setItem(`attendance_${user.id}_${today}`, JSON.stringify(attendanceState));
+            localStorage.setItem(`attendance_${user.email}_${today}`, JSON.stringify(attendanceState));
             
             // 1. members.json 업데이트
             const users = await fetchMembers();
@@ -762,7 +761,6 @@ if (document.getElementById('adminTableBody')) {
                 
                 // 새 직원 객체 생성
                 const newUser = { 
-                    id: Date.now(), 
                     email: email, 
                     password: password, // 입력받은 비밀번호 적용
                     name: name, 
