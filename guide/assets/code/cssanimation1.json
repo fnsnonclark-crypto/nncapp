@@ -1,0 +1,5 @@
+{
+  "html": "<!-- HTML Trigger Layout -->\n<div class=\"animation-grid\">\n  <button class=\"animation-chip active\" data-ani=\"bounce\">bounce</button>\n  <button class=\"animation-chip\" data-ani=\"heartBeat\">heartBeat</button>\n  <button class=\"animation-chip\" data-ani=\"flip\">flip</button>\n</div>",
+  "css": "/* Animate.css Library Import & Custom Variables */\n@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');\n\n.preview-object {\n  --animate-duration: 1s;\n  animation-delay: 0s;\n  transition: all 0.2s ease;\n}",
+  "js": "// JS Trigger Logic\nfunction playAnimation(aniName) {\n  const el = document.getElementById('preview-box');\n  el.className = 'preview-object'; // Reset class\n  void el.offsetWidth; // Trigger reflow\n  el.classList.add('animate__animated', `animate__${aniName}`);\n}"
+}

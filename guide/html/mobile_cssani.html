@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모바일 기본 애니메이션 데모</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Common & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/mo_cssanimation.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard Header -->
+        <header class="app-header">
+            <h1 class="app-title">CSS Motion</h1>
+            <p class="app-subtitle">Interactive Motion Playground</p>
+        </header>
+
+        <!-- Sticky Interactive Preview Playground -->
+        <div class="preview-board">
+            <div class="preview-screen">
+                <div class="preview-grid-bg"></div>
+                <div class="preview-object" id="preview-box"></div>
+            </div>
+            
+            <!-- Real-time Animation Settings Controller -->
+            <div class="control-panel">
+                <div class="control-group">
+                    <span class="control-label">Speed</span>
+                    <select class="control-select" id="ani-speed">
+                        <option value="0.5s">Fast (0.5s)</option>
+                        <option value="1s" selected>Normal (1.0s)</option>
+                        <option value="2s">Slow (2.0s)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <span class="control-label">Delay</span>
+                    <select class="control-select" id="ani-delay">
+                        <option value="0s" selected>None (0s)</option>
+                        <option value="1s">1s Delay</option>
+                        <option value="2s">2s Delay</option>
+                    </select>
+                </div>
+                
+                <div class="control-group" style="flex: 0.8; align-items: flex-end;">
+                    <label class="control-checkbox-label">
+                        <input type="checkbox" class="control-checkbox" id="ani-infinite">
+                        <span>Loop</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Animation Categories List -->
+        <main class="app-content">
+            <!-- GROUP 1: Attention Seekers & Flippers -->
+            <!-- 1. Attention Seekers -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Attention Seekers</span>
+                        <span class="category-subtitle">주의 환기용 인터랙티브 애니메이션 (12종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip active" data-ani="bounce">bounce</button>
+                            <button class="animation-chip" data-ani="flash">flash</button>
+                            <button class="animation-chip" data-ani="pulse">pulse</button>
+                            <button class="animation-chip" data-ani="rubberBand">rubberBand</button>
+                            <button class="animation-chip" data-ani="shakeX">shakeX</button>
+                            <button class="animation-chip" data-ani="shakeY">shakeY</button>
+                            <button class="animation-chip" data-ani="headShake">headShake</button>
+                            <button class="animation-chip" data-ani="swing">swing</button>
+                            <button class="animation-chip" data-ani="tada">tada</button>
+                            <button class="animation-chip" data-ani="wobble">wobble</button>
+                            <button class="animation-chip" data-ani="jello">jello</button>
+                            <button class="animation-chip" data-ani="heartBeat">heartBeat</button>
+                        </div>
+                        <!-- Source Drawer -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-1" data-source="../assets/code/cssanimation1.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-1">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-1">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Flippers -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Flippers</span>
+                        <span class="category-subtitle">3D 회전 카드 및 컴포넌트 플립 효과 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="flip">flip</button>
+                            <button class="animation-chip" data-ani="flipInX">flipInX</button>
+                            <button class="animation-chip" data-ani="flipInY">flipInY</button>
+                            <button class="animation-chip" data-ani="flipOutX">flipOutX</button>
+                            <button class="animation-chip" data-ani="flipOutY">flipOutY</button>
+                        </div>
+                        <!-- Source Drawer (Shared with G1) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-2" data-source="../assets/code/cssanimation1.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-2">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-2">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GROUP 2: Entrances (Back, Bounce, Fade, Rotate, Zoom, Slide) -->
+            <!-- 3. Back Entrances -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Back Entrances</span>
+                        <span class="category-subtitle">배경 밀림식 진입 모션 (4종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="backInDown">backInDown</button>
+                            <button class="animation-chip" data-ani="backInLeft">backInLeft</button>
+                            <button class="animation-chip" data-ani="backInRight">backInRight</button>
+                            <button class="animation-chip" data-ani="backInUp">backInUp</button>
+                        </div>
+                        <!-- Source Drawer -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-3" data-source="../assets/code/cssanimation2.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-3">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-3">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Bouncing Entrances -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Bouncing Entrances</span>
+                        <span class="category-subtitle">통통 튀는 바운스 진입 효과 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="bounceIn">bounceIn</button>
+                            <button class="animation-chip" data-ani="bounceInDown">bounceInDown</button>
+                            <button class="animation-chip" data-ani="bounceInLeft">bounceInLeft</button>
+                            <button class="animation-chip" data-ani="bounceInRight">bounceInRight</button>
+                            <button class="animation-chip" data-ani="bounceInUp">bounceInUp</button>
+                        </div>
+                        <!-- Source Drawer (Shared G2) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-4" data-source="../assets/code/cssanimation2.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-4">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-4">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Fading Entrances -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Fading Entrances</span>
+                        <span class="category-subtitle">부드러운 페이드인 진입 모션 (13종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="fadeIn">fadeIn</button>
+                            <button class="animation-chip" data-ani="fadeInDown">fadeInDown</button>
+                            <button class="animation-chip" data-ani="fadeInDownBig">fadeInDownBig</button>
+                            <button class="animation-chip" data-ani="fadeInLeft">fadeInLeft</button>
+                            <button class="animation-chip" data-ani="fadeInLeftBig">fadeInLeftBig</button>
+                            <button class="animation-chip" data-ani="fadeInRight">fadeInRight</button>
+                            <button class="animation-chip" data-ani="fadeInRightBig">fadeInRightBig</button>
+                            <button class="animation-chip" data-ani="fadeInUp">fadeInUp</button>
+                            <button class="animation-chip" data-ani="fadeInUpBig">fadeInUpBig</button>
+                            <button class="animation-chip" data-ani="fadeInTopLeft">fadeInTopLeft</button>
+                            <button class="animation-chip" data-ani="fadeInTopRight">fadeInTopRight</button>
+                            <button class="animation-chip" data-ani="fadeInBottomLeft">fadeInBottomLeft</button>
+                            <button class="animation-chip" data-ani="fadeInBottomRight">fadeInBottomRight</button>
+                        </div>
+                        <!-- Source Drawer (Shared G2) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-5" data-source="../assets/code/cssanimation2.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-5">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-5">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Rotating Entrances -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Rotating Entrances</span>
+                        <span class="category-subtitle">회전하며 우아하게 등장하는 모션 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="rotateIn">rotateIn</button>
+                            <button class="animation-chip" data-ani="rotateInDownLeft">rotateInDownLeft</button>
+                            <button class="animation-chip" data-ani="rotateInDownRight">rotateInDownRight</button>
+                            <button class="animation-chip" data-ani="rotateInUpLeft">rotateInUpLeft</button>
+                            <button class="animation-chip" data-ani="rotateInUpRight">rotateInUpRight</button>
+                        </div>
+                        <!-- Source Drawer (Shared G2) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-6" data-source="../assets/code/cssanimation2.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-6">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-6">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Zooming Entrances -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Zooming Entrances</span>
+                        <span class="category-subtitle">스케일이 확장되며 다이내믹 진입 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="zoomIn">zoomIn</button>
+                            <button class="animation-chip" data-ani="zoomInDown">zoomInDown</button>
+                            <button class="animation-chip" data-ani="zoomInLeft">zoomInLeft</button>
+                            <button class="animation-chip" data-ani="zoomInRight">zoomInRight</button>
+                            <button class="animation-chip" data-ani="zoomInUp">zoomInUp</button>
+                        </div>
+                        <!-- Source Drawer (Shared G2) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-7" data-source="../assets/code/cssanimation2.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-7">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-7">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Sliding Entrances -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Sliding Entrances</span>
+                        <span class="category-subtitle">부드러운 미끄러짐 진입 효과 (4종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="slideInDown">slideInDown</button>
+                            <button class="animation-chip" data-ani="slideInLeft">slideInLeft</button>
+                            <button class="animation-chip" data-ani="slideInRight">slideInRight</button>
+                            <button class="animation-chip" data-ani="slideInUp">slideInUp</button>
+                        </div>
+                        <!-- Source Drawer (Shared G2) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-8" data-source="../assets/code/cssanimation2.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-8">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-8">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GROUP 3: Exits (Back, Bounce, Fade, Rotate, Zoom, Slide) -->
+            <!-- 9. Back Exits -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Back Exits</span>
+                        <span class="category-subtitle">배경 밀림식 이탈 모션 (4종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="backOutDown">backOutDown</button>
+                            <button class="animation-chip" data-ani="backOutLeft">backOutLeft</button>
+                            <button class="animation-chip" data-ani="backOutRight">backOutRight</button>
+                            <button class="animation-chip" data-ani="backOutUp">backOutUp</button>
+                        </div>
+                        <!-- Source Drawer -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-9" data-source="../assets/code/cssanimation3.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-9">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-9">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Bouncing Exits -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Bouncing Exits</span>
+                        <span class="category-subtitle">튀어 오르며 화면을 이탈하는 모션 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="bounceOut">bounceOut</button>
+                            <button class="animation-chip" data-ani="bounceOutDown">bounceOutDown</button>
+                            <button class="animation-chip" data-ani="bounceOutLeft">bounceOutLeft</button>
+                            <button class="animation-chip" data-ani="bounceOutRight">bounceOutRight</button>
+                            <button class="animation-chip" data-ani="bounceOutUp">bounceOutUp</button>
+                        </div>
+                        <!-- Source Drawer (Shared G3) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-10" data-source="../assets/code/cssanimation3.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-10">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-10">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Fading Exits -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Fading Exits</span>
+                        <span class="category-subtitle">부드러운 서서히 사라짐 이탈 모션 (13종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="fadeOut">fadeOut</button>
+                            <button class="animation-chip" data-ani="fadeOutDown">fadeOutDown</button>
+                            <button class="animation-chip" data-ani="fadeOutDownBig">fadeOutDownBig</button>
+                            <button class="animation-chip" data-ani="fadeOutLeft">fadeOutLeft</button>
+                            <button class="animation-chip" data-ani="fadeOutLeftBig">fadeOutLeftBig</button>
+                            <button class="animation-chip" data-ani="fadeOutRight">fadeOutRight</button>
+                            <button class="animation-chip" data-ani="fadeOutRightBig">fadeOutRightBig</button>
+                            <button class="animation-chip" data-ani="fadeOutUp">fadeOutUp</button>
+                            <button class="animation-chip" data-ani="fadeOutUpBig">fadeOutUpBig</button>
+                            <button class="animation-chip" data-ani="fadeOutTopLeft">fadeOutTopLeft</button>
+                            <button class="animation-chip" data-ani="fadeOutTopRight">fadeOutTopRight</button>
+                            <button class="animation-chip" data-ani="fadeOutBottomLeft">fadeOutBottomLeft</button>
+                            <button class="animation-chip" data-ani="fadeOutBottomRight">fadeOutBottomRight</button>
+                        </div>
+                        <!-- Source Drawer (Shared G3) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-11" data-source="../assets/code/cssanimation3.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-11">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-11">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Rotating Exits -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Rotating Exits</span>
+                        <span class="category-subtitle">회전하며 스크린을 벗어나는 모션 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="rotateOut">rotateOut</button>
+                            <button class="animation-chip" data-ani="rotateOutDownLeft">rotateOutDownLeft</button>
+                            <button class="animation-chip" data-ani="rotateOutDownRight">rotateOutDownRight</button>
+                            <button class="animation-chip" data-ani="rotateOutUpLeft">rotateOutUpLeft</button>
+                            <button class="animation-chip" data-ani="rotateOutUpRight">rotateOutUpRight</button>
+                        </div>
+                        <!-- Source Drawer (Shared G3) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-12" data-source="../assets/code/cssanimation3.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-12">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-12">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. Zooming Exits -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Zooming Exits</span>
+                        <span class="category-subtitle">축소 연출로 화면 저편으로 소멸 (5종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="zoomOut">zoomOut</button>
+                            <button class="animation-chip" data-ani="zoomOutDown">zoomOutDown</button>
+                            <button class="animation-chip" data-ani="zoomOutLeft">zoomOutLeft</button>
+                            <button class="animation-chip" data-ani="zoomOutRight">zoomOutRight</button>
+                            <button class="animation-chip" data-ani="zoomOutUp">zoomOutUp</button>
+                        </div>
+                        <!-- Source Drawer (Shared G3) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-13" data-source="../assets/code/cssanimation3.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-13">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-13">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. Sliding Exits -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Sliding Exits</span>
+                        <span class="category-subtitle">미끄러지며 스크린 바깥으로 퇴장 (4종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="slideOutDown">slideOutDown</button>
+                            <button class="animation-chip" data-ani="slideOutLeft">slideOutLeft</button>
+                            <button class="animation-chip" data-ani="slideOutRight">slideOutRight</button>
+                            <button class="animation-chip" data-ani="slideOutUp">slideOutUp</button>
+                        </div>
+                        <!-- Source Drawer (Shared G3) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-14" data-source="../assets/code/cssanimation3.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-14">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-14">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GROUP 4: Lightspeed & Specials -->
+            <!-- 15. Lightspeed -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Lightspeed</span>
+                        <span class="category-subtitle">초광속 궤적 기울임 왜곡 진출입 (4종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="lightSpeedInRight">lightSpeedInRight</button>
+                            <button class="animation-chip" data-ani="lightSpeedInLeft">lightSpeedInLeft</button>
+                            <button class="animation-chip" data-ani="lightSpeedOutRight">lightSpeedOutRight</button>
+                            <button class="animation-chip" data-ani="lightSpeedOutLeft">lightSpeedOutLeft</button>
+                        </div>
+                        <!-- Source Drawer -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-15" data-source="../assets/code/cssanimation4.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-15">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-15">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16. Specials -->
+            <div class="category-item">
+                <button class="category-header">
+                    <div class="category-title-group">
+                        <span class="category-title">Specials</span>
+                        <span class="category-subtitle">경첩 중력 낙하 및 매직 박스 등장 (4종)</span>
+                    </div>
+                    <svg class="category-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </button>
+                <div class="category-body">
+                    <div class="category-inner">
+                        <div class="animation-grid">
+                            <button class="animation-chip" data-ani="hinge">hinge</button>
+                            <button class="animation-chip" data-ani="jackInTheBox">jackInTheBox</button>
+                            <button class="animation-chip" data-ani="rollIn">rollIn</button>
+                            <button class="animation-chip" data-ani="rollOut">rollOut</button>
+                        </div>
+                        <!-- Source Drawer (Shared G4) -->
+                        <div class="popup-card-wrapper">
+                            <div class="source-code-container">
+                                <button class="source-toggle-btn" data-target="source-code-16" data-source="../assets/code/cssanimation4.json">
+                                    <span>소스 자세히 보기</span>
+                                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                </button>
+                                <div class="source-code-wrapper" id="source-code-16">
+                                    <div class="source-code-inner">
+                                        <div class="code-tab-header">
+                                            <span class="file-name">HTML & CSS & JS</span>
+                                            <button class="copy-code-btn" data-clipboard="source-code-16">Copy</button>
+                                        </div>
+                                        <pre><code class="html-js-code"></code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 기본 CSS Motion UI Lab. Designed beautifully.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Notification (Feedback) -->
+    <div class="toast-container" id="toast-popup">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <span class="toast-text">동작이 재생되었습니다.</span>
+    </div>
+
+    <!-- Controller Logic Script -->
+    <script src="../assets/js/mo_cssanimation.js"></script>
+</body>
+</html>
