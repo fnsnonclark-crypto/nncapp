@@ -229,23 +229,20 @@ function startAdminAutoClockOut() {
             if (changed) {
                 await saveMembers(users);
                 
-                const historyData = await fetchHistory();
                 const todayStr = now.toISOString().split('T')[0];
-                let historyChanged = false;
-                
-                users.forEach(u => {
-                    if (u.role !== 'admin' && u.clockOut === '18:00') {
-                        const record = historyData.find(h => h.userId === u.email && h.date === todayStr);
-                        if (record && (!record.clockOut || record.clockOut === '-')) {
-                            record.clockOut = '18:00';
-                            record.status = '퇴근완료';
-                            historyChanged = true;
-                        }
-                    }
-                });
-                
-                if (historyChanged) {
-                    await saveHistory(historyData);
+                try {
+                    const promises = users
+                        .filter(u => u.role !== 'admin' && u.clockOut === '18:00')
+                        .map(u => {
+                            return supabaseClient
+                                .from('attendance')
+                                .update({ clockOut: '18:00', status: '퇴근완료' })
+                                .eq('userId', u.email)
+                                .eq('date', todayStr);
+                        });
+                    await Promise.all(promises);
+                } catch (err) {
+                    console.error('Auto clock-out history update error:', err);
                 }
                 
                 // 관리자 화면 갱신 이벤트 발생
@@ -560,18 +557,22 @@ if (document.getElementById('currentDate')) {
                 await saveMembers(users);
             }
             
-            // 2. allmember.json 업데이트 (전체 출퇴근 기록)
-            const historyData = await fetchHistory();
+            // 2. Supabase 'attendance' 테이블에 오늘 날짜의 출근 기록 1줄 단독 insert
             const todayStr = now.toISOString().split('T')[0]; // YYYY-MM-DD
-            historyData.push({
-                userId: user.email,
-                name: user.name,
-                date: todayStr,
-                clockIn: timeStr,
-                clockOut: '-',
-                status: currentStatus
-            });
-            await saveHistory(historyData);
+            try {
+                if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+                const { error } = await supabaseClient.from('attendance').insert([{
+                    userId: user.email,
+                    name: user.name,
+                    date: todayStr,
+                    clockIn: timeStr,
+                    clockOut: '-',
+                    status: currentStatus
+                }]);
+                if (error) throw error;
+            } catch (err) {
+                console.error('Attendance insert error:', err);
+            }
             
             updateUI();
         });
@@ -591,24 +592,42 @@ if (document.getElementById('currentDate')) {
                 await saveMembers(users);
             }
             
-            // 2. allmember.json 업데이트
-            const historyData = await fetchHistory();
+            // 2. Supabase 'attendance' 테이블에 오늘 날짜의 해당 유저 출퇴근 기록 단독 update/insert
             const todayStr = new Date().toISOString().split('T')[0];
-            const myRecord = historyData.find(h => h.userId === user.email && h.date === todayStr);
-            if (myRecord) {
-                myRecord.clockOut = timeStr;
-                myRecord.status = '퇴근완료';
-            } else {
-                historyData.push({
-                    userId: user.email,
-                    name: user.name,
-                    date: todayStr,
-                    clockIn: attendanceState.clockIn || '-',
-                    clockOut: timeStr,
-                    status: '퇴근완료'
-                });
+            try {
+                if (!supabaseClient) throw new Error('Supabase Client가 준비되지 않았습니다.');
+                
+                const { data, error: selectError } = await supabaseClient
+                    .from('attendance')
+                    .select('*')
+                    .eq('userId', user.email)
+                    .eq('date', todayStr);
+                
+                if (selectError) throw selectError;
+                
+                if (data && data.length > 0) {
+                    const { error: updateError } = await supabaseClient
+                        .from('attendance')
+                        .update({ clockOut: timeStr, status: '퇴근완료' })
+                        .eq('userId', user.email)
+                        .eq('date', todayStr);
+                    if (updateError) throw updateError;
+                } else {
+                    const { error: insertError } = await supabaseClient
+                        .from('attendance')
+                        .insert([{
+                            userId: user.email,
+                            name: user.name,
+                            date: todayStr,
+                            clockIn: attendanceState.clockIn || '-',
+                            clockOut: timeStr,
+                            status: '퇴근완료'
+                        }]);
+                    if (insertError) throw insertError;
+                }
+            } catch (err) {
+                console.error('Attendance update error:', err);
             }
-            await saveHistory(historyData);
             
             updateUI();
         }
@@ -830,26 +849,28 @@ if (document.getElementById('adminTableBody')) {
                     const now = new Date();
                     const timeStr = now.toLocaleTimeString('ko-KR', { hour12: false, hour: '2-digit', minute: '2-digit' });
                     const todayStr = now.toISOString().split('T')[0];
-                    let historyChanged = false;
                     
-                    const historyData = await fetchHistory();
-                    
-                    // 상태 업데이트
+                    // 1. members 상태 업데이트
                     activeEmployees.forEach(u => {
                         u.clockOut = timeStr;
                         u.status = '퇴근완료';
-                        
-                        // history 업데이트
-                        const record = historyData.find(h => h.userId === u.email && h.date === todayStr);
-                        if (record && (!record.clockOut || record.clockOut === '-')) {
-                            record.clockOut = timeStr;
-                            record.status = '퇴근완료';
-                            historyChanged = true;
-                        }
                     });
                     
                     const isSuccess = await saveMembers(membersData);
-                    if (historyChanged) await saveHistory(historyData);
+                    
+                    // 2. attendance 기록들 일괄 update (병렬 처리)
+                    try {
+                        const promises = activeEmployees.map(u => {
+                            return supabaseClient
+                                .from('attendance')
+                                .update({ clockOut: timeStr, status: '퇴근완료' })
+                                .eq('userId', u.email)
+                                .eq('date', todayStr);
+                        });
+                        await Promise.all(promises);
+                    } catch (err) {
+                        console.error('Admin all clock-out attendance update error:', err);
+                    }
                     
                     if (isSuccess) {
                         renderAdminTable(membersData);
