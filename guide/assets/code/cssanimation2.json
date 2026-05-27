@@ -1,0 +1,5 @@
+{
+  "html": "<!-- HTML Bouncing, Fading & Sliding Entrances -->\n<div class=\"animation-grid\">\n  <button class=\"animation-chip\" data-ani=\"bounceInDown\">bounceInDown</button>\n  <button class=\"animation-chip\" data-ani=\"fadeInUp\">fadeInUp</button>\n  <button class=\"animation-chip\" data-ani=\"slideInRight\">slideInRight</button>\n</div>",
+  "css": "/* CSS Entrances Classes mapping to Animate.css */\n.animate__fadeInUp {\n  animation-name: fadeInUp;\n}\n.animate__slideInRight {\n  animation-name: slideInRight;\n}",
+  "js": "// JS Entrances Trigger Logic\nfunction triggerEntrance(aniName) {\n  const el = document.getElementById('preview-box');\n  el.className = 'preview-object';\n  void el.offsetWidth; // Reflow\n  el.classList.add('animate__animated', `animate__${aniName}`);\n}"
+}

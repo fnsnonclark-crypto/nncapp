@@ -1,0 +1,5 @@
+{
+  "html": "<!-- HTML Bouncing, Fading & Sliding Exits -->\n<div class=\"animation-grid\">\n  <button class=\"animation-chip\" data-ani=\"bounceOutDown\">bounceOutDown</button>\n  <button class=\"animation-chip\" data-ani=\"fadeOutDown\">fadeOutDown</button>\n  <button class=\"animation-chip\" data-ani=\"slideOutLeft\">slideOutLeft</button>\n</div>",
+  "css": "/* CSS Exits Classes mapping to Animate.css */\n.animate__fadeOutDown {\n  animation-name: fadeOutDown;\n}\n.animate__slideOutLeft {\n  animation-name: slideOutLeft;\n}",
+  "js": "// JS Exits Trigger Logic\nfunction triggerExit(aniName) {\n  const el = document.getElementById('preview-box');\n  el.className = 'preview-object';\n  void el.offsetWidth; // Reflow\n  el.classList.add('animate__animated', `animate__${aniName}`);\n}"
+}

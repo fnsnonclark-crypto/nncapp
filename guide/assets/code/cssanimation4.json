@@ -1,0 +1,5 @@
+{
+  "html": "<!-- HTML Lightspeed & Zooming & Rotating & Specials -->\n<div class=\"animation-grid\">\n  <button class=\"animation-chip\" data-ani=\"lightSpeedInRight\">lightSpeedInRight</button>\n  <button class=\"animation-chip\" data-ani=\"hinge\">hinge</button>\n  <button class=\"animation-chip\" data-ani=\"jackInTheBox\">jackInTheBox</button>\n  <button class=\"animation-chip\" data-ani=\"zoomIn\">zoomIn</button>\n</div>",
+  "css": "/* Animate.css Special Animations */\n.animate__hinge {\n  animation-name: hinge;\n  transform-origin: top left;\n}\n.animate__jackInTheBox {\n  animation-name: jackInTheBox;\n}",
+  "js": "// JS Specials Trigger Logic\nfunction triggerSpecial(aniName) {\n  const el = document.getElementById('preview-box');\n  el.className = 'preview-object';\n  void el.offsetWidth; // Reflow\n  el.classList.add('animate__animated', `animate__${aniName}`);\n}"
+}
