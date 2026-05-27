@@ -1,4 +1,4 @@
-/* Premium Mobile Popup Stylesheet - mo_popup.css */
+/* 기본 Mobile Popup Stylesheet - mo_popup.css */
 
 :root {
     --primary-color: #6366f1;
@@ -70,7 +70,7 @@ body {
     margin-bottom: 4px;
 }
 
-/* Premium Card Triggers */
+/* 기본 Card Triggers */
 .popup-trigger-card {
     display: flex;
     align-items: center;
