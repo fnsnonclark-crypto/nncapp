@@ -1,0 +1,4 @@
+{
+  "html": "<!-- HTML iOS Style Switch -->\n<div class=\"toggle-container\">\n  <label class=\"switch-ios\">\n    <input type=\"checkbox\" id=\"toggle-ios-chk\">\n    <span class=\"slider-ios\"></span>\n  </label>\n  <span class=\"toggle-state-text\" id=\"toggle-ios-text\">OFF</span>\n</div>",
+  "js": "// JS iOS Switch Controller\nconst iosChk = document.getElementById('toggle-ios-chk');\nconst iosText = document.getElementById('toggle-ios-text');\n\niosChk.addEventListener('change', (e) => {\n  if (e.target.checked) {\n    iosText.innerText = 'ON';\n    iosText.classList.add('active');\n    showToast('iOS 알림 설정이 활성화되었습니다.');\n  } else {\n    iosText.innerText = 'OFF';\n    iosText.classList.remove('active');\n    showToast('iOS 알림 설정이 해제되었습니다.');\n  }\n});"
+}

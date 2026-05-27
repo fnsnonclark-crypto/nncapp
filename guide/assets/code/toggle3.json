@@ -1,0 +1,4 @@
+{
+  "html": "<!-- HTML Tactile Jelly Toggle -->\n<div class=\"toggle-container\">\n  <label class=\"switch-jelly\">\n    <input type=\"checkbox\" id=\"toggle-jelly-chk\">\n    <span class=\"slider-jelly\"></span>\n  </label>\n  <span class=\"toggle-state-text\" id=\"toggle-jelly-text\">Inactive</span>\n</div>",
+  "js": "// JS Jelly Switch Controller\nconst jellyChk = document.getElementById('toggle-jelly-chk');\nconst jellyText = document.getElementById('toggle-jelly-text');\n\njellyChk.addEventListener('change', (e) => {\n  if (e.target.checked) {\n    jellyText.innerText = 'Active';\n    jellyText.classList.add('active');\n    showToast('젤리 토글이 활성화되었습니다.');\n  } else {\n    jellyText.innerText = 'Inactive';\n    jellyText.classList.remove('active');\n    showToast('젤리 토글이 해제되었습니다.');\n  }\n});"
+}

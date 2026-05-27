@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모바일 프리미엄 토글 버튼 데모</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Common & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/mo_toggle.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard Header -->
+        <header class="app-header">
+            <h1 class="app-title">Premium Toggles</h1>
+            <p class="app-subtitle">Mobile Toggle Interaction Suite</p>
+        </header>
+
+        <!-- Main Toggles Controls -->
+        <main class="app-content">
+            <section class="toggle-section">
+                <h3 class="section-title">인터랙티브 모바일 토글 스위치</h3>
+
+                <!-- 1. iOS Style Switch -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 01</span>
+                            <h4 class="card-title">iOS 스위치 토글</h4>
+                            <p class="card-desc">아이폰 특유의 컴팩트한 레이아웃과 액티브 터치 시 물리 축소 반응이 입혀진 미니멀 스위치</p>
+                        </div>
+                        <div class="toggle-interactive-area">
+                            <label class="switch-ios">
+                                <input type="checkbox" id="toggle-ios-chk">
+                                <span class="slider-ios"></span>
+                            </label>
+                            <span class="toggle-state-text" id="toggle-ios-text">OFF</span>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-1" data-source="../assets/code/toggle1.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-1">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Dark/Light Mode Theme Switch -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 02</span>
+                            <h4 class="card-title">테마 아이콘 토글</h4>
+                            <p class="card-desc">다크 모드와 라이트 모드 전환 시 내부 아이콘(해/달)이 360도 회전하며 색상이 변화하는 테마 컴포넌트</p>
+                        </div>
+                        <div class="toggle-interactive-area">
+                            <label class="switch-theme">
+                                <input type="checkbox" id="toggle-theme-chk">
+                                <span class="slider-theme">
+                                    <span class="thumb-icon"></span>
+                                </span>
+                            </label>
+                            <span class="toggle-state-text" id="toggle-theme-text">라이트 모드</span>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-2" data-source="../assets/code/toggle2.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-2">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Elastic Jelly Switch -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 03</span>
+                            <h4 class="card-title">엘라스틱 젤리 토글</h4>
+                            <p class="card-desc">토글 손잡이를 당기거나 눌렀을 때 늘어나는 고무 젤리 탄성 모션을 입혀 물리적 피드백을 가미한 스위치</p>
+                        </div>
+                        <div class="toggle-interactive-area">
+                            <label class="switch-jelly">
+                                <input type="checkbox" id="toggle-jelly-chk">
+                                <span class="slider-jelly"></span>
+                            </label>
+                            <span class="toggle-state-text" id="toggle-jelly-text">Inactive</span>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-3" data-source="../assets/code/toggle3.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-3">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Slide to Unlock Swipe Action -->
+                <div class="popup-card-wrapper">
+                    <div class="popup-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 04</span>
+                            <h4 class="card-title">슬라이드 잠금해제 버튼</h4>
+                            <p class="card-desc">모바일 송금 승인, 구매 확인 등에 주로 쓰이는 형태로 손잡이 바를 끝까지 스와이프해야 액션이 완성되는 스토퍼 스위치</p>
+                        </div>
+                        <div class="toggle-interactive-area" style="border: none; padding-top: 4px;">
+                            <div class="slide-unlock-container">
+                                <div class="slide-track" id="unlock-track">
+                                    <div class="slide-handle" id="unlock-handle">
+                                        <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+                                    </div>
+                                    <span class="slide-label" id="unlock-label">밀어서 잠금해제</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-4" data-source="../assets/code/toggle4.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-4">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-4">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 Premium Toggle UI Lab. Designed beautifully.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Popup (공통 인터랙션 피드백용) -->
+    <div class="toast-container" id="toast-popup">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <span class="toast-text">토글 변경사항이 저장되었습니다.</span>
+    </div>
+
+    <!-- Interactive Logic Script -->
+    <script src="../assets/js/mo_toggle.js"></script>
+</body>
+</html>
