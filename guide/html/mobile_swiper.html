@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모바일 프리미엄 스와이퍼 데모</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- Common & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/mo_swiper.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1 class="app-title">Premium Swiper UI</h1>
+            <p class="app-subtitle">Mobile Swiper Showcase</p>
+        </header>
+
+        <main class="app-content">
+            <!-- Swiper 1 Section -->
+            <section class="swiper-section">
+                <div class="section-header">
+                    <span class="badge">Type 01</span>
+                    <h2>기본 내비게이션 스와이퍼</h2>
+                    <p>가로 스와이프, 페이지 번호 표시 및 이전/다음 버튼 기능</p>
+                </div>
+                <div class="swiper-wrapper-outer">
+                    <div class="swiper swiper-type-1">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide card-slide gradient-1">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 01</span>
+                                    <h3>Visual Exploration</h3>
+                                    <p>창의적 영감을 자극하는 모던 미니멀리즘 디자인 레이아웃</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-2">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 02</span>
+                                    <h3>Dynamic Motion</h3>
+                                    <p>사용자 경험을 극대화하는 자연스럽고 부드러운 스크롤 애니메이션</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-3">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 03</span>
+                                    <h3>Responsive Layout</h3>
+                                    <p>다양한 모바일 디바이스 화면에 맞춰 유연하게 변화하는 반응형 설계</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation & Pagination -->
+                        <div class="swiper-controls">
+                            <div class="swiper-button-prev btn-prev-1"></div>
+                            <div class="swiper-pagination pagination-1"></div>
+                            <div class="swiper-button-next btn-next-1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-1" data-source="../assets/code/swiper1.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-1">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Swiper 2 Section -->
+            <section class="swiper-section">
+                <div class="section-header">
+                    <span class="badge badge-orange">Type 02</span>
+                    <h2>오토 플레이 스와이퍼</h2>
+                    <p>자동 재생 기능과 일시 정지/재생 컨트롤러 탑재</p>
+                </div>
+                <div class="swiper-wrapper-outer">
+                    <div class="swiper swiper-type-2">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide card-slide gradient-4">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 01</span>
+                                    <h3>Automated Carousel</h3>
+                                    <p>지정한 간격에 따라 자동으로 부드럽게 화면이 전환됩니다.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-5">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 02</span>
+                                    <h3>Interactive Control</h3>
+                                    <p>재생 및 일시 정지 버튼을 통해 자동 재생을 자유롭게 제어하세요.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-6">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 03</span>
+                                    <h3>Continuous Loop Off</h3>
+                                    <p>루프가 비활성화되어 마지막 슬라이드에 도달하면 멈춥니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation & Pagination with AutoPlay Toggle -->
+                        <div class="swiper-controls">
+                            <div class="swiper-button-prev btn-prev-2"></div>
+                            <div class="control-center">
+                                <div class="swiper-pagination pagination-2"></div>
+                                <button class="autoplay-toggle-btn btn-toggle-2" aria-label="Pause Autoplay">
+                                    <!-- Pause Icon (default playing) -->
+                                    <svg class="icon icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                    <!-- Play Icon (hidden by default) -->
+                                    <svg class="icon icon-play hidden" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                            </div>
+                            <div class="swiper-button-next btn-next-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-2" data-source="../assets/code/swiper2.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-2">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Swiper 3 Section -->
+            <section class="swiper-section">
+                <div class="section-header">
+                    <span class="badge badge-green">Type 03</span>
+                    <h2>무한 루프 오토 스와이퍼</h2>
+                    <p>자동 재생, 컨트롤러, 그리고 끝과 처음이 연결되는 무한 루프</p>
+                </div>
+                <div class="swiper-wrapper-outer">
+                    <div class="swiper swiper-type-3">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide card-slide gradient-7">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 01</span>
+                                    <h3>Infinite Loop Play</h3>
+                                    <p>마지막 슬라이드에서 다음으로 넘기면 끊김 없이 첫 슬라이드로 연결됩니다.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-8">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 02</span>
+                                    <h3>Seamless Transition</h3>
+                                    <p>첫 슬라이드에서 이전 슬라이드로 이동할 때도 마지막 페이지로 자연스럽게 이동합니다.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-9">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 03</span>
+                                    <h3>Auto & Loop Hybrid</h3>
+                                    <p>자동 전환과 양방향 루프가 결합되어 최상의 사용자 흐름을 제공합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation & Pagination with AutoPlay Toggle -->
+                        <div class="swiper-controls">
+                            <div class="swiper-button-prev btn-prev-3"></div>
+                            <div class="control-center">
+                                <div class="swiper-pagination pagination-3"></div>
+                                <button class="autoplay-toggle-btn btn-toggle-3" aria-label="Pause Autoplay">
+                                    <!-- Pause Icon (default playing) -->
+                                    <svg class="icon icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                    <!-- Play Icon (hidden by default) -->
+                                    <svg class="icon icon-play hidden" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                            </div>
+                            <div class="swiper-button-next btn-next-3"></div>
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-3" data-source="../assets/code/swiper3.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-3">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Swiper 4 Section -->
+            <section class="swiper-section">
+                <div class="section-header">
+                    <span class="badge badge-purple">Type 04</span>
+                    <h2>숫자 페이징 루프 스와이퍼</h2>
+                    <p>3번과 동일하지만 페이징을 점이 아닌 숫자(현재/전체) 형태로 표기</p>
+                </div>
+                <div class="swiper-wrapper-outer">
+                    <div class="swiper swiper-type-4">
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide card-slide gradient-1">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 01</span>
+                                    <h3>Fraction Pagination</h3>
+                                    <p>현재 슬라이드 위치를 명확하게 숫자로 확인할 수 있습니다.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-2">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 02</span>
+                                    <h3>Same Loop Mechanics</h3>
+                                    <p>3번 스와이퍼와 완전히 동일한 오토 무한 루프 기능이 작동합니다.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide card-slide gradient-3">
+                                <div class="slide-content">
+                                    <span class="slide-num">Slide 03</span>
+                                    <h3>Enhanced Clarity</h3>
+                                    <p>슬라이드가 많은 구조에서 시각적인 인지율을 높여주는 레이아웃입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Navigation & Pagination with AutoPlay Toggle -->
+                        <div class="swiper-controls">
+                            <div class="swiper-button-prev btn-prev-4"></div>
+                            <div class="control-center">
+                                <div class="swiper-pagination pagination-4"></div>
+                                <button class="autoplay-toggle-btn btn-toggle-4" aria-label="Pause Autoplay">
+                                    <!-- Pause Icon (default playing) -->
+                                    <svg class="icon icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                                    <!-- Play Icon (hidden by default) -->
+                                    <svg class="icon icon-play hidden" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </button>
+                            </div>
+                            <div class="swiper-button-next btn-next-4"></div>
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-4" data-source="../assets/code/swiper4.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-4">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-4">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <p>&copy; 2026 Premium Swiper UI Lab. Designed beautifully.</p>
+        </footer>
+    </div>
+
+    <!-- Swiper.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Custom Swiper Script -->
+    <script src="../assets/js/mo_swiper.js"></script>
+</body>
+</html>
