@@ -1,0 +1,562 @@
+/* Mobile Template A Contents Stylesheet - mo_template_a.css */
+
+.template-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.section-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+/* Base interactive area customization */
+.template-interactive-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   1. Component Style 1 (Type 01: AI가입설계 도우미 풀 컨테이너)
+   ========================================================================== */
+.template-a-card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.template-a-card * {
+    box-sizing: border-box;
+}
+
+/* Status Bar Simulator */
+.status-bar-sim {
+    width: 100%;
+    height: 44px;
+    padding: 20px 24px 4px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+}
+
+.status-time {
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #000000;
+}
+
+.status-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* Navigation Header */
+.nav-header {
+    width: 100%;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.nav-back-btn, .nav-menu-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+    outline: none;
+}
+
+.nav-back-btn:active, .nav-menu-btn:active {
+    transform: scale(0.9);
+}
+
+.nav-back-icon, .nav-menu-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-title-group {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-subtitle {
+    font-size: 10px;
+    color: #666666;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+}
+
+.nav-title {
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* Progress Gauge Bar */
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    position: relative;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 100%;
+    background: #f6f6f6;
+}
+
+.progress-bar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 25%; /* Step 1/4 default */
+    background: #585DCB;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Intro Banner */
+.intro-banner {
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+}
+
+.banner-text-group {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.banner-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #212121;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.banner-desc {
+    font-size: 14px;
+    color: #777777;
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.45;
+}
+
+.avatar-circle {
+    width: 120px;
+    height: 120px;
+    background: #EEEFFA;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.avatar-circle:hover {
+    transform: rotate(5deg) scale(1.05);
+}
+
+.avatar-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.banner-guide-text {
+    text-align: center;
+    font-size: 14px;
+    color: #212121;
+    font-weight: 500;
+    font-family: 'Pretendard', sans-serif;
+    line-height: 1.6;
+}
+
+.banner-guide-text .highlight {
+    color: #585DCB;
+    font-weight: 700;
+}
+
+.grey-divider {
+    width: 100%;
+    height: 15px;
+    background: #f6f6f6;
+}
+
+/* Tab Navigation Group */
+.tab-control-group {
+    width: 100%;
+    padding: 0 20px;
+    border-bottom: 1px solid #e8eaf3;
+    display: flex;
+}
+
+.tab-item {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 16px 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #99a1b1;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.25s ease;
+    font-family: 'Pretendard', sans-serif;
+    outline: none;
+}
+
+.tab-item.active {
+    color: #141924;
+    font-weight: 700;
+}
+
+.tab-underline {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #585DCB;
+    border-radius: 2px 2px 0 0;
+    transition: all 0.3s ease;
+}
+
+/* Form & Detail Info Container */
+.form-content-area {
+    width: 100%;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Search Field inside Card */
+.search-input-field {
+    width: 100%;
+    padding: 12px 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1.5px solid #585DCB;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-field:focus-within {
+    border-color: #4a4fb0;
+    box-shadow: 0 4px 16px rgba(88, 93, 203, 0.1);
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    color: #212121;
+}
+
+.search-input::placeholder {
+    color: #777777;
+}
+
+/* Quick Action Buttons */
+.quick-action-group {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.quick-action-btn {
+    flex: 1;
+    padding: 10px 16px;
+    background: #f6f6f6;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: #777777;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Pretendard', sans-serif;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.quick-action-btn:hover {
+    opacity: 1;
+    background: #EEEFFA;
+    color: #585DCB;
+}
+
+.quick-action-btn:active {
+    transform: scale(0.97);
+}
+
+.btn-inline-icon {
+    width: 16px;
+    height: 16px;
+}
+
+/* Insured Details Card */
+.insured-details-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.detail-row {
+    padding: 16px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f6f6f6;
+    transition: background-color 0.2s ease;
+}
+
+.detail-row:hover {
+    background-color: #fafafa;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.row-label {
+    font-size: 14px;
+    color: #777777;
+    font-weight: 500;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.row-right-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.row-value {
+    font-size: 14px;
+    color: #212121;
+    font-weight: 500;
+    text-align: right;
+    font-family: 'Pretendard', sans-serif;
+}
+
+.row-arrow-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.4;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.detail-row:hover .row-arrow-icon {
+    opacity: 0.8;
+    transform: translateX(2px);
+}
+
+/* Sticky Bottom CTA */
+.bottom-cta-area {
+    width: 100%;
+    padding: 16px 20px 24px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #ffffff 100%);
+}
+
+.btn-start-ai {
+    width: 100%;
+    padding: 16px;
+    background: #585DCB;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    font-family: 'Pretendard', sans-serif;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-cta-icon {
+    width: 18px;
+    height: 18px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.4s ease;
+}
+
+.btn-start-ai:hover .btn-cta-icon {
+    transform: rotate(180deg);
+}
+
+.btn-start-ai:active {
+    background: #4a4fb0;
+    transform: scale(0.98);
+}
+
+
+/* ==========================================================================
+   2. Component Style 2 (Type 02: 독립형 검색 필드)
+   ========================================================================== */
+.search-input-field.standalone {
+    width: 100%;
+    padding: 12px 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1.5px solid #585DCB;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(88, 93, 203, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-field.standalone:focus-within {
+    border-color: #4a4fb0;
+    box-shadow: 0 4px 16px rgba(88, 93, 203, 0.12);
+}
+
+.search-input-field.standalone .search-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.search-input-field.standalone .search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    font-weight: 500;
+    color: #212121;
+    background: transparent;
+}
+
+.search-input-field.standalone .search-input::placeholder {
+    color: #777777;
+}
+
+
+/* ==========================================================================
+   3. Component Style 3 (Type 03: 모바일 기본 아이콘 팩 그리드)
+   ========================================================================== */
+.template-a-card.icons-card {
+    padding: 24px 20px;
+    background: #ffffff;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+}
+
+.icon-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 6px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.icon-tile:hover {
+    background: #EEEFFA;
+    border-color: #585DCB;
+    transform: translateY(-2px);
+}
+
+.icon-tile:active {
+    transform: scale(0.95);
+}
+
+.tile-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    background: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    transition: transform 0.2s ease;
+}
+
+.icon-tile:hover .tile-icon-wrapper {
+    transform: scale(1.1);
+}
+
+.tile-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.tile-name {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: 500;
+    text-align: center;
+    font-family: 'Outfit', sans-serif;
+}

@@ -143,6 +143,76 @@
 }
 
 /* ==========================================================================
+   3. Button Style 3 (AI설계결과 확인 버튼 그룹)
+   ========================================================================== */
+.btn-group-3 {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.btn-style-3-icon {
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    background: #EEEFFA;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    border: none;
+    flex-shrink: 0;
+}
+
+.btn-style-3-icon:active {
+    background-color: #e0e2f5;
+    transform: scale(0.95);
+}
+
+.btn-style-3-icon .btn-icon {
+    width: 24px;
+    height: 24px;
+}
+
+
+.btn-style-3-action {
+    flex: 1;
+    height: 56px;
+    padding: 16px;
+    background: #585DCB;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    display: inline-flex;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    border: none;
+}
+
+.btn-style-3-action:active {
+    background-color: #4a4fb0;
+    transform: scale(0.97);
+}
+
+.btn-style-3-action .btn-text {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    font-weight: 500;
+    line-height: 24px;
+    word-wrap: break-word;
+}
+
+
+/* ==========================================================================
    POPUP CARD WRAPPER & SOURCE CODE DRAWER (Consistent Code Slate Theme)
    ========================================================================== */
 

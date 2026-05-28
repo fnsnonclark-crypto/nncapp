@@ -45,6 +45,22 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Type 03 버튼 이벤트 바인딩
+    const btn3Icon = document.querySelector('.btn-style-3-icon');
+    const btn3Action = document.querySelector('.btn-style-3-action');
+    
+    if (btn3Icon) {
+        btn3Icon.addEventListener('click', function () {
+            showToast('설정 및 상세 분석 정보를 호출합니다.');
+        });
+    }
+    if (btn3Action) {
+        btn3Action.addEventListener('click', function () {
+            showToast('AI설계결과 확인 화면으로 이동합니다.');
+        });
+    }
+
+
     // -------------------------------------------------------------
     // 2. 소스 자세히 보기 - 아코디언 토글 제어 및 비동기 JSON 로드
     // -------------------------------------------------------------

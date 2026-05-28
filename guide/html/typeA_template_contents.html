@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>template A타입 컨텐츠</title>
+    <!-- Google Fonts & Pretendard CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <!-- Common & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/mo_template_a.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard Header -->
+        <header class="app-header">
+            <h1 class="app-title">Template A-Type</h1>
+            <p class="app-subtitle">A타입 스마트 설계 컨텐츠</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-content">
+            <section class="template-section">
+                <!-- 1. Component Type 01 (AI가입설계 도우미 풀 컨테이너) -->
+                <div class="popup-card-wrapper">
+                    <div class="card-info" style="margin-bottom: 12px;">
+                        <span class="card-label">Type 01</span>
+                        <h4 class="card-title">AI가입설계 도우미 컨테이너</h4>
+                        <p class="card-desc">상태 시뮬레이터, 실시간 1/4 프로그레스 진행도, 상세/단순설계 스위칭 탭, 고객 인풋 폼 및 신규 에셋 아이콘이 연동된 반응형 뷰포트</p>
+                    </div>
+                    
+                    <div class="template-interactive-area">
+                        <!-- Type 01 Component Rendering -->
+                        <div class="template-a-card">
+                            <!-- 상태표시줄 시뮬레이터 -->
+                            <div class="status-bar-sim">
+                                <span class="status-time">9:41</span>
+                                <div class="status-icons">
+                                    <!-- Network Status Placeholder -->
+                                    <svg width="17" height="11" viewBox="0 0 17 11" fill="none">
+                                        <rect x="0.5" y="6.5" width="2" height="4" rx="1" fill="black"/>
+                                        <rect x="4.5" y="4.5" width="2" height="6" rx="1" fill="black"/>
+                                        <rect x="8.5" y="2.5" width="2" height="8" rx="1" fill="black"/>
+                                        <rect x="12.5" y="0.5" width="2" height="10" rx="1" fill="black"/>
+                                    </svg>
+                                    <!-- Battery Status Placeholder -->
+                                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none">
+                                        <rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="black"/>
+                                        <rect x="2.5" y="2.5" width="17" height="7" rx="1.5" fill="black"/>
+                                        <path d="M23 4C23.5523 4 24 4.44772 24 5V7C24 7.55228 23.5523 8 23 8" stroke="black" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- 헤더 네비게이션 -->
+                            <div class="nav-header">
+                                <button class="nav-back-btn" aria-label="이전 화면으로 이동">
+                                    <img src="../assets/images/icon/icon_back.svg" alt="Back" class="nav-back-icon">
+                                </button>
+                                <div class="nav-title-group">
+                                    <span class="nav-subtitle">AI가입설계 도우미</span>
+                                    <span class="nav-title">1/4 고객입력</span>
+                                </div>
+                                <button class="nav-menu-btn" aria-label="전체 메뉴 호출">
+                                    <img src="../assets/images/icon/icon_allmenu.svg" alt="Menu" class="nav-menu-icon">
+                                </button>
+                            </div>
+
+                            <!-- 게이지 프로그레스 바 -->
+                            <div class="progress-bar-container">
+                                <div class="progress-bar-bg"></div>
+                                <div class="progress-bar-fill"></div>
+                            </div>
+
+                            <!-- 메인 인트로 배너 -->
+                            <div class="intro-banner">
+                                <div class="banner-text-group">
+                                    <h2 class="banner-title">AI가입설계 도우미</h2>
+                                    <p class="banner-desc">보장분석부터 고객맞춤형 AI자동설계까지 한번에!</p>
+                                </div>
+                                <div class="banner-media">
+                                    <div class="avatar-circle">
+                                        <svg class="avatar-svg" viewBox="0 0 100 100">
+                                            <circle cx="50" cy="40" r="25" fill="#585DCB" opacity="0.15"/>
+                                            <circle cx="50" cy="40" r="18" fill="#585DCB" opacity="0.4"/>
+                                            <path d="M20 90C20 72 32 60 50 60C68 60 80 72 80 90" fill="#585DCB" opacity="0.6"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="banner-guide-text">
+                                    등록고객은 <span class="highlight">고객명 검색 후 AI설계</span> 진행 가능하고,<br/>
+                                    미등록고객은 <span class="highlight">신규고객등록</span> 또는 <span class="highlight">단순설계</span>로 진행 가능합니다.
+                                </div>
+                            </div>
+
+                            <!-- 그레이 디바이더 스페이서 -->
+                            <div class="grey-divider"></div>
+
+                            <!-- 탭 제어 컨트롤 -->
+                            <div class="tab-control-group">
+                                <button class="tab-item active" data-tab="detailed">
+                                    <span class="tab-label">상세설계</span>
+                                    <div class="tab-underline"></div>
+                                </button>
+                                <button class="tab-item" data-tab="simple">
+                                    <span class="tab-label">단순설계</span>
+                                </button>
+                            </div>
+
+                            <!-- 인풋 폼 & 상세 정보 컨텐츠 영역 -->
+                            <div class="form-content-area">
+                                <!-- 검색 입력 필드 -->
+                                <div class="search-input-field">
+                                    <img src="../assets/images/icon/icon_search.svg" alt="Search Icon" class="search-icon">
+                                    <input type="text" class="search-input" value="홍길동" placeholder="고객명을 입력하세요">
+                                </div>
+
+                                <!-- 신규 고객 및 설계동의 퀵 액션 버튼 세트 -->
+                                <div class="quick-action-group">
+                                    <button class="quick-action-btn btn-register">
+                                        <img src="../assets/images/icon/icon_home.svg" alt="Home" class="btn-inline-icon">신규고객등록
+                                    </button>
+                                    <button class="quick-action-btn btn-consent">
+                                        <img src="../assets/images/icon/icon_check.svg" alt="Check" class="btn-inline-icon">가입설계동의
+                                    </button>
+                                </div>
+
+                                <!-- 피보험자 상세 명세 카드 -->
+                                <div class="insured-details-card">
+                                    <div class="detail-row">
+                                        <span class="row-label">피보험자명</span>
+                                        <div class="row-right-group">
+                                            <span class="row-value val-name">홍길동</span>
+                                            <img src="../assets/images/icon/icon_right.svg" alt="Arrow" class="row-arrow-icon">
+                                        </div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="row-label">성별</span>
+                                        <div class="row-right-group">
+                                            <span class="row-value val-gender">여</span>
+                                            <img src="../assets/images/icon/icon_right.svg" alt="Arrow" class="row-arrow-icon">
+                                        </div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="row-label">연령</span>
+                                        <div class="row-right-group">
+                                            <span class="row-value val-age">30세</span>
+                                            <img src="../assets/images/icon/icon_right.svg" alt="Arrow" class="row-arrow-icon">
+                                        </div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="row-label">급수</span>
+                                        <div class="row-right-group">
+                                            <span class="row-value val-grade">1급</span>
+                                            <img src="../assets/images/icon/icon_right.svg" alt="Arrow" class="row-arrow-icon">
+                                        </div>
+                                    </div>
+                                    <div class="detail-row">
+                                        <span class="row-label">직업</span>
+                                        <div class="row-right-group">
+                                            <span class="row-value val-job">전업주부</span>
+                                            <img src="../assets/images/icon/icon_right.svg" alt="Arrow" class="row-arrow-icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 스티키 바텀 CTA 영역 -->
+                            <div class="bottom-cta-area">
+                                <button class="btn-start-ai">
+                                    <img src="../assets/images/icon/icon_refresh.svg" alt="Refresh" class="btn-cta-icon">AI설계 시작하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer (Double Track Setup) -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-1" data-source="../assets/code/template_a_1.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-1">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-1" data-source="../assets/code/template_a_1.json">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-1">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Component Type 02 (독립형 검색 필드) -->
+                <div class="popup-card-wrapper">
+                    <div class="card-info" style="margin-bottom: 12px;">
+                        <span class="card-label">Type 02</span>
+                        <h4 class="card-title">독립형 모바일 검색 필드</h4>
+                        <p class="card-desc">실제 공급된 icon_search.svg 아이콘이 적용된 프리미엄 라운드 모바일 검색 인풋 필드</p>
+                    </div>
+
+                    <div class="template-interactive-area" style="padding: 12px 0;">
+                        <!-- Type 02 Standalone Search Component Rendering -->
+                        <div class="search-input-field standalone">
+                            <img src="../assets/images/icon/icon_search.svg" alt="Search Icon" class="search-icon">
+                            <input type="text" class="search-input" value="홍길동" placeholder="고객명을 입력하세요">
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer (Double Track Setup) -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-2" data-source="../assets/code/template_a_2.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-2">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-2" data-source="../assets/code/template_a_2.json">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-2">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Component Type 03 (모바일 기본 아이콘 팩 그리드) -->
+                <div class="popup-card-wrapper">
+                    <div class="card-info" style="margin-bottom: 12px;">
+                        <span class="card-label">Type 03</span>
+                        <h4 class="card-title">모바일 기본 아이콘 팩</h4>
+                        <p class="card-desc">애플리케이션 내에 적용된 10가지 표준 벡터(SVG) 아이콘 에셋 컬렉션 라이브 그리드</p>
+                    </div>
+
+                    <div class="template-interactive-area" style="padding: 12px 0;">
+                        <!-- Type 03 Icon Showcase Grid Component Rendering -->
+                        <div class="template-a-card icons-card">
+                            <div class="icon-grid">
+                                <div class="icon-tile" data-icon="icon_home">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_home.svg" alt="Home" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Home</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_allmenu">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_allmenu.svg" alt="All Menu" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">All Menu</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_close">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_close.svg" alt="Close" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Close</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_back">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_back.svg" alt="Back" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Back</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_search">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_search.svg" alt="Search" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Search</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_check">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_check.svg" alt="Check" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Check</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_up">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_up.svg" alt="Up" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Up</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_down">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_down.svg" alt="Down" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Down</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_refresh">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_refresh.svg" alt="Refresh" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Refresh</span>
+                                </div>
+                                <div class="icon-tile" data-icon="icon_right">
+                                    <div class="tile-icon-wrapper">
+                                        <img src="../assets/images/icon/icon_right.svg" alt="Right" class="tile-icon">
+                                    </div>
+                                    <span class="tile-name">Right</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Source Code Drawer (Double Track Setup) -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-3" data-source="../assets/code/template_a_3.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-3">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-3" data-source="../assets/code/template_a_3.json">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-3">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 A타입 스마트 컨텐츠 템플릿. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Popup Layer -->
+    <div class="toast-container" id="toast-popup">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <span class="toast-text">변경사항이 반영되었습니다.</span>
+    </div>
+
+    <!-- Main Logic Script -->
+    <script src="../assets/js/mo_template_a.js"></script>
+</body>
+</html>
