@@ -127,7 +127,60 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- 3. Button Style 3 (AI설계결과 확인 버튼 그룹) -->
+                <div class="button-card-wrapper">
+                    <div class="button-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 03</span>
+                            <h4 class="card-title">AI설계결과 확인 버튼 그룹</h4>
+                            <p class="card-desc">아이콘 전용 스퀘어 서브 버튼과 메인 브랜드 컬러(#585DCB) 액션 버튼이 균형있게 결합된 하이브리드 버튼 그룹</p>
+                        </div>
+                        <div class="button-interactive-area" style="border: none; padding-top: 4px;">
+                            <div class="btn-group-3">
+                                <!-- 아이콘 버튼 -->
+                                <button class="btn-style-3-icon">
+                                    <img src="../assets/images/icon/arrow-refresh-06.svg" alt="Refresh Icon" class="btn-icon">
+                                </button>
+                                <!-- AI설계결과 확인 버튼 -->
+                                <button class="btn-style-3-action">
+                                    <span class="btn-text">AI설계결과 확인</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-3" data-source="../assets/code/buttons3.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-3">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-3" data-source="../assets/code/buttons3.json">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-3">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-3">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
+
         </main>
 
         <!-- Footer -->
