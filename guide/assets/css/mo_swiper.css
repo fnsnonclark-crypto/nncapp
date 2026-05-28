@@ -1,70 +1,8 @@
 /* Custom Swiper Stylesheet - mo_swiper.css */
-:root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --bg-color: #f8fafc;
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    
-    /* Gradients */
-    --grad-1: linear-gradient(135deg, #a78bfa 0%, #6366f1 100%);
-    --grad-2: linear-gradient(135deg, #38bdf8 0%, #0369a1 100%);
-    --grad-3: linear-gradient(135deg, #f472b6 0%, #db2777 100%);
-    
-    --grad-4: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
-    --grad-5: linear-gradient(135deg, #fde047 0%, #ca8a04 100%);
-    --grad-6: linear-gradient(135deg, #f87171 0%, #dc2626 100%);
-    
-    --grad-7: linear-gradient(135deg, #34d399 0%, #059669 100%);
-    --grad-8: linear-gradient(135deg, #2dd4bf 0%, #0d9488 100%);
-    --grad-9: linear-gradient(135deg, #60a5fa 0%, #2563eb 100%);
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-main);
-}
-
-.app-container {
-    max-width: 480px; /* Standard mobile width boundary for desktop preview */
-    margin: 0 auto;
-    background-color: #ffffff;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
-    position: relative;
-}
 
 /* Header styling */
-.app-header {
-    padding: 24px 20px 16px;
-    background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
-    border-bottom: 1px solid #f1f5f9;
-}
-
-.app-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text-main);
-}
-
-.app-subtitle {
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    color: var(--text-muted);
-    font-weight: 400;
-    margin-top: 2px;
-}
 
 /* Main Content */
-.app-content {
-    flex: 1;
-    padding: 10px 0 40px;
-}
 
 /* Swiper Sections */
 .swiper-section {
@@ -183,15 +121,15 @@ body {
 }
 
 /* Slide Gradients */
-.gradient-1 { background: var(--grad-1); }
-.gradient-2 { background: var(--grad-2); }
-.gradient-3 { background: var(--grad-3); }
-.gradient-4 { background: var(--grad-4); }
-.gradient-5 { background: var(--grad-5); }
-.gradient-6 { background: var(--grad-6); }
-.gradient-7 { background: var(--grad-7); }
-.gradient-8 { background: var(--grad-8); }
-.gradient-9 { background: var(--grad-9); }
+.gradient-1 { background: linear-gradient(135deg, #ff2a5f 0%, #ff7e40 100%); }
+.gradient-2 { background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); }
+.gradient-3 { background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%); }
+.gradient-4 { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+.gradient-5 { background: linear-gradient(135deg, #7F00FF 0%, #E100FF 100%); }
+.gradient-6 { background: linear-gradient(135deg, #396afc 0%, #2948ff 100%); }
+.gradient-7 { background: linear-gradient(135deg, #ff4e50 0%, #f9d423 100%); }
+.gradient-8 { background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); }
+.gradient-9 { background: linear-gradient(135deg, #ec008c 0%, #fc6767 100%); }
 
 /* Controls Wrapper */
 .swiper-controls {
@@ -293,133 +231,8 @@ body {
 }
 
 /* Footer Styling */
-.app-footer {
-    padding: 30px 20px;
-    text-align: center;
-    border-top: 1px solid #f1f5f9;
-    background-color: #fafafa;
-}
-
-.app-footer p {
-    font-family: 'Outfit', sans-serif;
-    font-size: 11px;
-    color: var(--text-muted);
-}
 
 /* Source Code Drawer Styling */
-.source-code-container {
-    margin-top: 16px;
-}
-
-.source-toggle-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    padding: 11px 16px;
-    background-color: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    color: var(--text-muted);
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
-    cursor: pointer;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.source-toggle-btn:hover {
-    background-color: #e2e8f0;
-    color: var(--text-main);
-}
-
-.source-toggle-btn.active {
-    background-color: var(--text-main);
-    color: #ffffff;
-    border-color: var(--text-main);
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-}
-
-.source-toggle-btn .chevron-icon {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.source-toggle-btn.active .chevron-icon {
-    transform: rotate(180deg);
-}
-
-.source-code-wrapper {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.source-code-inner {
-    margin-top: 12px;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #1e293b;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-}
-
-.code-tab-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    background-color: #1e293b;
-    border-bottom: 1px solid #334155;
-}
-
-.file-name {
-    font-family: 'Outfit', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.copy-code-btn {
-    background: transparent;
-    border: none;
-    color: #38bdf8;
-    font-size: 11px;
-    font-weight: 600;
-    font-family: 'Outfit', sans-serif;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-}
-
-.copy-code-btn:hover {
-    background-color: rgba(56, 189, 248, 0.1);
-}
-
-.copy-code-btn.copied {
-    color: #34d399;
-}
-
-.source-code-wrapper pre {
-    background-color: #0f172a;
-    padding: 16px;
-    margin: 0;
-    overflow-x: auto;
-}
-
-.source-code-wrapper code {
-    font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 12px;
-    line-height: 1.55;
-    color: #e2e8f0;
-    white-space: pre;
-    display: block;
-}
 
 /* Swiper 4: Fraction Pagination custom styling */
 .pagination-4 {

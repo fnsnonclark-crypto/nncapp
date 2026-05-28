@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetWrapper = document.getElementById(targetId);
             const sourceUrl = btn.getAttribute('data-source');
             const codeElement = targetWrapper.querySelector('code');
+            const isCss = btn.classList.contains('css-toggle-btn');
             
             if (btn.classList.contains('active')) {
                 btn.classList.remove('active');
@@ -158,7 +159,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         return response.json();
                     })
                     .then(data => {
-                        const formattedCode = `<!-- HTML -->\n${data.html}\n\n<!-- CSS Keyframe Trigger -->\n${data.css}\n\n<!-- JS Trigger Logic -->\n${data.js}`;
+                        let formattedCode = '';
+                        if (isCss) {
+                            formattedCode = `/* CSS Keyframe Trigger */\n${data.css}`;
+                        } else {
+                            formattedCode = `<!-- HTML -->\n${data.html}\n\n<!-- JS Trigger Logic -->\n${data.js}`;
+                        }
                         codeElement.innerText = formattedCode;
                         codeElement.setAttribute('data-loaded', 'true');
                         

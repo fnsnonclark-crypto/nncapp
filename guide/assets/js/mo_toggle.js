@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetWrapper = document.getElementById(targetId);
             const sourceUrl = btn.getAttribute('data-source');
             const codeElement = targetWrapper.querySelector('code');
+            const isCss = btn.classList.contains('css-toggle-btn');
             
             // 이미 펼쳐져 활성화된 패널이면 닫기 동작 수행
             if (btn.classList.contains('active')) {
@@ -207,8 +208,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         return response.json();
                     })
                     .then(data => {
-                        // html과 js 필드를 합쳐서 예쁘게 구성
-                        const formattedCode = `<!-- HTML -->\n${data.html}\n\n<!-- JS -->\n${data.js}`;
+                        let formattedCode = '';
+                        if (isCss) {
+                            formattedCode = `/* CSS */\n${data.css}`;
+                        } else {
+                            formattedCode = `<!-- HTML -->\n${data.html}\n\n<!-- JS -->\n${data.js}`;
+                        }
                         codeElement.innerText = formattedCode;
                         codeElement.setAttribute('data-loaded', 'true');
                         

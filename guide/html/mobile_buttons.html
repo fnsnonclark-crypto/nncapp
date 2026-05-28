@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모바일 기본 버튼 데모</title>
+    <!-- Google Fonts & Pretendard CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    <!-- Common & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/layout.css">
+    <link rel="stylesheet" href="../assets/css/mo_buttons.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard Header -->
+        <header class="app-header">
+            <h1 class="app-title">Basic Buttons</h1>
+            <p class="app-subtitle">Mobile Custom Button Suite</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-content">
+            <section class="button-section">
+                <h3 class="section-title">모바일 기본 버튼 디자인</h3>
+
+                <!-- 1. Button Style 1 (보장분석 반영 버튼) -->
+                <div class="button-card-wrapper">
+                    <div class="button-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 01</span>
+                            <h4 class="card-title">보장분석 반영 버튼</h4>
+                            <p class="card-desc">둥근 알약 모양 캡슐 레이아웃에 텍스트와 초미니 아이콘이 깔끔하게 결합된 기본 버튼</p>
+                        </div>
+                        <div class="button-interactive-area">
+                            <!-- 1번 버튼 렌더링 -->
+                            <div class="btn-style-1">
+                                <div class="icon-container">
+                                    <div class="icon-shape"></div>
+                                </div>
+                                <div class="btn-text">보장분석 반영</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-1" data-source="../assets/code/buttons1.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-1">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-1" data-source="../assets/code/buttons1.json">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-1">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-1">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Button Style 2 (단순설계 / 상세설계 버튼 그룹) -->
+                <div class="button-card-wrapper">
+                    <div class="button-trigger-card">
+                        <div class="card-info">
+                            <span class="card-label">Type 02</span>
+                            <h4 class="card-title">단순 및 상세 설계 버튼</h4>
+                            <p class="card-desc">스퀘어 플랫 테마에 브랜드 메인 컬러(#585DCB)를 조화롭게 융합한 두 가지 스타일의 컴포넌트 쌍</p>
+                        </div>
+                        <div class="button-interactive-area" style="border: none; padding-top: 4px;">
+                            <div class="btn-group-2">
+                                <!-- 단순설계 버튼 -->
+                                <button class="btn-style-2 btn-secondary">
+                                    <span class="btn-text">단순설계</span>
+                                </button>
+                                <!-- 상세설계 버튼 -->
+                                <button class="btn-style-2 btn-primary">
+                                    <span class="btn-text">상세설계</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Source Code Drawer -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-2" data-source="../assets/code/buttons2.json">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-2">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-2" data-source="../assets/code/buttons2.json">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-2">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-2">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 기본 Buttons UI Lab. Designed beautifully.</p>
+        </footer>
+    </div>
+
+    <!-- Toast Popup (인터랙션 피드백용) -->
+    <div class="toast-container" id="toast-popup">
+        <div class="toast-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <span class="toast-text">변경사항이 반영되었습니다.</span>
+    </div>
+
+    <!-- Logic Script -->
+    <script src="../assets/js/mo_buttons.js"></script>
+</body>
+</html>
