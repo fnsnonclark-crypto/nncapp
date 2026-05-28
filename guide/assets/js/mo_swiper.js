@@ -253,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const targetWrapper = document.getElementById(targetId);
             const sourceUrl = btn.getAttribute('data-source'); // 가져올 소스 JSON 파일 경로
             const codeElement = targetWrapper.querySelector('code');
+            const isCss = btn.classList.contains('css-toggle-btn');
             
             // 이미 펼쳐져 활성화된 패널이면 닫기 동작 수행
             if (btn.classList.contains('active')) {
@@ -277,8 +278,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         return response.json(); // JSON 포맷 파싱
                     })
                     .then(data => {
-                        // 구조화된 JSON 데이터에서 HTML 코드와 JS 코드를 분리 추출하여 다단 조립
-                        const formattedCode = `<!-- HTML -->\n${data.html}\n\n<!-- JS -->\n${data.js}`;
+                        let formattedCode = '';
+                        if (isCss) {
+                            formattedCode = `/* CSS */\n${data.css}`;
+                        } else {
+                            formattedCode = `<!-- HTML -->\n${data.html}\n\n<!-- JS -->\n${data.js}`;
+                        }
                         
                         // 콘텐츠 대입 및 로드 완료 상태 플래그 활성화
                         codeElement.innerText = formattedCode;
