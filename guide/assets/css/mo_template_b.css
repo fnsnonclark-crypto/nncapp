@@ -1,0 +1,576 @@
+/* Mobile Template B Contents Stylesheet - mo_template_b.css */
+
+.template-section {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.section-title {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.template-interactive-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================================
+   1. B-Type Main Template Card Structure
+   ========================================================================== */
+.template-b-card {
+    width: 100%;
+    max-width: 480px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.template-b-card * {
+    box-sizing: border-box;
+}
+
+/* Status Bar Simulator */
+.status-bar-sim {
+    width: 100%;
+    height: 44px;
+    padding: 20px 24px 4px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+}
+
+.status-time {
+    font-size: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    color: #000000;
+}
+
+.status-icons {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* Navigation Header */
+.nav-header {
+    width: 100%;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.nav-back-btn, .nav-menu-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+    outline: none;
+}
+
+.nav-back-btn:active, .nav-menu-btn:active {
+    transform: scale(0.9);
+}
+
+.nav-back-icon, .nav-menu-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.nav-title-group {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.nav-subtitle {
+    font-size: 10px;
+    color: #666666;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+}
+
+.nav-title {
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    color: #000000;
+}
+
+/* Progress Gauge Bar */
+.progress-bar-container {
+    width: 100%;
+    height: 4px;
+    position: relative;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 100%;
+    background: #f6f6f6;
+}
+
+.progress-bar-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 50%; /* Step 2/4 default for B-Type */
+    background: #585DCB;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   2. B-Type Content Body Components
+   ========================================================================== */
+.b-content-area {
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Header Text Block (Pretendard fonts) */
+.b-heading-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+.b-title {
+    width: 100%;
+    color: #212121;
+    font-size: 24px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 32px;
+    word-wrap: break-word;
+}
+
+.b-desc {
+    width: 100%;
+    color: #777777;
+    font-size: 15px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    line-height: 22px;
+    word-wrap: break-word;
+}
+
+/* User Info Pill Card */
+.b-info-capsule {
+    width: 100%;
+    padding: 12px 16px;
+    background: #EEEFFA;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    border: 1px dashed rgba(88, 93, 203, 0.15);
+}
+
+.b-info-capsule:hover {
+    background: #e6e8f8;
+    box-shadow: 0 4px 10px rgba(88, 93, 203, 0.05);
+}
+
+.info-name {
+    color: #212121;
+    font-size: 12px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 18px;
+    word-wrap: break-word;
+}
+
+.info-details {
+    color: #212121;
+    font-size: 12px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    line-height: 18px;
+    word-wrap: break-word;
+}
+
+/* ==========================================================================
+   3. Interactive Folding Checkboxes & Cards
+   ========================================================================== */
+.theme-select-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.theme-accordion-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.theme-accordion-item:last-child {
+    border-bottom: none;
+}
+
+/* Main folding checklist header row */
+.theme-header-row {
+    width: 100%;
+    padding: 20px 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Premium Checkbox Component */
+.theme-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.theme-checkbox[data-state="off"] {
+    background: #ffffff;
+    border: 1px solid #DEDEDE;
+}
+
+.theme-checkbox[data-state="on"] {
+    background: #585DCB;
+    border: 1px solid #585DCB;
+    box-shadow: 0 2px 6px rgba(88, 93, 203, 0.3);
+    outline: 1px #585DCB solid;
+    outline-offset: -1px;
+}
+
+.theme-checkbox::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    margin-bottom: 2px;
+    position: absolute;
+}
+
+.theme-checkbox[data-state="on"]::after {
+    transform: rotate(45deg) scale(1);
+}
+
+.theme-checkbox:active {
+    transform: scale(0.9);
+}
+
+/* Premium Radio Component */
+.theme-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.theme-radio[data-state="off"] {
+    background: #ffffff;
+    border: 1px solid #DEDEDE;
+}
+
+.theme-radio[data-state="on"] {
+    background: #ffffff;
+    border: 1px solid #585DCB;
+    box-shadow: 0 2px 6px rgba(88, 93, 203, 0.15);
+    outline: 1px #585DCB solid;
+    outline-offset: -1px;
+}
+
+.theme-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: #585DCB;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: absolute;
+}
+
+.theme-radio[data-state="on"]::after {
+    transform: scale(1);
+}
+
+.theme-radio:active {
+    transform: scale(0.9);
+}
+
+/* Theme Titles */
+.theme-title {
+    flex: 1;
+    font-size: 16px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 24px;
+    word-wrap: break-word;
+    transition: color 0.25s ease;
+}
+
+.theme-accordion-item.active-theme .theme-title {
+    color: #585DCB;
+}
+
+.theme-accordion-item.inactive-theme .theme-title {
+    color: #212121;
+}
+
+/* Folding Expand/Collapse Toggle Button */
+.theme-arrow-btn {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.2s ease;
+    border-radius: 50%;
+    padding: 0;
+    outline: none;
+}
+
+.theme-arrow-btn:hover {
+    background-color: #f1f5f9;
+}
+
+.theme-arrow-svg {
+    width: 12px;
+    height: 7px;
+    fill: none;
+    transition: stroke 0.25s ease;
+}
+
+.theme-accordion-item.active-theme .theme-arrow-svg path {
+    stroke: #585DCB;
+}
+
+.theme-accordion-item.expanded .theme-arrow-btn {
+    transform: rotate(-180deg);
+}
+
+/* Collapsible Sub-item panel container */
+.sub-panel-wrapper {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    width: 100%;
+}
+
+.theme-accordion-item.expanded .sub-panel-wrapper {
+    opacity: 1;
+    /* max-height is set dynamically in JS or can fallback to 500px */
+}
+
+.sub-panel-content {
+    width: 100%;
+    padding: 8px 8px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Category card panel (like "암") */
+.category-card {
+    width: 100%;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    outline: 1px #E8EAF3 solid;
+    outline-offset: -1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 4px 12px rgba(88, 93, 203, 0.02);
+    animation: slideDown 0.3s ease-out;
+}
+
+.category-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+.category-title {
+    flex: 1;
+    color: #212121;
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+/* Sub-items list wrapper */
+.sub-items-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* Sub-item row */
+.sub-item-row {
+    align-self: stretch;
+    padding: 12px;
+    background: #F6F6F6;
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.15s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    border: 1px solid transparent;
+}
+
+.sub-item-row:hover {
+    background: #f0f0f0;
+}
+
+.sub-item-row.checked-row {
+    background: #EEEFFA;
+    border-color: rgba(88, 93, 203, 0.1);
+}
+
+.sub-item-row.checked-row:hover {
+    background: #e6e8f8;
+}
+
+.sub-item-row:active {
+    transform: scale(0.99);
+}
+
+.sub-item-text {
+    color: #212121;
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.sub-item-row.checked-row .sub-item-text {
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   4. Sticky Bottom CTA Section
+   ========================================================================== */
+.sticky-bottom-area {
+    width: 100%;
+    padding: 16px 20px 24px;
+    background: #ffffff;
+    border-top: 1px solid #f8fafc;
+}
+
+.btn-theme-submit {
+    width: 100%;
+    padding: 16px;
+    background: #585DCB;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    font-family: 'Pretendard', sans-serif;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(88, 93, 203, 0.2);
+}
+
+.btn-theme-submit:hover {
+    background: #4a4fb0;
+}
+
+.btn-theme-submit:active {
+    transform: scale(0.98);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
