@@ -1,0 +1,327 @@
+/* Mobile Template B01 Snippet Frame Stylesheet - mo_template_b01.css */
+
+/* Horizontal scrollable category list container styling */
+.category-tab-container-snippet {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 10;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 16px;
+    padding-bottom: 8px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: inline-flex;
+    margin-top: 0;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Hide scrollbar across all browsers */
+.category-tab-container-snippet::-webkit-scrollbar {
+    display: none;
+}
+
+.category-tab-container-snippet {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Flex item child settings to prevent compression */
+.category-tab-container-snippet > div {
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.category-tab-container-snippet > div:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+
+/* Coverage Details Container Card */
+.coverage-detail-card {
+    width: calc(100% - 40px);
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 12px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #E8EAF3;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    display: inline-flex;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(88, 93, 203, 0.02);
+    animation: fadeInSlide 0.4s ease-out;
+}
+
+.coverage-detail-card:last-of-type {
+    margin-bottom: 32px;
+}
+
+.coverage-detail-item {
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    display: flex;
+    animation: fadeInItem 0.3s ease-out forwards;
+}
+
+.coverage-item-title-group {
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    display: flex;
+}
+
+.coverage-item-title {
+    align-self: stretch;
+    color: #212121;
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.coverage-item-values-row {
+    align-self: stretch;
+    justify-content: flex-start;
+    align-items: center;
+    display: inline-flex;
+}
+
+.coverage-value-col {
+    flex: 1 1 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2px;
+    display: inline-flex;
+}
+
+.coverage-value-label {
+    align-self: stretch;
+    color: #777777;
+    font-size: 10px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 400;
+    line-height: 14px;
+    word-wrap: break-word;
+}
+
+.coverage-value-amount {
+    align-self: stretch;
+    color: #212121;
+    font-size: 16px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    line-height: 24px;
+    word-wrap: break-word;
+}
+
+.coverage-divider {
+    align-self: stretch;
+    height: 1px;
+    background: #E8EAF3;
+}
+
+/* Animations */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInItem {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Component 04: Premium Plan Comparison Cards */
+.plan-comparison-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.plan-title {
+    color: #212121;
+    font-size: 18px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 28px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.plan-cards-row {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    overflow-x: auto;
+    padding: 4px 20px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.plan-cards-row::-webkit-scrollbar {
+    display: none;
+}
+
+.plan-card {
+    width: 250px;
+    flex-shrink: 0;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #DEDEDE;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+}
+
+.plan-card:active {
+    transform: scale(0.98);
+}
+
+.plan-card.active-plan {
+    border-color: #585DCB;
+    box-shadow: 0 4px 14px rgba(88, 93, 203, 0.08);
+    outline: 1px #585DCB solid;
+    outline-offset: -1px;
+}
+
+.plan-checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid #DEDEDE;
+    background: #ffffff;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.plan-card.active-plan .plan-checkbox {
+    background: #585DCB;
+    border-color: #585DCB;
+}
+
+.plan-checkbox::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.plan-card.active-plan .plan-checkbox::after {
+    transform: rotate(45deg) scale(1);
+}
+
+.plan-info-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.plan-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.plan-tag {
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.plan-tag.new-coverage {
+    background: #FBE9EE;
+    color: #BB4885;
+}
+
+.plan-tag.year-expiry {
+    background: #F4EAFC;
+    color: #7D4B9A;
+}
+
+.plan-tag.age-expiry {
+    background: #DDF3E6;
+    color: #4E9586;
+}
+
+.plan-tag.no-cancel {
+    background: #FDF1D7;
+    color: #CE9A26;
+}
+
+.plan-name {
+    color: #212121;
+    font-size: 14px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 20px;
+    word-break: keep-all;
+    white-space: normal;
+}
+
+.plan-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.plan-price-label {
+    color: #777777;
+    font-size: 12px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+}
+
+.plan-price-value {
+    color: #585DCB;
+    font-size: 18px;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 700;
+    line-height: 28px;
+}
