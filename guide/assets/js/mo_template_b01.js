@@ -244,4 +244,44 @@ document.addEventListener('DOMContentLoaded', function () {
         const planName = element.querySelector('.plan-name').innerText;
         showToast(`플랜이 변경되었습니다: ${planName}`);
     };
+
+    // -------------------------------------------------------------
+    // 6. 상세 플랜 아코디언 접기/펼치기 및 선택 토글 로직
+    // -------------------------------------------------------------
+    window.toggleAccordion = function (btn, panelId) {
+        if (!btn) return;
+        const panel = document.getElementById(panelId);
+        if (!panel) return;
+        
+        const isCollapsed = panel.classList.toggle('collapsed');
+        const toggleText = btn.querySelector('.plan-accordion-toggle-text');
+        const toggleSvg = btn.querySelector('.plan-accordion-toggle-icon svg');
+        
+        if (isCollapsed) {
+            if (toggleText) toggleText.innerText = '담보리스트 펼치기';
+            if (toggleSvg) toggleSvg.style.transform = 'rotate(0deg)';
+            btn.classList.add('collapsed');
+        } else {
+            if (toggleText) toggleText.innerText = '담보리스트 접기';
+            if (toggleSvg) toggleSvg.style.transform = 'rotate(180deg)';
+            btn.classList.remove('collapsed');
+        }
+    };
+
+    window.toggleAccordionPlan = function (headerElement) {
+        if (!headerElement) return;
+        const container = headerElement.closest('.plan-accordion-container');
+        if (!container) return;
+        
+        const isActive = container.classList.toggle('active-plan');
+        showToast(isActive ? '플랜 상세 설계를 선택했습니다.' : '플랜 상세 설계 선택을 취소했습니다.');
+    };
+
+    // -------------------------------------------------------------
+    // 7. 보장 분석 진단 정보 알림 로직
+    // -------------------------------------------------------------
+    window.showDiagToast = function (element, itemName, status) {
+        if (!element) return;
+        showToast(`[${itemName}] 보장 분석 결과: 현재 ${status} 상태입니다.`);
+    };
 });
