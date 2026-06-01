@@ -379,6 +379,319 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Component 05: 플랜 상세 설계 및 담보 아코디언 카드 -->
+                <div class="popup-card-wrapper">
+                    <div class="card-info" style="margin-bottom: 12px;">
+                        <span class="card-label">B-Type Component 05</span>
+                        <h4 class="card-title">플랜 상세 설계 및 담보 아코디언 카드</h4>
+                        <p class="card-desc">가입안에 지정된 납입/만기 등 세부 조건과 각 보장 분류(사망/후유, 암 등) 내 개별 담보 설계 정보를 아코디언 형태로 탭하여 상세 열람할 수 있는 컴포넌트입니다.</p>
+                    </div>
+
+                    <div class="template-interactive-area">
+                        <!-- Type B Mobile Viewport Card - Detailed Accordion only -->
+                        <div class="template-b-card" style="max-height: 640px; overflow-y: auto;">
+                            <div class="plan-accordion-container active-plan" style="margin: 20px; width: calc(100% - 40px);">
+                                <!-- 헤더 정보 영역 -->
+                                <div class="plan-accordion-header" onclick="toggleAccordionPlan(this)">
+                                    <div class="plan-accordion-checkbox"></div>
+                                    <div class="plan-accordion-body">
+                                        <div class="plan-tags-row">
+                                            <span class="plan-tag new-coverage">신담보</span>
+                                            <span class="plan-tag age-expiry">세만기</span>
+                                            <span class="plan-tag year-expiry">연만기</span>
+                                            <span class="plan-tag no-cancel">무해지</span>
+                                        </div>
+                                        <div class="plan-name">(무) 메리츠 The 좋은 케어프리보험 M-Basket2604</div>
+                                        <div class="plan-price-row">
+                                            <span class="plan-price-label">합계보험료</span>
+                                            <span class="plan-price-value" style="color: #DE4336;">83,982원</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 상세 아코디언 본문 영역 -->
+                                <div class="plan-detail-panel" id="plan-detail-panel-05">
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+                                    
+                                    <!-- 30년납 / 30년만기 정보 배지 -->
+                                    <div class="plan-detail-info-pill">
+                                        <div class="plan-detail-info-text">30년납 / 30년만기 / 납입면제 / 해약환급금지급형</div>
+                                    </div>
+
+                                    <!-- 사망/후유 카테고리 -->
+                                    <div class="plan-detail-category-header">사망/후유</div>
+                                    
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">일반상해사망</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">2,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">520</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">일반상해후유장해(3-100%)</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">2,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">1,020</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <!-- 인기/신담보 카테고리 -->
+                                    <div class="plan-detail-category-header">인기/신담보</div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">암진단및치료비</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">0</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <!-- 암 카테고리 -->
+                                    <div class="plan-detail-category-header">암</div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">암진단및치료비[암진단비(유사암제외)]</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">1,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">9,930</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">암진단및치료비[암 통합치료비(비급여(전액부담 포함))</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">4,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">1,433</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">통합암진단비(전이포함)(유사암제외)(특성소액암(전이포함)진단비)</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">1,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">10,720</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">통합암진단비(전이포함)(유사암제외)(특성소화기암(전이포함)진단비)</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">2,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">8,480</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+
+                                    <div class="plan-detail-item">
+                                        <div class="plan-detail-item-title">통합암진단비(전이포함)(유사암제외)(14대특정암(전이포함)진단비)</div>
+                                        <div class="plan-detail-item-values">
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">가능금액(만원)</span>
+                                                <span class="plan-detail-val-amount">2,000</span>
+                                            </div>
+                                            <div class="plan-detail-val-col">
+                                                <span class="plan-detail-val-label">보험료(원)</span>
+                                                <span class="plan-detail-val-amount">7,800</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 토글 버튼 영역 -->
+                                <div class="plan-divider" style="align-self: stretch; height: 1px; background: #E8EAF3"></div>
+                                <div class="plan-accordion-toggle-btn" id="plan-toggle-btn-05" onclick="toggleAccordion(this, 'plan-detail-panel-05')">
+                                    <span class="plan-accordion-toggle-text">담보리스트 접기</span>
+                                    <span class="plan-accordion-toggle-icon">
+                                        <svg width="9" height="5" viewBox="0 0 9 5" fill="none">
+                                            <path d="M1 1L4.5 4L8 1" stroke="#777777" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 소스 코드 뷰어 -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-accordion" data-source="../assets/code/template_b_01_source.json" data-key="accordion">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-accordion">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-accordion">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-accordion" data-source="../assets/code/template_b_01_source.json" data-key="css">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-accordion">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-accordion">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Component 06: 보장 진단 분석 카드 -->
+                <div class="popup-card-wrapper">
+                    <div class="card-info" style="margin-bottom: 12px;">
+                        <span class="card-label">B-Type Component 06</span>
+                        <h4 class="card-title">보장 진단 분석 카드 (진단비)</h4>
+                        <p class="card-desc">피가입자의 가입 내역을 분석하여 진단비 분류군(암, 뇌혈관, 심장, 치매 등)의 보장 준비 상태를 '부족' 또는 '미가입' 배지와 함께 직관적으로 진단해 주는 대시보드 요약 컴포넌트입니다.</p>
+                    </div>
+
+                    <div class="template-interactive-area">
+                        <!-- Type B Mobile Viewport Card - Diagnosis only -->
+                        <div class="template-b-card" style="padding-bottom: 8px;">
+                            <div class="diag-status-container">
+                                <!-- 타이틀 영역 (SVG 아이콘 탑재) -->
+                                <div class="diag-title-row">
+                                    <div class="diag-icon-circle">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" style="position: absolute; left: 4px; top: 4px;">
+                                            <path d="M19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V5H19V19ZM7 7H17V9H7V7ZM7 11H17V13H7V11ZM7 15H14V17H7V15Z" fill="#585DCB"/>
+                                        </svg>
+                                    </div>
+                                    <div class="diag-title-text">진단비</div>
+                                </div>
+
+                                <!-- 개별 보장 분석 리스트 -->
+                                <div class="diag-items-stack">
+                                    
+                                    <!-- 암 -->
+                                    <div class="diag-item-row" onclick="showDiagToast(this, '암', '보장 부족')">
+                                        <div class="diag-item-name">암</div>
+                                        <div class="diag-badge deficient">
+                                            <span style="font-size: 12px; font-weight: 500; line-height: 18px;">부족</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 뇌혈관질환 -->
+                                    <div class="diag-item-row" onclick="showDiagToast(this, '뇌혈관질환', '보장 부족')">
+                                        <div class="diag-item-name">뇌혈관질환</div>
+                                        <div class="diag-badge deficient">
+                                            <span style="font-size: 12px; font-weight: 500; line-height: 18px;">부족</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 심장질환 -->
+                                    <div class="diag-item-row" onclick="showDiagToast(this, '심장질환', '보장 부족')">
+                                        <div class="diag-item-name">심장질환</div>
+                                        <div class="diag-badge deficient">
+                                            <span style="font-size: 12px; font-weight: 500; line-height: 18px;">부족</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 치매 -->
+                                    <div class="diag-item-row" onclick="showDiagToast(this, '치매', '미가입')">
+                                        <div class="diag-item-name">치매</div>
+                                        <div class="diag-badge unsubscribed">
+                                            <span style="font-size: 12px; font-weight: 500; line-height: 18px;">미가입</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 소스 코드 뷰어 -->
+                    <div class="source-code-container">
+                        <button class="source-toggle-btn" data-target="source-code-diag" data-source="../assets/code/template_b_01_source.json" data-key="diag">
+                            <span>소스 자세히 보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="source-code-diag">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">HTML & JavaScript</span>
+                                    <button class="copy-code-btn" data-clipboard="source-code-diag">Copy</button>
+                                </div>
+                                <pre><code class="html-js-code"></code></pre>
+                            </div>
+                        </div>
+                        <button class="source-toggle-btn css-toggle-btn" data-target="css-code-diag" data-source="../assets/code/template_b_01_source.json" data-key="css">
+                            <span>CSS 자세히보기</span>
+                            <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </button>
+                        <div class="source-code-wrapper" id="css-code-diag">
+                            <div class="source-code-inner">
+                                <div class="code-tab-header">
+                                    <span class="file-name">CSS</span>
+                                    <button class="copy-code-btn" data-clipboard="css-code-diag">Copy</button>
+                                </div>
+                                <pre><code class="css-code"></code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
 
