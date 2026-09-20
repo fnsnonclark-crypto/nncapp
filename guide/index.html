@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21253a;
+      --border: #2e3250;
+      --accent: #6c8fff;
+      --accent2: #a78bfa;
+      --text: #e2e8f0;
+      --text-muted: #7b85a0;
+      --status-done: #34d399;
+      --status-wip: #fbbf24;
+      --status-todo: #60a5fa;
+      --th-bg: #161926;
+      --row-hover: #1e2235;
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      padding: 36px 24px 60px;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1400px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    #total-count {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* ── Filter Bar ── */
+    .filter-bar {
+      max-width: 1400px;
+      margin: 0 auto 18px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+      padding: 7px 13px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.875rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .filter-bar input { flex: 1; min-width: 220px; }
+    .filter-bar input:focus,
+    .filter-bar select:focus { border-color: var(--accent); }
+    .filter-bar select { cursor: pointer; }
+
+    /* ── Table Wrapper ── */
+    .table-wrapper {
+      max-width: 1400px;
+      margin: 0 auto;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      min-width: 900px;
+    }
+
+    /* ── TH ── */
+    thead tr {
+      background: var(--th-bg);
+    }
+
+    th {
+      padding: 11px 14px;
+      text-align: left;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      user-select: none;
+      cursor: pointer;
+    }
+
+    th:hover { color: var(--text); }
+    th.sorted { color: var(--accent); }
+
+    th .sort-icon {
+      margin-left: 4px;
+      opacity: 0.4;
+      font-size: 0.7rem;
+    }
+    th.sorted .sort-icon { opacity: 1; }
+
+    /* ── TD ── */
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: middle;
+      max-width: 200px;
+    }
+
+    td.depth-cell {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    td.depth-1 { color: var(--text); font-weight: 600; }
+    td.depth-2 { color: var(--text); }
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody tr:hover td { background: var(--row-hover); }
+
+    /* ── File Link ── */
+    .file-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 160px;
+    }
+
+    .file-link:hover { text-decoration: underline; }
+
+    /* ── Status Badge ── */
+    .status {
+      display: inline-block;
+      font-size: 0.73rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .status-완료  { background: rgba(52,211,153,.15); color: var(--status-done); }
+    .status-진행중 { background: rgba(251,191,36,.15);  color: var(--status-wip);  }
+    .status-할일  { background: rgba(96,165,250,.15);  color: var(--status-todo); }
+
+    /* ── Date / Note ── */
+    .cell-date { color: var(--text-muted); font-size: 0.82rem; white-space: nowrap; }
+    .cell-note { color: var(--text-muted); font-size: 0.82rem; }
+
+    /* ── Empty State ── */
+    .empty-row td {
+      text-align: center;
+      color: var(--text-muted);
+      padding: 60px 20px;
+    }
+
+    /* ── No data cell ── */
+    .dash { color: var(--border); }
+
+    /* ── Row number ── */
+    .row-num {
+      color: var(--border);
+      font-size: 0.75rem;
+      text-align: right;
+      width: 36px;
+      min-width: 36px;
+    }
+
+    footer {
+      max-width: 1400px;
+      margin: 20px auto 0;
+      text-align: right;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1 id="page-title">Index</h1>
+  </div>
+  <div id="total-count"></div>
+</header>
+
+<div class="filter-bar">
+  <input type="text" id="search" placeholder="🔍  검색 (전체 컬럼)..." />
+  <select id="status-filter">
+    <option value="">전체 상태</option>
+    <option value="완료">완료</option>
+    <option value="진행중">진행중</option>
+    <option value="할일">할일</option>
+  </select>
+  <select id="depth1-filter">
+    <option value="">전체 1depth</option>
+  </select>
+</div>
+
+<div class="table-wrapper">
+  <table id="main-table">
+    <thead>
+      <tr>
+        <th class="row-num">#</th>
+        <th data-col="depth1">1depth <span class="sort-icon">↕</span></th>
+        <th data-col="depth2">2depth <span class="sort-icon">↕</span></th>
+        <th data-col="depth3">3depth <span class="sort-icon">↕</span></th>
+        <th data-col="depth4">4depth <span class="sort-icon">↕</span></th>
+        <th data-col="depth5">5depth <span class="sort-icon">↕</span></th>
+        <th data-col="url">파일링크</th>
+        <th data-col="status">진행상태 <span class="sort-icon">↕</span></th>
+        <th data-col="completedDate">완료일 <span class="sort-icon">↕</span></th>
+        <th data-col="note">비고</th>
+      </tr>
+    </thead>
+    <tbody id="table-body"></tbody>
+  </table>
+</div>
+
+<footer id="footer"></footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="button.js"></script>
+</body>
+</html>
