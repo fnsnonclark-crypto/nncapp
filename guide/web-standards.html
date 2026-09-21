@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>웹 표준 코딩 기초 가이드 (Web Standards)</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21253a;
+      --surface3: #282d44;
+      --border: #2e3250;
+      --accent: #6c8fff;
+      --accent2: #a78bfa;
+      --accent-cyan: #38bdf8;
+      --text: #e2e8f0;
+      --text-muted: #7b85a0;
+      --status-done: #34d399;
+      --status-wip: #fbbf24;
+      --code-bg: #141722;
+      --danger: #f87171;
+      --success: #34d399;
+      --radius: 12px;
+      --focus-ring: 2px solid #6c8fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* 건너뛰기 링크 */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--accent);
+      color: #0f1117;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 6px;
+      z-index: 10000;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 16px;
+      outline: 3px solid #fff;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 24px 20px 80px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ── Top Bar ── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      background: var(--surface2);
+      border-color: var(--accent);
+    }
+
+    .badge-wrap {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(108, 143, 255, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(108, 143, 255, 0.3);
+    }
+    .badge.green {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--status-done);
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    /* ── Header ── */
+    header {
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6c8fff, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      max-width: 860px;
+    }
+
+    /* ── 3대 분리 원칙 카드 ── */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .pillar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .pillar-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .pillar-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+    .pillar-card h3 {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .pillar-card .pillar-role {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+    .pillar-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── 컨트롤 바: 탭 필터 & 실시간 검색 ── */
+    .controls {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background: var(--surface3);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #0f1117;
+      border-color: var(--accent);
+    }
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 8px 14px 8px 36px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ── 섹션 그룹 ── */
+    .section-group {
+      margin-bottom: 46px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .section-header h2 {
+      font-size: 1.45rem;
+      color: #fff;
+    }
+    .section-header span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* ── 카드 리스트 ── */
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .standard-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .standard-card:hover {
+      border-color: rgba(108, 143, 255, 0.4);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .card-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .card-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(108, 143, 255, 0.12);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'Cascadia Code', monospace;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .card-desc {
+      color: var(--text);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    /* ── 포인트 박스 ── */
+    .point-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px 8px 8px 4px;
+      padding: 12px 16px;
+      margin-bottom: 14px;
+    }
+    .point-box h4 {
+      font-size: 0.83rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .point-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    .point-box li {
+      font-size: 0.875rem;
+      color: #cbd5e1;
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .point-box li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-size: 0.8rem;
+    }
+
+    /* ── Good vs Bad 코드 비교 ── */
+    .code-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 768px) {
+      .code-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .code-box {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .code-box-header {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .code-box.bad .code-box-header {
+      background: rgba(248, 113, 113, 0.12);
+      color: var(--danger);
+      border-bottom: 1px solid rgba(248, 113, 113, 0.2);
+    }
+    .code-box.good .code-box-header {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--success);
+      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+    }
+    .code-box pre {
+      margin: 0;
+      padding: 12px 14px;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.81rem;
+      overflow-x: auto;
+      color: #c9d1e0;
+      line-height: 1.5;
+    }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      display: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">본문 바로가기</a>
+
+<div class="container">
+  <!-- 상단 네비게이션 -->
+  <div class="top-bar">
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">← Index 목록</a>
+      <a href="accessibility.html" class="nav-btn">♿ 웹 접근성 가이드</a>
+      <a href="kwcag33.html" class="nav-btn">📋 33개 검사항목</a>
+      <a href="android-css-compatibility.html" class="nav-btn" style="color: var(--status-done);">📱 안드로이드 CSS 호환</a>
+    </div>
+    <div class="badge-wrap">
+      <span class="badge green">W3C 표준 준수</span>
+      <span class="badge">웹 표준 기초 가이드</span>
+    </div>
+  </div>
+
+  <header>
+    <h1>웹 표준 코딩 기초 가이드 (Web Standards)</h1>
+    <p>
+      웹 표준(Web Standards)은 W3C(World Wide Web Consortium) 등의 국제 기구가 제정한 권고안으로, 어떤 브라우저나 운영체제, 디바이스에서도 동일한 정보와 기능을 제공할 수 있도록 지원하는 웹 개발의 기본 원칙입니다.
+    </p>
+  </header>
+
+  <!-- 웹 표준 3대 분리 원칙 개요 카드 -->
+  <section class="pillar-grid" aria-label="웹 표준 3대 분리 원칙">
+    <div class="pillar-card">
+      <div class="pillar-icon">🏗️</div>
+      <div class="pillar-role">Structure (HTML5)</div>
+      <h3>구조 (HTML)</h3>
+      <p>웹 문서의 뼈대를 구성하며, 시맨틱 태그를 통해 문서의 의미와 계층 구조를 명확하게 정의합니다.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">🎨</div>
+      <div class="pillar-role">Presentation (CSS3)</div>
+      <h3>표현 (CSS)</h3>
+      <p>레이아웃, 색상, 타이포그래피, 반응형 스타일 등 시각적 디자인 요소를 HTML과 분리하여 제어합니다.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-icon">⚡</div>
+      <div class="pillar-role">Behavior (JavaScript)</div>
+      <h3>동작 (JavaScript)</h3>
+      <p>사용자 인터랙션, 동적 UI 제어, 비동기 통신 등 이벤트와 데이터 로직을 독립적으로 처리합니다.</p>
+    </div>
+  </section>
+
+  <!-- 컨트롤 바: 탭 필터 및 실시간 검색 -->
+  <nav class="controls" aria-label="가이드 필터링 및 검색">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">전체 보기</button>
+      <button class="tab-btn" data-filter="semantic" role="tab" aria-selected="false">1. 시맨틱 마크업</button>
+      <button class="tab-btn" data-filter="validation" role="tab" aria-selected="false">2. 문법 및 유효성</button>
+      <button class="tab-btn" data-filter="responsive" role="tab" aria-selected="false">3. 반응형 & CSS</button>
+      <button class="tab-btn" data-filter="cross" role="tab" aria-selected="false">4. 호환성 & 최적화</button>
+    </div>
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="text" id="standard-search" placeholder="태그, 규칙, 키워드 검색 (예: semantic, doctype)..." aria-label="웹 표준 가이드 검색" />
+    </div>
+  </nav>
+
+  <!-- 메인 가이드 콘텐츠 -->
+  <main id="main-content">
+
+    <!-- ========================================================================= -->
+    <!-- 1. 시맨틱 마크업 (Semantic HTML5) -->
+    <!-- ========================================================================= -->
+    <section class="section-group" id="sec-semantic" data-cat="semantic">
+      <div class="section-header">
+        <h2>1. 시맨틱 마크업 (Semantic HTML5)</h2>
+        <span>의미 있는 태그를 사용하여 문서의 구조와 목적을 명확히 정의</span>
+      </div>
+      <div class="card-list">
+
+        <!-- 시맨틱 레이아웃 태그 -->
+        <article class="standard-card" data-keywords="semantic header nav main section article aside footer 레이아웃 시맨틱태그">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">HTML5 Layout</span>
+              <h3 class="card-title">시맨틱 레이아웃 구조 태그 사용</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            과거 <code>&lt;div class="header"&gt;</code>처럼 의미 없는 div 태그로만 레이아웃을 잡던 방식 대신, HTML5의 시맨틱 태그(header, nav, main, section, article, aside, footer)를 사용하여 문서의 역할을 선언해야 합니다.
+          </p>
+          <div class="point-box">
+            <h4>핵심 사용 규칙</h4>
+            <ul>
+              <li><code>&lt;main&gt;</code>: 페이지당 단 1개만 존재해야 하며 본문의 고유 콘텐츠 영역을 지정</li>
+              <li><code>&lt;section&gt;</code>: 주제별로 묶인 콘텐츠 그룹이며 통상 제목(h2~h6)을 포함</li>
+              <li><code>&lt;article&gt;</code>: 독립적으로 배포되거나 재사용될 수 있는 완결된 콘텐츠(블로그 글, 뉴스 카드 등)</li>
+              <li><code>&lt;nav&gt;</code>: 주요 내비게이션 링크 모음 (모든 링크가 아닌 주요 메뉴에 사용)</li>
+            </ul>
+          </div>
+          <div class="code-grid">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 비표준 / 구형 마크업 (Div Soup)</div>
+              <pre><code>&lt;div id="header"&gt;
+  &lt;div class="menu"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="contents"&gt;...&lt;/div&gt;
+&lt;div id="footer"&gt;...&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 웹 표준 시맨틱 마크업</div>
+              <pre><code>&lt;header&gt;
+  &lt;nav aria-label="메인 메뉴"&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;section&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 제목 계층 구조 -->
+        <article class="standard-card" data-keywords="heading h1 h2 h3 h4 h5 h6 제목 계층구조 seo 검색엔진최적화">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Headings</span>
+              <h3 class="card-title">논리적인 제목(Heading) 계층 구조 (h1 ~ h6)</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            제목 태그는 글자 크기를 조절하는 용도가 아니라, 문서의 목차(Outline)와 계층 관계를 나타내는 구조 태그입니다. 순차적으로 단계를 건너뛰지 않고 사용해야 합니다.
+          </p>
+          <div class="point-box">
+            <h4>핵심 사용 규칙</h4>
+            <ul>
+              <li><code>&lt;h1&gt;</code>: 페이지 전체를 대표하는 가장 중요한 단 1개의 제목으로 사용 권장</li>
+              <li><code>&lt;h2&gt;</code> → <code>&lt;h4&gt;</code>처럼 계층 단계를 건너뛰지 않고 순차 구성</li>
+              <li>글자 크기는 CSS의 <code>font-size</code>로 조절하며 태그 자체를 스타일 목적으로 변경하지 않음</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 의미론적 텍스트 태그 -->
+        <article class="standard-card" data-keywords="strong b em i mark time 시맨틱 텍스트 강조">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Text Elements</span>
+              <h3 class="card-title">의미를 갖는 텍스트 태그의 올바른 구분</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            시각적인 모양뿐만 아니라 스크린 리더와 검색엔진에게도 의미를 전달할 수 있도록 태그의 성격에 맞게 구분해 작성합니다.
+          </p>
+          <div class="point-box">
+            <h4>태그별 차이점</h4>
+            <ul>
+              <li><code>&lt;strong&gt;</code>: 콘텐츠의 **중요성/심각성**을 강조 (스크린리더 강조 음조) vs <code>&lt;b&gt;</code>: 단순 시각적 굵은 글씨</li>
+              <li><code>&lt;em&gt;</code>: 문맥상 **강조하는 어조** 전달 vs <code>&lt;i&gt;</code>: 전문 용어, 외국어 등 단순 기울임체</li>
+              <li><code>&lt;time datetime="2026-09-21"&gt;</code>: 기계가 판독할 수 있는 날짜/시간 마크업</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 2. 기본 문법 및 유효성 (Validation Rules) -->
+    <!-- ========================================================================= -->
+    <section class="section-group" id="sec-validation" data-cat="validation">
+      <div class="section-header">
+        <h2>2. 기본 문법 및 유효성 (W3C Validation)</h2>
+        <span>브라우저 렌더링 엔진이 오류 없이 해석할 수 있는 엄격한 문법 규칙 준수</span>
+      </div>
+      <div class="card-list">
+
+        <!-- DOCTYPE & 언어 속성 -->
+        <article class="standard-card" data-keywords="doctype lang html5 meta charset utf-8 렌더링모드 표준모드">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Document Setup</span>
+              <h3 class="card-title">DOCTYPE 선언 및 문서 기본 설정</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            HTML5 표준 모드(Standards Mode) 렌더링을 위해 문서 최상단에 <code>&lt;!DOCTYPE html&gt;</code>을 선언하고, 올바른 인코딩 및 주 언어를 명시해야 브라우저의 비표준 쿼크 모드(Quirks Mode) 동작을 방지할 수 있습니다.
+          </p>
+          <div class="code-grid">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 비표준 / 누락 예시</div>
+              <pre><code>&lt;!-- DOCTYPE 및 언어, 인코딩 누락 --&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 표준 문서 기본 구조</div>
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;표준 문서 제목&lt;/title&gt;
+&lt;/head&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 태그 닫힘 및 중첩 규칙 -->
+        <article class="standard-card" data-keywords="태그닫힘 중첩 소문자작성 따옴표 id유일성 문법규칙">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Syntax Rules</span>
+              <h3 class="card-title">태그 닫힘, 중첩 규칙 및 ID 유일성 보장</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            마크업 문법 오류는 브라우저의 DOM 트리 파싱 실패, 스타일 깨짐, 스크립트 오작동을 유발하므로 표준 문법을 철저히 준수해야 합니다.
+          </p>
+          <div class="point-box">
+            <h4>실무 필수 문법 체크리스트</h4>
+            <ul>
+              <li>모든 태그명과 속성명은 **소문자**로 작성 (예: <code>&lt;div class="..."&gt;</code>)</li>
+              <li>모든 속성값은 **따옴표(큰따옴표 권장)**로 감싸기 (예: <code>id="main"</code>)</li>
+              <li>열린 태그는 반드시 닫아야 하며, 엇갈려 중첩 금지 (예: <code>&lt;p&gt;&lt;b&gt;내용&lt;/b&gt;&lt;/p&gt;</code>)</li>
+              <li>한 페이지 내에서 동일한 <code>id</code> 속성값 중복 절대 금지 (ID는 유일한 식별자)</li>
+              <li>인라인 요소(<code>&lt;a&gt;, &lt;span&gt;</code>) 안에 블록 요소를 무분별하게 중첩하지 않기</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 인라인 스타일/스크립트 분리 -->
+        <article class="standard-card" data-keywords="인라인스타일 style= onclick 인라인이벤트 분리 유지보수성">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Separation of Concerns</span>
+              <h3 class="card-title">인라인 스타일(style) 및 이벤트(onclick) 배제</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            HTML 태그 내에 직접 <code>style="color: red;"</code>나 <code>onclick="doSomething()"</code>을 작성하면 구조와 표현/동작이 뒤섞여 유지보수성이 급격히 저하되고 웹 보안 정책(CSP)에 위배될 수 있습니다.
+          </p>
+          <div class="code-grid">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 인라인 혼합 (지양)</div>
+              <pre><code>&lt;button style="color:red; font-size:14px;" 
+        onclick="alert('클릭')"&gt;
+  버튼
+&lt;/button&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ CSS 클래스 및 addEventListener 분리 (권장)</div>
+              <pre><code>&lt;!-- HTML --&gt;
+&lt;button class="btn-danger" id="myBtn"&gt;버튼&lt;/button&gt;
+
+&lt;!-- JS --&gt;
+document.getElementById('myBtn')
+  .addEventListener('click', handler);</code></pre>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 3. 반응형 웹(RWD) 및 모던 CSS 표준 -->
+    <!-- ========================================================================= -->
+    <section class="section-group" id="sec-responsive" data-cat="responsive">
+      <div class="section-header">
+        <h2>3. 반응형 웹(RWD) 및 모던 CSS 표준</h2>
+        <span>다양한 화면 해상도와 디바이스 환경에 유연하게 대응하는 스타일링 원칙</span>
+      </div>
+      <div class="card-list">
+
+        <!-- 뷰포트 & 상대 단위 -->
+        <article class="standard-card" data-keywords="viewport 뷰포트 rem em % vw vh 상대단위 반응형웹">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Responsive Core</span>
+              <h3 class="card-title">뷰포트 메타태그 및 유연한 상대 단위(rem, %) 사용</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            모바일 기기에서 올바른 배율로 렌더링되도록 <code>viewport</code> 메타태그를 필수로 적용하고, 고정 <code>px</code> 단위 대신 사용자의 글꼴 크기 설정에 대응할 수 있는 <code>rem</code> 단위를 기본으로 사용합니다.
+          </p>
+          <div class="point-box">
+            <h4>단위 권장 기준</h4>
+            <ul>
+              <li>글꼴 크기(font-size) 및 여백(padding/margin): 루트 기준 상대 단위인 <code>rem</code> 사용 권장</li>
+              <li>너비(width): 유연한 비율 단위인 <code>%</code>, <code>fr</code>, <code>vw</code> 활용</li>
+              <li>고정 픽셀(<code>px</code>)은 미세한 보더(1px border)나 고정 아이콘 크기 등에만 제한적 사용</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 모던 레이아웃 (Flexbox & CSS Grid) -->
+        <article class="standard-card" data-keywords="flexbox grid float clearfix 레이아웃 모던css flex">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Modern Layout</span>
+              <h3 class="card-title">Flexbox와 CSS Grid를 활용한 표준 레이아웃</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            과거의 <code>float</code>과 <code>clearfix</code> 핵, 또는 <code>table</code>을 이용한 레이아웃 방식은 현대 웹에서 지양되며, 1차원 배치는 <strong>Flexbox</strong>, 2차원 그리드는 <strong>CSS Grid</strong>를 사용하는 것이 표준입니다.
+          </p>
+        </article>
+
+        <!-- 모바일 우선 미디어 쿼리 -->
+        <article class="standard-card" data-keywords="미디어쿼리 media query 모바일우선 mobile first min-width">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Media Queries</span>
+              <h3 class="card-title">모바일 우선(Mobile-First) 미디어 쿼리 설계</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            기본 스타일을 모바일(소형 화면) 기준으로 먼저 작성하고, 화면이 넓어질수록 <code>@media (min-width: 768px)</code> 형태로 점진적 향상(Progressive Enhancement)을 적용하는 것이 성능 및 유지보수에 유리합니다.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- 4. 크로스 브라우징 & 성능/보안 표준 -->
+    <!-- ========================================================================= -->
+    <section class="section-group" id="sec-cross" data-cat="cross">
+      <div class="section-header">
+        <h2>4. 크로스 브라우징 & 성능/보안 표준</h2>
+        <span>다양한 브라우저 환경 호환성과 쾌적한 웹 성능 보장</span>
+      </div>
+      <div class="card-list">
+
+        <!-- 이미지 최적화 및 레이지 로딩 -->
+        <article class="standard-card" data-keywords="lazy loading 이미지최적화 webp avif loading=lazy picture srcset">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Performance</span>
+              <h3 class="card-title">표준 이미지 최적화 및 지연 로딩 (loading="lazy")</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            뷰포트 밖에 위치한 이미지에 브라우저 기본 지원 속성인 <code>loading="lazy"</code>를 지정하여 초기 로딩 속도와 데이터 트래픽을 크게 절감할 수 있습니다.
+          </p>
+          <div class="code-grid">
+            <div class="code-box good">
+              <div class="code-box-header">✓ 지연 로딩 및 반응형 이미지 표준</div>
+              <pre><code>&lt;img src="hero-small.webp"
+     srcset="hero-small.webp 480w, hero-large.webp 1200w"
+     sizes="(max-width: 600px) 480px, 1200px"
+     alt="프로젝트 소개 배너"
+     loading="lazy"
+     decoding="async"
+     width="1200" height="600"&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 차세대 포맷 picture 태그</div>
+              <pre><code>&lt;picture&gt;
+  &lt;source srcset="banner.avif" type="image/avif"&gt;
+  &lt;source srcset="banner.webp" type="image/webp"&gt;
+  &lt;img src="banner.jpg" alt="이벤트 안내"&gt;
+&lt;/picture&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 폼(Form) 요소 표준 접근성 -->
+        <article class="standard-card" data-keywords="form label input type autocomplete 폼유효성">
+          <div class="card-top">
+            <div class="card-title-wrap">
+              <span class="card-tag">Web Forms</span>
+              <h3 class="card-title">표준 폼 컨트롤과 적절한 Type 및 레이블 매핑</h3>
+            </div>
+          </div>
+          <p class="card-desc">
+            모바일 가상 키보드와 브라우저 자동 완성 기능을 극대화하기 위해 입력 서식에 맞는 적절한 <code>type</code>(email, tel, number 등)과 <code>autocomplete</code> 속성을 지정하고 <code>&lt;label&gt;</code>을 반드시 연결합니다.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 검색 결과 없음 -->
+    <div class="empty-state" id="empty-state" role="status" aria-live="polite">
+      <h3>🔍 검색 결과가 없습니다.</h3>
+      <p style="margin-top: 8px;">다른 키워드로 검색하거나 '전체 보기' 탭을 선택해주세요.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <strong>Web Standards</strong> 핵심 코딩 가이드
+    </div>
+    <div style="display: flex; gap: 14px;">
+      <a href="accessibility.html" style="color: var(--accent2); text-decoration: none;">웹 접근성 가이드</a>
+      <a href="kwcag33.html" style="color: var(--accent-cyan); text-decoration: none;">33개 검사항목</a>
+      <a href="index.html" style="color: var(--accent); text-decoration: none;">Index 목록</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const groups = document.querySelectorAll('.section-group');
+    const searchInput = document.getElementById('standard-search');
+    const emptyState = document.getElementById('empty-state');
+    let currentFilter = 'all';
+
+    function filterCards() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      groups.forEach(group => {
+        const cat = group.dataset.cat;
+        const matchesTab = (currentFilter === 'all' || currentFilter === cat);
+        let groupHasVisibleCards = false;
+
+        const cards = group.querySelectorAll('.standard-card');
+        cards.forEach(card => {
+          const keywords = (card.dataset.keywords || '').toLowerCase();
+          const text = card.textContent.toLowerCase();
+          const matchesQuery = !query || keywords.includes(query) || text.includes(query);
+
+          if (matchesTab && matchesQuery) {
+            card.style.display = 'block';
+            groupHasVisibleCards = true;
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (matchesTab && groupHasVisibleCards) {
+          group.style.display = 'block';
+        } else {
+          group.style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        currentFilter = tab.dataset.filter;
+        filterCards();
+      });
+    });
+
+    let debounceTimer;
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(filterCards, 120);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

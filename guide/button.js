@@ -385,25 +385,12 @@
   });
 
   // ── Inject trigger buttons into header ──────────────────
+  // 사용자의 요청으로 <div id="fv-trigger-bar"> 소스 뷰어 버튼 모음 제거
   function injectButtons() {
-    const header = document.querySelector('header');
-    if (!header || document.getElementById('fv-trigger-bar')) return;
-
-    const bar = document.createElement('div');
-    bar.id = 'fv-trigger-bar';
-    bar.innerHTML = `
-      <button class="fv-trigger" data-file="data.js">📦 data.js</button>
-      <button class="fv-trigger" data-file="app.js">⚙️ app.js</button>
-      <button class="fv-trigger" data-file="button.js">🔘 button.js</button>
-      <button class="fv-trigger" data-file="index.html">📄 index.html</button>
-      <button class="fv-trigger" data-file="accessibility.html">♿ accessibility.html</button>
-      <button class="fv-trigger" data-file="kwcag33.html">📋 kwcag33.html</button>
-    `;
-    header.insertBefore(bar, header.firstChild);
-
-    bar.querySelectorAll('.fv-trigger').forEach(btn => {
-      btn.addEventListener('click', () => showFilePopup(btn.dataset.file));
-    });
+    const existing = document.getElementById('fv-trigger-bar');
+    if (existing) {
+      existing.remove();
+    }
   }
 
   if (document.readyState === 'loading') {
@@ -411,5 +398,8 @@
   } else {
     injectButtons();
   }
+
+  // 전역 호출이 필요할 경우를 대비하여 함수 노출
+  window.showFilePopup = showFilePopup;
 
 })();

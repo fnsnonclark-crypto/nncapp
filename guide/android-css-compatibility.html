@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>안드로이드 OS 버전별 CSS 호환성 가이드 (Android 5.0 ~ 최신)</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21253a;
+      --surface3: #282d44;
+      --border: #2e3250;
+      --accent: #6c8fff;
+      --accent2: #a78bfa;
+      --accent-cyan: #38bdf8;
+      --text: #e2e8f0;
+      --text-muted: #7b85a0;
+      --status-done: #34d399;
+      --status-wip: #fbbf24;
+      --status-fail: #f87171;
+      --code-bg: #141722;
+      --radius: 12px;
+      --focus-ring: 2px solid #6c8fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--accent);
+      color: #0f1117;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 6px;
+      z-index: 10000;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 16px;
+      outline: 3px solid #fff;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.65;
+      padding: 24px 20px 80px;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+    }
+
+    /* ── Top Bar ── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .nav-btn:hover {
+      background: var(--surface2);
+      border-color: var(--accent);
+    }
+
+    .badge-wrap {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(108, 143, 255, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(108, 143, 255, 0.3);
+    }
+    .badge.android {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--status-done);
+      border-color: rgba(52, 211, 153, 0.3);
+    }
+
+    /* ── Header ── */
+    header {
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #34d399, #6c8fff, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      max-width: 960px;
+    }
+
+    /* ── 비교 요약 안내 박스 ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .summary-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+    }
+    .summary-box.safe { border-top: 4px solid var(--status-done); }
+    .summary-box.danger { border-top: 4px solid var(--status-fail); }
+    .summary-box.warn { border-top: 4px solid var(--status-wip); }
+
+    .summary-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .summary-box.safe h3 { color: var(--status-done); }
+    .summary-box.danger h3 { color: var(--status-fail); }
+    .summary-box.warn h3 { color: var(--status-wip); }
+
+    .summary-box p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── 컨트롤 바 ── */
+    .controls {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      font-size: 0.83rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background: var(--surface3);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #0f1117;
+      border-color: var(--accent);
+    }
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      max-width: 360px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 8px 14px 8px 36px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ── 호환성 표 (Table) 스타일링 ── */
+    .table-container {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow-x: auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+      margin-bottom: 40px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+      min-width: 1000px;
+    }
+    thead th {
+      background: #141724;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 14px 16px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+    tbody tr:hover {
+      background: rgba(108, 143, 255, 0.04);
+    }
+    tbody td {
+      padding: 14px 16px;
+      vertical-align: middle;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .prop-name {
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+    .prop-cat {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* 상태 뱃지 */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .status-pill.pass {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--status-done);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+    .status-pill.warn {
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--status-wip);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+    .status-pill.fail {
+      background: rgba(248, 113, 113, 0.15);
+      color: var(--status-fail);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+    }
+
+    .version-tag {
+      font-family: 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      color: var(--accent2);
+      background: rgba(167, 139, 250, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .code-snippet {
+      font-family: 'Cascadia Code', 'Consolas', monospace;
+      font-size: 0.8rem;
+      background: var(--code-bg);
+      color: #cbd5e1;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      display: inline-block;
+      margin-top: 4px;
+      word-break: break-all;
+    }
+
+    /* ── 실무 전략 가이드 섹션 ── */
+    .guide-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    .guide-section h2 {
+      font-size: 1.35rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .guide-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .guide-card h4 {
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .guide-card p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      display: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-table" class="skip-link">비교 표 바로가기</a>
+
+<div class="container">
+  <!-- 상단 네비게이션 -->
+  <div class="top-bar">
+    <div class="nav-links">
+      <a href="index.html" class="nav-btn">← Index 목록</a>
+      <a href="web-standards.html" class="nav-btn">🌐 웹 표준 가이드</a>
+      <a href="accessibility.html" class="nav-btn">♿ 웹 접근성 가이드</a>
+      <a href="kwcag33.html" class="nav-btn">📋 33개 검사항목</a>
+    </div>
+    <div class="badge-wrap">
+      <span class="badge android">Android 5.0 ~ 최신 호환</span>
+      <span class="badge">CSS 크로스 브라우징</span>
+    </div>
+  </div>
+
+  <header>
+    <h1>안드로이드 OS 버전별 CSS 호환성 비교 표</h1>
+    <p>
+      안드로이드 OS 5.0(Lollipop, 초기 WebView Chromium 37) 환경과 최신 안드로이드(Android 14/15+, 최신 Chromium 엔진) 환경을 동시에 지원해야 하는 하이브리드 앱 및 모바일 웹 작업 시, <strong>공통으로 안전하게 사용할 수 있는 CSS</strong>와 <strong>버전별 미지원으로 폴백(Fallback)이 필수적인 CSS</strong>를 구분하여 제공합니다.
+    </p>
+  </header>
+
+  <!-- 요약 카드 -->
+  <section class="summary-grid" aria-label="호환성 요약 안내">
+    <div class="summary-box safe">
+      <h3>✅ 공통 사용 가능 (Safe)</h3>
+      <p>
+        Box-sizing, 기본 Flexbox(1차원 정렬), 2D Transform, Transition, Border-radius, Box-shadow, Rem/Em 단위, 미디어 쿼리 등은 안드로이드 5.0부터 최신까지 온전히 안전하게 작동합니다.
+      </p>
+    </div>
+    <div class="summary-box danger">
+      <h3>❌ 공통 사용 불가 (대체 필수)</h3>
+      <p>
+        <strong>CSS 변수 (<code>var()</code>)</strong>, <strong>CSS Grid (<code>display: grid</code>)</strong>, <strong>Flexbox <code>gap</code></strong>, <code>aspect-ratio</code>, <code>backdrop-filter</code>, <code>:has()</code> 등은 안드로이드 5.0에서 렌더링되지 않으므로 반드시 대체 코드를 작성해야 합니다.
+      </p>
+    </div>
+    <div class="summary-box warn">
+      <h3>⚠️ 주의 및 접두사 필요 (Prefix)</h3>
+      <p>
+        Flexbox 구형 문법, <code>-webkit-transform</code>, <code>-webkit-line-clamp</code>, <code>-webkit-user-select</code> 등은 <code>-webkit-</code> 벤더 프리픽스를 병기하거나 Autoprefixer 자동 빌드를 거쳐야 안전합니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- 컨트롤 바: 탭 필터 및 검색 -->
+  <nav class="controls" aria-label="호환성 표 필터 및 검색">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">전체 보기</button>
+      <button class="tab-btn" data-filter="safe" role="tab" aria-selected="false">✅ 공통 안전 (Safe)</button>
+      <button class="tab-btn" data-filter="fail" role="tab" aria-selected="false">❌ 5.0 미지원 (Fallback 필수)</button>
+      <button class="tab-btn" data-filter="layout" role="tab" aria-selected="false">📐 레이아웃</button>
+      <button class="tab-btn" data-filter="modern" role="tab" aria-selected="false">🚀 모던 CSS 신기술</button>
+    </div>
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="text" id="compat-search" placeholder="속성명, 지원여부, 키워드 검색 (예: grid, gap, sticky)..." aria-label="CSS 호환성 검색" />
+    </div>
+  </nav>
+
+  <!-- ========================================================================= -->
+  <!-- 안드로이드 CSS 호환성 비교 표 (Main Table) -->
+  <!-- ========================================================================= -->
+  <div class="table-container">
+    <table id="main-table" aria-label="안드로이드 OS 버전별 CSS 호환성 비교 표">
+      <thead>
+        <tr>
+          <th style="width: 18%;">CSS 속성 / 기능명</th>
+          <th style="width: 13%;">안드로이드 5.0<br><span style="font-weight:400; font-size:0.72rem; text-transform:none;">(Chrome 37)</span></th>
+          <th style="width: 13%;">최신 안드로이드<br><span style="font-weight:400; font-size:0.72rem; text-transform:none;">(Android 14/15+)</span></th>
+          <th style="width: 12%;">최초 지원 버전</th>
+          <th style="width: 44%;">설명 및 안드로이드 5.0 대체(Fallback) 전략</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+
+        <!-- 1. CSS Custom Properties (CSS 변수) -->
+        <tr data-status="fail" data-cat="modern" data-keywords="css 변수 custom properties var() 변수선언 최신">
+          <td>
+            <span class="prop-name">var(--name)</span>
+            <span class="prop-cat">CSS Custom Properties (변수)</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 49+ (Android 7.0+)</span></td>
+          <td>
+            안드로이드 5.0에서는 CSS 변수가 완전히 무시되어 스타일이 깨집니다.<br>
+            <strong>대체 전략:</strong> 변수 앞에 고정된 폴백 값을 먼저 선언하거나 Sass/SCSS 빌드로 컴파일 변환.<br>
+            <div class="code-snippet">color: #6c8fff; /* 5.0용 폴백 */<br>color: var(--accent-color);</div>
+          </td>
+        </tr>
+
+        <!-- 2. CSS Grid Layout -->
+        <tr data-status="fail" data-cat="layout" data-keywords="display: grid grid-template css grid 그리드 2차원레이아웃">
+          <td>
+            <span class="prop-name">display: grid</span>
+            <span class="prop-cat">CSS Grid Layout</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 57+ (Android 7.1+)</span></td>
+          <td>
+            안드로이드 5.0 웹뷰에서는 Grid 레이아웃이 전혀 렌더링되지 않습니다.<br>
+            <strong>대체 전략:</strong> 공통 환경에서는 <strong>Flexbox</strong>나 백분율 너비(<code>width: 25%</code>) 기반으로 레이아웃을 작성하세요.
+          </td>
+        </tr>
+
+        <!-- 3. Flexbox (기본 정렬) -->
+        <tr data-status="safe" data-cat="layout" data-keywords="display: flex flexbox justify-content align-items flex-direction 플렉스">
+          <td>
+            <span class="prop-name">display: flex</span>
+            <span class="prop-cat">Flexbox 기본 레이아웃</span>
+          </td>
+          <td><span class="status-pill pass">✅ 공통 지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 29+ (Android 4.4+)</span></td>
+          <td>
+            1차원 가로/세로 정렬(`justify-content`, `align-items`, `flex-wrap` 등)은 5.0부터 최신까지 모두 정상 작동합니다.<br>
+            <small style="color:var(--text-muted);">※ 구형 기기 안정성을 위해 <code>-webkit-box</code> / <code>-webkit-flex</code> 프리픽스 병기 권장.</small>
+          </td>
+        </tr>
+
+        <!-- 4. Flexbox / Grid gap -->
+        <tr data-status="fail" data-cat="layout" data-keywords="gap row-gap column-gap flex gap 그리드 갭 간격여백">
+          <td>
+            <span class="prop-name">gap (Flexbox 내)</span>
+            <span class="prop-cat">Flexbox 간격 제어</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 84+ (Android 11+)</span></td>
+          <td>
+            <strong>가장 잦은 실무 버그 요인:</strong> 5.0 및 구형 안드로이드에서는 Flexbox 내 `gap`이 무시되어 아이템들이 여백 없이 다닥다닥 붙습니다.<br>
+            <strong>대체 전략:</strong> <code>margin: 8px</code> 및 부모 컨테이너의 음수 마진(<code>margin: -8px</code>) 기법 사용.
+          </td>
+        </tr>
+
+        <!-- 5. position: sticky -->
+        <tr data-status="fail" data-cat="layout" data-keywords="position: sticky 스티키 고정헤더 플로팅">
+          <td>
+            <span class="prop-name">position: sticky</span>
+            <span class="prop-cat">스크롤 고정 포지셔닝</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원 / 버그</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 56+ (Android 7.0+)</span></td>
+          <td>
+            안드로이드 5.0에서는 sticky가 무시되어 일반 <code>static</code>으로 표시됩니다.<br>
+            <strong>대체 전략:</strong> JS의 <code>IntersectionObserver</code> 또는 스크롤 이벤트로 클래스를 토글하여 <code>position: fixed</code>로 전환.
+          </td>
+        </tr>
+
+        <!-- 6. aspect-ratio -->
+        <tr data-status="fail" data-cat="modern" data-keywords="aspect-ratio 16:9 비율 고정 종횡비 1/1">
+          <td>
+            <span class="prop-name">aspect-ratio</span>
+            <span class="prop-cat">종횡비 고정</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 88+ (Android 11+)</span></td>
+          <td>
+            안드로이드 5.0에서는 무시되어 높이가 0이 되거나 이미지가 찌그러질 수 있습니다.<br>
+            <strong>대체 전략:</strong> 전통적인 <code>padding-top: 56.25%</code> (16:9 비율 유지) 트릭 사용.
+          </td>
+        </tr>
+
+        <!-- 7. backdrop-filter (블러 효과) -->
+        <tr data-status="fail" data-cat="modern" data-keywords="backdrop-filter blur 글래스모피즘 블러 효과 유리효과">
+          <td>
+            <span class="prop-name">backdrop-filter</span>
+            <span class="prop-cat">배경 블러 (Glassmorphism)</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 76+ (Android 10+)</span></td>
+          <td>
+            배경 흐림 효과가 적용되지 않고 투명하게 관통됩니다.<br>
+            <strong>대체 전략:</strong> 반투명 솔리드 배경색(<code>background: rgba(15, 17, 23, 0.9)</code>)을 기본으로 제공.
+          </td>
+        </tr>
+
+        <!-- 8. box-sizing: border-box -->
+        <tr data-status="safe" data-cat="layout" data-keywords="box-sizing border-box 패딩 너비 박스모델">
+          <td>
+            <span class="prop-name">box-sizing</span>
+            <span class="prop-cat">박스 모델 기준</span>
+          </td>
+          <td><span class="status-pill pass">✅ 공통 지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 10+ (Android 4.0+)</span></td>
+          <td>
+            패딩과 테두리를 너비에 포함시키는 <code>border-box</code>는 전 안드로이드 버전에서 100% 안전하게 공통 사용 가능합니다.
+          </td>
+        </tr>
+
+        <!-- 9. Transform (2D) & Transition -->
+        <tr data-status="safe" data-cat="layout" data-keywords="transform translate scale rotate transition 애니메이션 2d">
+          <td>
+            <span class="prop-name">transform / transition</span>
+            <span class="prop-cat">2D 변형 및 화면 전환</span>
+          </td>
+          <td><span class="status-pill pass">✅ 공통 지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 36+ (Android 4.4+)</span></td>
+          <td>
+            <code>translate()</code>, <code>scale()</code>, <code>transition: all 0.3s</code> 등은 모두 잘 지원됩니다.<br>
+            <small style="color:var(--text-muted);">※ 안드로이드 5.0의 GPU 가속 버그 방지를 위해 <code>translateZ(0)</code> 또는 <code>will-change</code> 점검 권장.</small>
+          </td>
+        </tr>
+
+        <!-- 10. 최신 의사 클래스 (:has, :is, :where) -->
+        <tr data-status="fail" data-cat="modern" data-keywords=":has :is :where 의사클래스 부모선택자 selector">
+          <td>
+            <span class="prop-name">:has() / :is() / :where()</span>
+            <span class="prop-cat">모던 의사 클래스 선택자</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원 (파싱 에러)</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 88~105+</span></td>
+          <td>
+            구형 브라우저에서 <code>:has()</code>를 사용하면 <strong>해당 CSS 규칙 블록 전체가 무효화</strong>됩니다.<br>
+            <strong>대체 전략:</strong> 부모 상태 제어 시 자바스크립트로 부모 요소에 클래스를 부여하여 제어.
+          </td>
+        </tr>
+
+        <!-- 11. :focus-visible -->
+        <tr data-status="fail" data-cat="modern" data-keywords=":focus-visible 포커스 키보드포커스 outline 접근성">
+          <td>
+            <span class="prop-name">:focus-visible</span>
+            <span class="prop-cat">키보드 전용 포커스 링</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 86+ (Android 11+)</span></td>
+          <td>
+            5.0에서는 <code>:focus-visible</code> 규칙을 인식하지 못하므로 키보드 포커스 링이 사라질 수 있습니다.<br>
+            <strong>대체 전략:</strong> 일반 <code>:focus</code>를 기본으로 주고 마우스 클릭 시 JS로 클래스를 제어하거나 focus-visible 폴리필 사용.
+          </td>
+        </tr>
+
+        <!-- 12. border-radius & box-shadow -->
+        <tr data-status="safe" data-cat="layout" data-keywords="border-radius box-shadow 둥근모서리 그림자 모서리">
+          <td>
+            <span class="prop-name">border-radius / box-shadow</span>
+            <span class="prop-cat">둥근 모서리 및 그림자</span>
+          </td>
+          <td><span class="status-pill pass">✅ 공통 지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 4+ (Android 2.1+)</span></td>
+          <td>
+            모든 안드로이드 버전에서 기본적으로 안정 지원됩니다. (단, 5.0 구형 웹뷰에서 overflow:hidden과 border-radius 동시 사용 시 클리핑 버그 주의)
+          </td>
+        </tr>
+
+        <!-- 13. CSS Nesting (CSS 중첩) -->
+        <tr data-status="fail" data-cat="modern" data-keywords="css nesting 중첩 sass없이 & 중첩구문 모던css">
+          <td>
+            <span class="prop-name">CSS Nesting (중첩)</span>
+            <span class="prop-cat">네이티브 CSS 중첩 구문</span>
+          </td>
+          <td><span class="status-pill fail">❌ 미지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 112/120+</span></td>
+          <td>
+            Sass 없이 브라우저에서 직접 중첩하는 최신 표준 문법은 안드로이드 5.0에서 전체가 무시됩니다.<br>
+            <strong>대체 전략:</strong> 일반적인 평면 BEM 클래스 구조로 작성하거나 빌드 도구(PostCSS 등)를 통해 컴파일하여 배포.
+          </td>
+        </tr>
+
+        <!-- 14. Typography (rem, em, @font-face) -->
+        <tr data-status="safe" data-cat="layout" data-keywords="rem em @font-face woff ttf 폰트 글꼴 단위">
+          <td>
+            <span class="prop-name">rem / @font-face (WOFF, TTF)</span>
+            <span class="prop-cat">웹 폰트 및 상대 단위</span>
+          </td>
+          <td><span class="status-pill pass">✅ 공통 지원</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 4+ (Android 4.0+)</span></td>
+          <td>
+            <code>rem</code> 단위 및 WOFF/TTF 폰트는 5.0부터 완벽하게 작동합니다. (단, 최신 WOFF2 포맷은 Chrome 36+ 지원으로 5.0에서 일부 제한될 수 있으므로 WOFF/TTF 폴백 병기 권장)
+          </td>
+        </tr>
+
+        <!-- 15. -webkit-line-clamp (말줄임) -->
+        <tr data-status="warn" data-cat="layout" data-keywords="-webkit-line-clamp 말줄임 여러줄말줄임 ellipsis">
+          <td>
+            <span class="prop-name">-webkit-line-clamp</span>
+            <span class="prop-cat">멀티라인 텍스트 말줄임 (...)</span>
+          </td>
+          <td><span class="status-pill warn">⚠️ 접두사 필수</span></td>
+          <td><span class="status-pill pass">✅ 완벽 지원</span></td>
+          <td><span class="version-tag">Chrome 14+</span></td>
+          <td>
+            3대 필수 속성 세트(<code>display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;</code>)를 완벽하게 기재해야 5.0에서도 말줄임이 정상 동작합니다.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 실무 크로스 브라우징 가이드 -->
+  <section class="guide-section" aria-label="실무 안드로이드 크로스 브라우징 가이드">
+    <h2>🛠️ 안드로이드 5.0 ~ 최신 OS 공통 작업 실무 3대 수칙</h2>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <h4>1. @supports 기능 쿼리 활용</h4>
+        <p>
+          모던 CSS 속성을 사용할 때는 <code>@supports (gap: 10px) { ... }</code>로 감싸서 지원 브라우저에만 고도화 스타일을 주고, 기본 스타일은 마진(margin) 기반으로 작성합니다.
+        </p>
+      </div>
+      <div class="guide-card">
+        <h4>2. PostCSS & Autoprefixer 파이프라인</h4>
+        <p>
+          최신 CSS 문법을 작성하더라도 빌드 시점에 <code>browserslist: ["android >= 5"]</code> 옵션을 주어 자동으로 구형 벤더 프리픽스를 주입하고 변수를 정적 색상으로 트랜스파일합니다.
+        </p>
+      </div>
+      <div class="guide-card">
+        <h4>3. 안전한 폴백(Cascading Fallback) 순서</h4>
+        <p>
+          항상 구형 브라우저용 고정 값(예: <code>color: #333;</code>)을 먼저 선언하고, 그 다음 줄에 최신 문법(예: <code>color: var(--text-color);</code>)을 작성하여 점진적 향상을 구현합니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 검색 결과 없음 상태 -->
+  <div class="empty-state" id="empty-state" role="status" aria-live="polite">
+    <h3>🔍 검색 결과가 없습니다.</h3>
+    <p style="margin-top: 8px;">다른 속성명으로 검색하거나 '전체 보기' 탭을 선택해주세요.</p>
+  </div>
+
+  <footer>
+    <div>
+      <strong>Android CSS Compatibility Guide</strong> (Android 5.0 Lollipop ~ Latest)
+    </div>
+    <div style="display: flex; gap: 14px;">
+      <a href="web-standards.html" style="color: var(--accent); text-decoration: none;">웹 표준 가이드</a>
+      <a href="accessibility.html" style="color: var(--accent2); text-decoration: none;">웹 접근성 가이드</a>
+      <a href="kwcag33.html" style="color: var(--accent-cyan); text-decoration: none;">33개 검사항목</a>
+      <a href="index.html" style="color: var(--status-done); text-decoration: none;">Index 목록</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    const tabs = document.querySelectorAll('.tab-btn');
+    const rows = document.querySelectorAll('#table-body tr');
+    const searchInput = document.getElementById('compat-search');
+    const emptyState = document.getElementById('empty-state');
+    const table = document.getElementById('main-table');
+    let currentFilter = 'all';
+
+    function filterTable() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const status = row.dataset.status;
+        const cat = row.dataset.cat;
+        const keywords = (row.dataset.keywords || '').toLowerCase();
+        const text = row.textContent.toLowerCase();
+
+        let matchesTab = false;
+        if (currentFilter === 'all') matchesTab = true;
+        else if (currentFilter === 'safe') matchesTab = (status === 'safe');
+        else if (currentFilter === 'fail') matchesTab = (status === 'fail' || status === 'warn');
+        else if (currentFilter === 'layout') matchesTab = (cat === 'layout');
+        else if (currentFilter === 'modern') matchesTab = (cat === 'modern');
+
+        const matchesQuery = !query || keywords.includes(query) || text.includes(query);
+
+        if (matchesTab && matchesQuery) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (emptyState && table) {
+        if (visibleCount === 0) {
+          table.style.display = 'none';
+          emptyState.style.display = 'block';
+        } else {
+          table.style.display = 'table';
+          emptyState.style.display = 'none';
+        }
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        currentFilter = tab.dataset.filter;
+        filterTable();
+      });
+    });
+
+    let debounceTimer;
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(filterTable, 120);
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
