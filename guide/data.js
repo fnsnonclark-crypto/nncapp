@@ -35,6 +35,28 @@ const INDEX_DATA = {
       note: ""
     },
     {
+      depth1: "웹접근성",
+      depth2: "KWCAG 2.2",
+      depth3: "지침가이드",
+      depth4: "체크리스트",
+      depth5: "접근성 지침 통합본",
+      url: "accessibility.html",
+      status: "완료",
+      completedDate: "2026-09-21",
+      note: "한국형 웹 콘텐츠 접근성 지침(KWCAG 2.2) 종합 가이드 및 체크리스트"
+    },
+    {
+      depth1: "웹접근성",
+      depth2: "KWCAG 2.2",
+      depth3: "검사항목",
+      depth4: "체크리스트",
+      depth5: "33개 세부 검사항목 전수",
+      url: "kwcag33.html",
+      status: "완료",
+      completedDate: "2026-09-21",
+      note: "KWCAG 2.2 33개 세부 검사항목 전수 가이드 및 실시간 자가진단 체크리스트"
+    },
+    {
       depth1: "참고자료",
       depth2: "API",
       depth3: "Gemini",

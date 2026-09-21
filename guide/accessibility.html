@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>웹 접근성 지침 가이드 (KWCAG 2.2)</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #21253a;
+      --surface3: #282d44;
+      --border: #2e3250;
+      --accent: #6c8fff;
+      --accent2: #a78bfa;
+      --text: #e2e8f0;
+      --text-muted: #7b85a0;
+      --status-done: #34d399;
+      --status-wip: #fbbf24;
+      --status-todo: #60a5fa;
+      --code-bg: #141722;
+      --danger: #f87171;
+      --success: #34d399;
+      --radius: 12px;
+      --focus-ring: 2px solid #6c8fff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── 웹 접근성: 건너뛰기 링크 ── */
+    .skip-link {
+      position: absolute;
+      top: -60px;
+      left: 16px;
+      background: var(--accent);
+      color: #0f1117;
+      font-weight: 700;
+      padding: 10px 18px;
+      border-radius: 6px;
+      z-index: 10000;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus {
+      top: 16px;
+      outline: 3px solid #fff;
+    }
+
+    /* ── 키보드 포커스 공통 ── */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Pretendard', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      line-height: 1.6;
+      padding: 24px 20px 80px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ── Top Bar / Navigation ── */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .nav-back:hover {
+      background: var(--surface2);
+      border-color: var(--accent);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(108, 143, 255, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(108, 143, 255, 0.3);
+    }
+
+    /* ── Header ── */
+    header {
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #6c8fff, #a78bfa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 800px;
+    }
+
+    /* ── Overview Summary Cards ── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .principle-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .principle-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+    .principle-card .p-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+    .principle-card h2 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .principle-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* ── Controller Bar: Filters & Search ── */
+    .controls {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+      position: sticky;
+      top: 16px;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover {
+      color: var(--text);
+      background: var(--surface3);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #0f1117;
+      border-color: var(--accent);
+    }
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+      max-width: 380px;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 8px 14px 8px 36px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.875rem;
+    }
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    /* ── Guidelines Section ── */
+    .guideline-group {
+      margin-bottom: 40px;
+    }
+    .group-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+    }
+    .group-header h2 {
+      font-size: 1.45rem;
+      color: #fff;
+    }
+    .group-header span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── Checklist Cards ── */
+    .item-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .item-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .item-card:hover {
+      border-color: rgba(108, 143, 255, 0.4);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+    }
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+    .item-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .item-code {
+      font-family: 'Cascadia Code', monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(108, 143, 255, 0.12);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .item-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .tag-badge {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--surface2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .item-desc {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+      line-height: 1.6;
+    }
+
+    .checklist-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px 8px 8px 4px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+    .checklist-box h4 {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .checklist-box ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .checklist-box li {
+      font-size: 0.875rem;
+      color: #c9d1e0;
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 4px;
+    }
+    .checklist-box li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    /* ── Code Snippets: Good vs Bad ── */
+    .code-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 768px) {
+      .code-comparison {
+        grid-template-columns: 1fr;
+      }
+    }
+    .code-box {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .code-box-header {
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .code-box.bad .code-box-header {
+      background: rgba(248, 113, 113, 0.12);
+      color: var(--danger);
+      border-bottom: 1px solid rgba(248, 113, 113, 0.2);
+    }
+    .code-box.good .code-box-header {
+      background: rgba(52, 211, 153, 0.12);
+      color: var(--success);
+      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+    }
+    .code-box pre {
+      margin: 0;
+      padding: 12px 14px;
+      font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+      font-size: 0.82rem;
+      overflow-x: auto;
+      color: #c9d1e0;
+      line-height: 1.5;
+    }
+
+    /* ── Empty State ── */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text-muted);
+      display: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 접근성 건너뛰기 링크 -->
+<a href="#main-content" class="skip-link">본문 바로가기</a>
+
+<div class="container">
+  <div class="top-bar">
+    <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+      <a href="index.html" class="nav-back">
+        <span>←</span> 목록으로 돌아가기 (Index)
+      </a>
+      <a href="kwcag33.html" class="nav-back" style="color: var(--accent2);">
+        <span>📋</span> 33개 검사항목 체크리스트
+      </a>
+    </div>
+    <div style="display: flex; gap: 8px; align-items: center;">
+      <span class="badge">KWCAG 2.2 표준</span>
+      <span class="badge" style="background: rgba(167, 139, 250, 0.15); color: var(--accent2); border-color: rgba(167, 139, 250, 0.3);">33개 검사항목</span>
+    </div>
+  </div>
+
+  <header>
+    <h1>웹 접근성 지침 가이드 (KWCAG 2.2)</h1>
+    <p>
+      한국형 웹 콘텐츠 접근성 지침 2.2(Korea Web Content Accessibility Guidelines 2.2)는 장애인과 고령자를 포함한 모든 사용자가 차별 없이 웹 콘텐츠를 동등하게 이용할 수 있도록 보장하는 4대 원칙과 실무 가이드라인을 제공합니다.
+    </p>
+  </header>
+
+  <!-- 4대 원칙 요약 카드 -->
+  <section class="overview-grid" aria-label="웹 접근성 4대 원칙 개요">
+    <div class="principle-card" data-tab="p1" role="button" tabindex="0" aria-label="1. 인식의 용이성 섹션으로 이동">
+      <div class="p-num">Principle 01</div>
+      <h2>인식의 용이성</h2>
+      <p>모든 정보와 사용자 인터페이스 요소는 사용자가 인지할 수 있는 방식으로 표현되어야 합니다.</p>
+    </div>
+    <div class="principle-card" data-tab="p2" role="button" tabindex="0" aria-label="2. 운용의 용이성 섹션으로 이동">
+      <div class="p-num">Principle 02</div>
+      <h2>운용의 용이성</h2>
+      <p>사용자 인터페이스의 모든 구성 요소는 다양한 보조기술 및 키보드 등으로 제어 가능해야 합니다.</p>
+    </div>
+    <div class="principle-card" data-tab="p3" role="button" tabindex="0" aria-label="3. 이해의 용이성 섹션으로 이동">
+      <div class="p-num">Principle 03</div>
+      <h2>이해의 용이성</h2>
+      <p>정보와 사용자 인터페이스 운용은 논리적이고 직관적이며 이해하기 쉬워야 합니다.</p>
+    </div>
+    <div class="principle-card" data-tab="p4" role="button" tabindex="0" aria-label="4. 견고성 섹션으로 이동">
+      <div class="p-num">Principle 04</div>
+      <h2>견고성</h2>
+      <p>웹 콘텐츠는 보조기술을 포함한 현재 및 미래의 다양한 사용자 에이전트와 안정적으로 호환되어야 합니다.</p>
+    </div>
+  </section>
+
+  <!-- 컨트롤 바: 탭 필터 & 실시간 검색 -->
+  <nav class="controls" aria-label="가이드 필터링 및 검색">
+    <div class="filter-tabs" role="tablist">
+      <button class="tab-btn active" data-filter="all" role="tab" aria-selected="true">전체보기 (All)</button>
+      <button class="tab-btn" data-filter="p1" role="tab" aria-selected="false">1. 인식의 용이성</button>
+      <button class="tab-btn" data-filter="p2" role="tab" aria-selected="false">2. 운용의 용이성</button>
+      <button class="tab-btn" data-filter="p3" role="tab" aria-selected="false">3. 이해의 용이성</button>
+      <button class="tab-btn" data-filter="p4" role="tab" aria-selected="false">4. 견고성</button>
+    </div>
+    <div class="search-box">
+      <span class="search-icon" aria-hidden="true">🔍</span>
+      <input type="text" id="guideline-search" placeholder="검사항목, 키워드, 태그 검색..." aria-label="웹 접근성 지침 검색" />
+    </div>
+  </nav>
+
+  <!-- 메인 본문 콘텐츠 -->
+  <main id="main-content">
+    <!-- 원칙 1: 인식의 용이성 -->
+    <section class="guideline-group" id="group-p1" data-principle="p1">
+      <div class="group-header">
+        <h2>1. 인식의 용이성 (Perceivable)</h2>
+        <span>정보와 사용자 인터페이스 요소는 사용자가 지각할 수 있어야 함</span>
+      </div>
+      <div class="item-list">
+
+        <!-- 1.1.1 적절한 대체 텍스트 제공 -->
+        <article class="item-card" data-keywords="대체텍스트 alt 이미지 의미 텍스트아닌콘텐츠 1.1.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">1.1.1</span>
+              <h3 class="item-title">적절한 대체 텍스트 제공</h3>
+              <span class="tag-badge">시각 장애</span>
+              <span class="tag-badge">필수 항목</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            텍스트가 아닌 콘텐츠(이미지, 아이콘, 그래픽 등)에는 그 의미나 용도를 동등하게 파악할 수 있는 대체 텍스트(alt 속성 등)를 명시해야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>의미 있는 이미지는 이미지 내용을 온전히 설명하는 <code>alt</code> 속성 작성</li>
+              <li>장식용 이미지나 배경 요소는 빈 <code>alt=""</code>를 제공하거나 CSS 배경 이미지로 처리</li>
+              <li>링크/버튼 역할을 하는 이미지(아이콘)는 이동할 목적지 또는 동작을 설명</li>
+            </ul>
+          </div>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>&lt;!-- alt 누락 또는 무의미한 파일명 기재 --&gt;
+&lt;img src="graph_2026.png"&gt;
+&lt;img src="search_icon.png" alt="이미지"&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>&lt;!-- 명확한 설명 또는 버튼 목적 기재 --&gt;
+&lt;img src="graph_2026.png" alt="2026년 분기별 매출 통계 그래프"&gt;
+&lt;button&gt;&lt;img src="search_icon.png" alt="검색"&gt;&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 1.2.1 자막 제공 -->
+        <article class="item-card" data-keywords="자막 멀티미디어 동영상 오디오 수어 1.2.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">1.2.1</span>
+              <h3 class="item-title">자막 제공</h3>
+              <span class="tag-badge">청각 장애</span>
+              <span class="tag-badge">필수 항목</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            멀티미디어 콘텐츠(영상, 음성)를 제공할 경우, 대사·음향 정보를 이해할 수 있도록 동기화된 자막, 대본 또는 수어를 제공해야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>동영상 내 <code>&lt;track kind="subtitles"&gt;</code> 태그를 통한 웹 표준 자막(WebVTT) 연동</li>
+              <li>실시간 오디오/비디오 방송의 경우 실시간 자막 또는 전문 스크립트 제공</li>
+            </ul>
+          </div>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>&lt;video src="intro.mp4" controls&gt;&lt;/video&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>&lt;video src="intro.mp4" controls&gt;
+  &lt;track src="intro_ko.vtt" kind="subtitles" srclang="ko" label="한국어 자막" default&gt;
+&lt;/video&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 1.3.1 색에 무관한 콘텐츠 인식 -->
+        <article class="item-card" data-keywords="색상 구분 명도 대비 색각이상 그래프 차트 1.3.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">1.3.1</span>
+              <h3 class="item-title">색에 무관한 콘텐츠 인식</h3>
+              <span class="tag-badge">색각 이상</span>
+              <span class="tag-badge">필수 항목</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            콘텐츠는 색상만으로 정보를 구별하도록 제공해서는 안 되며, 패턴, 밑줄, 텍스트 레이블, 모양 등을 함께 제공해야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>필수 입력 필드를 빨간색 테두리로만 표시하지 않고 '*', '필수항목' 텍스트를 함께 표기</li>
+              <li>차트나 그래프의 범례에 색상뿐만 아니라 패턴 또는 데이터 레이블 직접 기재</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 1.3.2 텍스트 명도 대비 -->
+        <article class="item-card" data-keywords="명도대비 명도비율 4.5:1 가독성 텍스트대비 1.3.2">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">1.3.2</span>
+              <h3 class="item-title">명도 대비 (4.5:1 이상)</h3>
+              <span class="tag-badge">저시력자</span>
+              <span class="tag-badge">노안</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            텍스트와 배경 간의 명도 대비는 최소 <strong>4.5:1 이상</strong>이어야 합니다. (큰 텍스트는 18pt 이상 또는 14pt 굵은 글꼴 시 3:1 이상 허용)
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>placeholder나 비활성(disabled) 상태가 아닌 일반 본문 텍스트는 4.5:1 이상의 대비 유지</li>
+              <li>배경 이미지 위에 텍스트를 배치할 경우 반투명 오버레이를 주어 충분한 대비 확보</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 1.4.1 자동 재생 금지 -->
+        <article class="item-card" data-keywords="자동재생 autoplay 소리 음소거 1.4.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">1.4.1</span>
+              <h3 class="item-title">콘텐츠 선형화 및 자동 재생 제한</h3>
+              <span class="tag-badge">스크린리더</span>
+              <span class="tag-badge">인지 장애</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            페이지 진입 시 자동으로 소리가 재생되는 콘텐츠는 스크린 리더 음성과 중복되어 사용을 방해하므로, 3초 이상 지속되는 소리의 자동 재생을 금지하거나 제어 수단을 제공해야 합니다.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 원칙 2: 운용의 용이성 -->
+    <section class="guideline-group" id="group-p2" data-principle="p2">
+      <div class="group-header">
+        <h2>2. 운용의 용이성 (Operable)</h2>
+        <span>모든 사용자 인터페이스 구성 요소는 키보드 등으로 조작 가능해야 함</span>
+      </div>
+      <div class="item-list">
+
+        <!-- 2.1.1 키보드 사용 보장 -->
+        <article class="item-card" data-keywords="키보드 접근성 tab 초점 키보드트랩 focus 2.1.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">2.1.1</span>
+              <h3 class="item-title">키보드 사용 보장</h3>
+              <span class="tag-badge">지체 장애</span>
+              <span class="tag-badge">시각 장애</span>
+              <span class="tag-badge">핵심 필수</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            마우스 없이도 키보드(Tab, Shift+Tab, Enter, Space, 방향키)만으로 모든 대화형 컨트롤(링크, 버튼, 폼 요소 등)에 접근하고 조작할 수 있어야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li><code>&lt;div onclick="..."&gt;</code> 대신 표준 시맨틱 태그인 <code>&lt;button&gt;</code> 또는 <code>&lt;a&gt;</code> 사용</li>
+              <li>키보드 초점이 특정 영역에 갇혀 빠져나오지 못하는 '키보드 트랩(Keyboard Trap)' 방지</li>
+              <li>커스텀 컴포넌트에는 적절한 <code>tabindex="0"</code> 및 키다운 이벤트 바인딩</li>
+            </ul>
+          </div>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>&lt;!-- 키보드로 초점이 가지 않음 --&gt;
+&lt;div class="btn" onclick="submitData()"&gt;제출하기&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>&lt;!-- 시맨틱 태그 사용으로 Tab 및 Enter/Space 기본 지원 --&gt;
+&lt;button type="button" onclick="submitData()"&gt;제출하기&lt;/button&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2.1.2 초점 이동 및 표시 -->
+        <article class="item-card" data-keywords="초점이동 포커스링 outline:none 논리적순서 2.1.2">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">2.1.2</span>
+              <h3 class="item-title">초점 이동 및 표시 (Focus Indicator)</h3>
+              <span class="tag-badge">키보드 사용자</span>
+              <span class="tag-badge">필수 항목</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            키보드 초점은 시각적으로 명확하게 표시되어야 하며, 초점 이동 순서는 DOM 구조와 논리적 독해 순서에 일치해야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>CSS에서 <code>outline: none</code>을 적용하고 대체 스타일을 주지 않는 행위 엄격히 금지</li>
+              <li><code>:focus-visible</code>을 활용하여 키보드 탐색 시 고대비 포커스 링 제공</li>
+              <li>모달 레이어 팝업이 열릴 경우 모달 내부로 초점을 이동시키고 닫힐 시 기존 트리거 버튼으로 복귀</li>
+            </ul>
+          </div>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>/* 초점 표시 제거로 키보드 사용자 위치 파악 불가 */
+button:focus, a:focus {
+  outline: none;
+}</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>/* 명확한 포커스 링 보장 */
+:focus-visible {
+  outline: 2px solid #6c8fff;
+  outline-offset: 3px;
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2.2.1 정지 기능 제공 -->
+        <article class="item-card" data-keywords="자동롤링 캐러셀 슬라이드 일시정지 배너 2.2.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">2.2.1</span>
+              <h3 class="item-title">정지 기능 제공 (캐러셀/슬라이드)</h3>
+              <span class="tag-badge">전체 사용자</span>
+              <span class="tag-badge">인지 장애</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            자동으로 변경되거나 롤링되는 콘텐츠(메인 슬라이드 배너, 실시간 검색어, 티커 등)는 사용자가 움직임을 멈추거나 다시 시작할 수 있는 정지(일시정지) 제어 버튼을 제공해야 합니다.
+          </p>
+        </article>
+
+        <!-- 2.4.1 반복 영역 건너뛰기 -->
+        <article class="item-card" data-keywords="스킵내비게이션 건너뛰기 본문바로가기 skip-link 2.4.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">2.4.1</span>
+              <h3 class="item-title">반복 영역 건너뛰기 (스킵 내비게이션)</h3>
+              <span class="tag-badge">키보드 사용자</span>
+              <span class="tag-badge">스크린리더</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            상단 GNB 메뉴나 반복되는 헤더 영역을 거치지 않고 웹페이지의 핵심 콘텐츠 영역으로 바로 이동할 수 있는 건너뛰기 링크를 페이지 최상단에 제공해야 합니다.
+          </p>
+          <div class="code-comparison">
+            <div class="code-box good">
+              <div class="code-box-header">✓ 건너뛰기 링크 구현 예시</div>
+              <pre><code>&lt;body&gt;
+  &lt;a href="#main-content" class="skip-nav"&gt;본문 바로가기&lt;/a&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main id="main-content"&gt;...&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ CSS 스타일 예시</div>
+              <pre><code>.skip-nav {
+  position: absolute;
+  top: -9999px;
+}
+.skip-nav:focus {
+  top: 10px; left: 10px; z-index: 9999;
+}</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2.4.2 조작 가능 크기 (KWCAG 2.2 신규 핵심) -->
+        <article class="item-card" data-keywords="터치 타겟 조작가능크기 24px 모바일 버튼크기 2.4.2">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">2.4.2</span>
+              <h3 class="item-title">조작 가능 크기 (최소 24×24px)</h3>
+              <span class="tag-badge">모바일/터치</span>
+              <span class="tag-badge">지체 장애</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            버튼, 링크, 체크박스 등 모든 사용자 상호작용 컨트롤의 유효 클릭/터치 영역은 최소 <strong>24×24px 이상</strong>의 크기를 확보해야 오작동을 방지할 수 있습니다.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 원칙 3: 이해의 용이성 -->
+    <section class="guideline-group" id="group-p3" data-principle="p3">
+      <div class="group-header">
+        <h2>3. 이해의 용이성 (Understandable)</h2>
+        <span>정보와 사용자 인터페이스의 운용은 논리적이고 이해하기 쉬워야 함</span>
+      </div>
+      <div class="item-list">
+
+        <!-- 3.1.1 기본 언어 표시 -->
+        <article class="item-card" data-keywords="기본언어 lang lang=ko 스크린리더 3.1.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">3.1.1</span>
+              <h3 class="item-title">기본 언어 표시 (lang 속성)</h3>
+              <span class="tag-badge">스크린리더</span>
+              <span class="tag-badge">필수 항목</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            웹페이지 최상단 <code>&lt;html&gt;</code> 요소에 해당 문서의 주 언어를 명시(<code>lang="ko"</code>)하여 음성 낭독기가 올바른 발음 엔진으로 읽을 수 있도록 해야 합니다.
+          </p>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt; &lt;!-- 언어 정보 누락 --&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt; &lt;!-- 기본 언어 한국어 지정 --&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3.2.1 사용자 요구에 따른 실행 -->
+        <article class="item-card" data-keywords="새창 새창열림 팝업 target=_blank 3.2.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">3.2.1</span>
+              <h3 class="item-title">사용자 요구에 따른 실행 (새 창 안내)</h3>
+              <span class="tag-badge">시각 장애</span>
+              <span class="tag-badge">예측 가능성</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            새 창(<code>target="_blank"</code>)이나 팝업창이 열릴 경우, 사용자가 사전에 인지할 수 있도록 "새 창으로 열림" 텍스트나 아이콘 등의 안내 정보를 제공해야 합니다.
+          </p>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>&lt;a href="guide.pdf" target="_blank"&gt;가이드 문서 다운로드&lt;/a&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>&lt;a href="guide.pdf" target="_blank" title="가이드 문서 (새 창으로 열림)"&gt;
+  가이드 문서 다운로드 &lt;span class="sr-only"&gt;(새 창)&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3.3.1 레이블 제공 -->
+        <article class="item-card" data-keywords="레이블 label 폼 input title aria-label 3.3.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">3.3.1</span>
+              <h3 class="item-title">레이블 제공 (폼 컨트롤 연결)</h3>
+              <span class="tag-badge">시각 장애</span>
+              <span class="tag-badge">인지 장애</span>
+              <span class="tag-badge">핵심 필수</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            입력 서식(input, textarea, select)에는 어떤 정보를 입력해야 하는지 명확한 <code>&lt;label&gt;</code>을 연결해야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li><code>&lt;label for="user-id"&gt;</code>와 <code>&lt;input id="user-id"&gt;</code>의 id-for 명시적 매핑</li>
+              <li>디자인상 레이블을 숨겨야 할 경우 스크린리더용 숨김 클래스(sr-only) 또는 <code>aria-label</code> 활용</li>
+              <li><code>placeholder</code>는 부가 힌트일 뿐 레이블을 대체할 수 없음</li>
+            </ul>
+          </div>
+          <div class="code-comparison">
+            <div class="code-box bad">
+              <div class="code-box-header">✕ 미준수 예시</div>
+              <pre><code>&lt;!-- label 없이 placeholder만 있는 경우 --&gt;
+&lt;input type="email" placeholder="이메일 입력"&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 준수 예시</div>
+              <pre><code>&lt;label for="user-email"&gt;이메일 주소&lt;/label&gt;
+&lt;input type="email" id="user-email" placeholder="example@domain.com"&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3.3.2 오류 정정 안내 -->
+        <article class="item-card" data-keywords="오류안내 에러메시지 validation aria-describedby 3.3.2">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">3.3.2</span>
+              <h3 class="item-title">오류 정정 안내</h3>
+              <span class="tag-badge">전체 사용자</span>
+              <span class="tag-badge">인지 장애</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            입력 서식 작성 시 오류가 발생했을 경우, 오류의 원인과 정정 방법을 텍스트로 명확하게 설명하고 오류가 발생한 입력 필드로 초점을 이동시켜야 합니다.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 원칙 4: 견고성 -->
+    <section class="guideline-group" id="group-p4" data-principle="p4">
+      <div class="group-header">
+        <h2>4. 견고성 (Robust)</h2>
+        <span>웹 콘텐츠는 다양한 사용자 에이전트 및 보조기술과 호환되어야 함</span>
+      </div>
+      <div class="item-list">
+
+        <!-- 4.1.1 마크업 오류 방지 -->
+        <article class="item-card" data-keywords="마크업 문법 w3c 유효성 중복id 태그닫힘 4.1.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">4.1.1</span>
+              <h3 class="item-title">마크업 오류 방지 (문법 유효성)</h3>
+              <span class="tag-badge">호환성</span>
+              <span class="tag-badge">보조기술 호환</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            HTML 문법 오류가 없도록 태그의 시작과 끝이 일치하고 올바르게 중첩되어야 하며, 동일 페이지 내에서 <code>id</code> 속성값이 중복되어서는 안 됩니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>태그 중첩 순서 준수 (예: <code>&lt;p&gt;&lt;div&gt;&lt;/div&gt;&lt;/p&gt;</code> 같은 잘못된 구조 금지)</li>
+              <li>페이지 내 <code>id</code> 속성 유일성(Unique ID) 보장</li>
+              <li>속성값의 따옴표 누락 및 오탈자 검수</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 4.2.1 웹 애플리케이션 접근성 (WAI-ARIA) -->
+        <article class="item-card" data-keywords="aria wai-aria role aria-expanded aria-controls 아코디언 4.2.1">
+          <div class="item-top">
+            <div class="item-title-wrap">
+              <span class="item-code">4.2.1</span>
+              <h3 class="item-title">웹 애플리케이션 접근성 준수 (WAI-ARIA)</h3>
+              <span class="tag-badge">동적 UI</span>
+              <span class="tag-badge">스크린리더</span>
+            </div>
+          </div>
+          <p class="item-desc">
+            동적 UI 컴포넌트(드롭다운 메뉴, 탭, 아코디언, 모달 레이어)에는 상태 정보(펼침/접힘, 선택됨 등)와 역할(role)을 명시할 수 있는 WAI-ARIA 속성을 바르게 적용해야 합니다.
+          </p>
+          <div class="checklist-box">
+            <h4>핵심 준수 요건</h4>
+            <ul>
+              <li>아코디언/드롭다운 토글 버튼: <code>aria-expanded="true/false"</code>, <code>aria-controls="패널ID"</code></li>
+              <li>탭 메뉴: <code>role="tablist"</code>, <code>role="tab"</code>, <code>aria-selected="true/false"</code></li>
+              <li>모달 다이얼로그: <code>role="dialog"</code>, <code>aria-modal="true"</code>, <code>aria-labelledby="제목ID"</code></li>
+            </ul>
+          </div>
+          <div class="code-comparison">
+            <div class="code-box good">
+              <div class="code-box-header">✓ 아코디언 토글 버튼 예시</div>
+              <pre><code>&lt;button type="button" 
+        aria-expanded="false" 
+        aria-controls="faq-ans-1"&gt;
+  자주 묻는 질문 1번 제목
+&lt;/button&gt;
+&lt;div id="faq-ans-1" hidden&gt;답변 내용...&lt;/div&gt;</code></pre>
+            </div>
+            <div class="code-box good">
+              <div class="code-box-header">✓ 모달 레이어 다이얼로그 예시</div>
+              <pre><code>&lt;div role="dialog" 
+     aria-modal="true" 
+     aria-labelledby="modal-title"&gt;
+  &lt;h2 id="modal-title"&gt;공지사항&lt;/h2&gt;
+  &lt;button&gt;닫기&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 검색 결과 없음 상태 -->
+    <div class="empty-state" id="empty-state" role="status" aria-live="polite">
+      <h3>🔍 검색 결과가 없습니다.</h3>
+      <p style="margin-top: 8px;">다른 키워드로 검색하거나 전체보기 탭을 선택해주세요.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div>
+      <strong>KWCAG 2.2</strong> 종합 웹 접근성 가이드라인
+    </div>
+    <div>
+      <a href="index.html" style="color: var(--accent); text-decoration: none;">Index 목록 바로가기</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    // ── 1. Tab 필터링 로직 ──
+    const tabs = document.querySelectorAll('.tab-btn');
+    const groups = document.querySelectorAll('.guideline-group');
+    const cards = document.querySelectorAll('.item-card');
+    const searchInput = document.getElementById('guideline-search');
+    const emptyState = document.getElementById('empty-state');
+    let currentFilter = 'all';
+
+    function filterContent() {
+      const query = (searchInput.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      groups.forEach(group => {
+        const principle = group.dataset.principle;
+        const matchesTab = (currentFilter === 'all' || currentFilter === principle);
+        let groupHasVisibleCards = false;
+
+        const groupCards = group.querySelectorAll('.item-card');
+        groupCards.forEach(card => {
+          const keywords = (card.dataset.keywords || '').toLowerCase();
+          const text = card.textContent.toLowerCase();
+          const matchesQuery = !query || keywords.includes(query) || text.includes(query);
+
+          if (matchesTab && matchesQuery) {
+            card.style.display = 'block';
+            groupHasVisibleCards = true;
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (matchesTab && groupHasVisibleCards) {
+          group.style.display = 'block';
+        } else {
+          group.style.display = 'none';
+        }
+      });
+
+      if (emptyState) {
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    }
+
+    // 탭 버튼 클릭 이벤트
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        currentFilter = tab.dataset.filter;
+        filterContent();
+      });
+    });
+
+    // 상단 4대 원칙 요약 카드 클릭 시 탭 전환
+    document.querySelectorAll('.principle-card').forEach(pCard => {
+      const activate = () => {
+        const targetTab = pCard.dataset.tab;
+        const matchingTabBtn = document.querySelector(`.tab-btn[data-filter="${targetTab}"]`);
+        if (matchingTabBtn) {
+          matchingTabBtn.click();
+          // 컨트롤 바 위치로 부드럽게 스크롤
+          document.querySelector('.controls').scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+      pCard.addEventListener('click', activate);
+      pCard.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activate();
+        }
+      });
+    });
+
+    // 검색창 입력 이벤트 (디바운스)
+    let debounceTimer;
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(filterContent, 120);
+      });
+    }
+
+  })();
+</script>
+
+</body>
+</html>
