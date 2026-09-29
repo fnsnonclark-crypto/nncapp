@@ -273,6 +273,71 @@ function initSort() {
 // ==============================================================================
 
 /**
+ * [2026-09-22 추가] 상태 통계 카드(.stat-card)의 active 스타일을 현재 status-filter 값과 동기화하는 함수.
+ * 
+ * @param {string} currentStatus 현재 선택된 진행상태 값
+ */
+function syncActiveStatCard(currentStatus) {
+  document.querySelectorAll('.stat-card').forEach(card => {
+    if (currentStatus && card.dataset.status === currentStatus) {
+      card.classList.add('active');
+    } else {
+      card.classList.remove('active');
+    }
+  });
+}
+
+/**
+ * [2026-09-22 추가] 전체 데이터 기준으로 진행상태(완료, 진행중, 할일) 비율(%) 및 건수를 계산하고,
+ * 상단 대시보드 통계 카드 및 누적 프로그레스 바를 갱신하는 함수.
+ */
+function updateStatusProgress() {
+  const items = getItems();
+  const total = items.length;
+
+  let doneCount = 0;
+  let wipCount  = 0;
+  let todoCount = 0;
+
+  items.forEach(item => {
+    if (item.status === '완료')       doneCount++;
+    else if (item.status === '진행중') wipCount++;
+    else if (item.status === '할일')   todoCount++;
+  });
+
+  // 백분율 계산 헬퍼 (소수점 1자리 포맷)
+  const calcPct = (cnt) => total > 0 ? ((cnt / total) * 100).toFixed(1) : '0.0';
+
+  const donePct = calcPct(doneCount);
+  const wipPct  = calcPct(wipCount);
+  const todoPct = calcPct(todoCount);
+
+  // 텍스트 업데이트 헬퍼
+  const setTxt = (id, txt) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = txt;
+  };
+
+  setTxt('pct-done', `${donePct}%`);
+  setTxt('cnt-done', `(${doneCount}건)`);
+  setTxt('pct-wip', `${wipPct}%`);
+  setTxt('cnt-wip', `(${wipCount}건)`);
+  setTxt('pct-todo', `${todoPct}%`);
+  setTxt('cnt-todo', `(${todoCount}건)`);
+  setTxt('overall-pct', `${donePct}%`);
+
+  // 프로그레스 바 너비 갱신 헬퍼
+  const setWidth = (id, pct) => {
+    const el = document.getElementById(id);
+    if (el) el.style.width = `${pct}%`;
+  };
+
+  setWidth('bar-done', donePct);
+  setWidth('bar-wip',  wipPct);
+  setWidth('bar-todo', todoPct);
+}
+
+/**
  * 검색창 키 입력 및 필터 셀렉트박스 변경 이벤트를 바인딩하는 함수.
  * 
  * - 검색창(input#search):
@@ -280,6 +345,8 @@ function initSort() {
  *   180ms의 디바운스(Debounce) 타이머를 적용하여 입력이 멈춘 후 한 번만 렌더링합니다.
  * - 필터 셀렉트박스:
  *   'change' 이벤트 발생 시 즉시 render()를 호출하여 변경사항을 반영합니다.
+ * - 상태 통계 카드(.stat-card):
+ *   카드 클릭 시 해당 상태로 필터링을 토글합니다.
  */
 function initEvents() {
   let debounce; // 디바운스 타이머 ID를 보관하는 클로저 변수
@@ -296,7 +363,10 @@ function initEvents() {
   // 2) 진행상태 필터 드롭다운 이벤트
   const statusEl = document.getElementById('status-filter');
   if (statusEl) {
-    statusEl.addEventListener('change', render);
+    statusEl.addEventListener('change', () => {
+      syncActiveStatCard(statusEl.value); // [2026-09-22 추가] 상단 카드 활성 상태 동기화
+      render();
+    });
   }
 
   // 3) 1depth 필터 드롭다운 이벤트
@@ -304,6 +374,24 @@ function initEvents() {
   if (depth1El) {
     depth1El.addEventListener('change', render);
   }
+
+  // 4) [2026-09-22 추가] 상단 상태 통계 카드 클릭 필터링 이벤트
+  document.querySelectorAll('.stat-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const targetStatus = card.dataset.status;
+      if (!statusEl) return;
+
+      // 이미 선택된 상태 카드를 다시 클릭하면 필터 해제(전체 상태)
+      if (statusEl.value === targetStatus) {
+        statusEl.value = '';
+      } else {
+        statusEl.value = targetStatus;
+      }
+
+      syncActiveStatCard(statusEl.value);
+      render();
+    });
+  });
 }
 
 
@@ -317,9 +405,10 @@ function initEvents() {
  * 페이지 로드 시 필요한 기본 UI 텍스트 설정 및 각 모듈을 초기화합니다.
  * 1. 페이지 제목 및 푸터의 마지막 업데이트 날짜 출력
  * 2. 1depth 필터 옵션 생성 (populateFilters)
- * 3. 정렬 이벤트 바인딩 (initSort)
- * 4. 검색/필터 이벤트 바인딩 (initEvents)
- * 5. 최초 1회 테이블 렌더링 (render)
+ * 3. 상단 진행상태 통계 및 프로그레스 바 계산 (updateStatusProgress)
+ * 4. 정렬 이벤트 바인딩 (initSort)
+ * 5. 검색/필터 이벤트 바인딩 (initEvents)
+ * 6. 최초 1회 테이블 렌더링 (render)
  */
 function init() {
   // 페이지 제목 설정
@@ -336,6 +425,7 @@ function init() {
 
   // 각 초기화 함수 순차 호출
   populateFilters();
+  updateStatusProgress(); // [2026-09-22 추가] 상단 진행상태 통계 및 프로그레스 바 계산
   initSort();
   initEvents();
   render();
